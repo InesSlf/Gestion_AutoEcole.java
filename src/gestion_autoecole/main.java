@@ -15,7 +15,6 @@ public class main {
      */
     public static void main(String[] args) {
         // TODO code application logic here          
-        System.out.println("Hey Ines!, Let's start");        
-    }
-    
+        System.out.println("Hey Ines!, Let's start");     
+    }    
 }
