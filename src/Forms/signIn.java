@@ -171,10 +171,16 @@ public class signIn extends javax.swing.JFrame {
         // TODO add your handling code here:
         String name = txtName.getText().trim();
         String pass = Arrays.toString(txtPass.getPassword()).trim();
-        if(name.isEmpty() || pass.isEmpty()){
+        if (name.isEmpty() || pass.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter all fields", "Try Again!", JOptionPane.ERROR_MESSAGE);
-        }else{
-            JOptionPane.showMessageDialog(this, "Welcome", "Hey " + name , JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            // hna ywarilo l msg bark
+            JOptionPane.showMessageDialog(this, "Hey " + name, "Welcome", JOptionPane.INFORMATION_MESSAGE); 
+            // mna l bedya ta3 yeftah l window jdida (home screen)
+            home_screen hs = new home_screen(); // ndiro object mn class hadak
+            hs.setLocationRelativeTo(null); // hada l code ykhali home screen interfcae tban f lwast ta3 pc's screen
+            hs.setVisible(true); // hadi tkhaliha visible 
+            // ma tat9l9ich rani hna no9af m3ak w n3almk ^^
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
