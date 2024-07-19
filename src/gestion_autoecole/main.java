@@ -4,6 +4,8 @@
  */
 package gestion_autoecole;
 
+import Forms.*;
+
 /**
  *
  * @author msii
@@ -15,8 +17,13 @@ public class main {
      */
     public static void main(String[] args) {
         // TODO code application logic here          
+        /*
         System.out.println("Hey Ines!, Let's get started");
         System.out.println("Hey Faical ");
         System.out.println("mna w jay mat9olilich man3rfch ndir push and pull psq marahch n3awnk cbn! ^^");
+         */
+        signIn login = new signIn();
+        login.setLocationRelativeTo(null);
+        login.setVisible(true);
     }
 }
