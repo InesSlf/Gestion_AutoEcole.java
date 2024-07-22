@@ -77,6 +77,7 @@ public class home_screen extends javax.swing.JFrame {
         System.out.println("dsl faical dertlek khedma o hbeltek :(");
         System.out.println("nn 3adi matkhamich, insh'allah bark tkoni stefdti");        
         System.out.println("hello world!");
+        System.out.println("merci :)");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
