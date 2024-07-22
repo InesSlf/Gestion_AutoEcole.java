@@ -75,6 +75,7 @@ public class home_screen extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         System.out.println("dsl faical dertlek khedma o hbeltek :(");
+        System.out.println("nn 3adi matkhamich, insh'allah bark tkoni stefdti");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
