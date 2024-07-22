@@ -48,7 +48,7 @@ public class signIn extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Forms/driving-license.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/driving-license.png"))); // NOI18N
         jLabel2.setText("Sign In");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -74,7 +74,7 @@ public class signIn extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(226, 114, 114));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Forms/login.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/login.png"))); // NOI18N
         jButton1.setText("Login");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,7 +121,7 @@ public class signIn extends javax.swing.JFrame {
                 .addContainerGap(132, Short.MAX_VALUE))
         );
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Forms/car (1).png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/car (1).png"))); // NOI18N
         jLabel1.setText("jLabel1");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -172,16 +172,15 @@ public class signIn extends javax.swing.JFrame {
         String name = txtName.getText().trim();
         String pass = Arrays.toString(txtPass.getPassword()).trim();
         if (name.isEmpty() || pass.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please enter all fields", "Try Again!", JOptionPane.ERROR_MESSAGE);
-        } else {
-            // hna ywarilo l msg bark
-            JOptionPane.showMessageDialog(this, "Hey " + name, "Welcome", JOptionPane.INFORMATION_MESSAGE); 
-            // mna l bedya ta3 yeftah l window jdida (home screen)
-            home_screen hs = new home_screen(); // ndiro object mn class hadak
-            hs.setLocationRelativeTo(null); // hada l code ykhali home screen interfcae tban f lwast ta3 pc's screen
-            hs.setVisible(true); // hadi tkhaliha visible 
-            // ma tat9l9ich rani hna no9af m3ak w n3almk ^^
-        }
+        JOptionPane.showMessageDialog(this, "Please enter all fields", "Try Again!", JOptionPane.ERROR_MESSAGE);
+    } else if (name.equals("ines") && pass.equals("slifi")) {
+        JOptionPane.showMessageDialog(this, "Hey " + name, "Welcome", JOptionPane.INFORMATION_MESSAGE); 
+        home_screen hs = new home_screen(); 
+        hs.setLocationRelativeTo(null); 
+        hs.setVisible(true); 
+    } else {
+        JOptionPane.showMessageDialog(this, "Information invalid","Try again",JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

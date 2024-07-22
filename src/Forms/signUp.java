@@ -4,6 +4,8 @@
  */
 package Forms;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author msii
@@ -48,7 +50,7 @@ public class signUp extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(250, 229, 229));
         jPanel2.setMaximumSize(new java.awt.Dimension(456, 433));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Forms/examen-de-conduite.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/examen-de-conduite.png"))); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(226, 114, 114));
@@ -66,7 +68,7 @@ public class signUp extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -83,7 +85,7 @@ public class signUp extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Forms/auto-ecole (1).png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/auto-ecole (1).png"))); // NOI18N
         jLabel1.setText("LOGIN");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -118,10 +120,20 @@ public class signUp extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(226, 114, 114));
         jButton1.setText("Login");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         btClear.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btClear.setForeground(new java.awt.Color(226, 114, 114));
         btClear.setText("Clear");
+        btClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btClearActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -144,11 +156,11 @@ public class signUp extends javax.swing.JFrame {
                         .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jtUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
+                    .addComponent(jtUsername)
                     .addComponent(jtpassword)
                     .addComponent(jtEmail)
                     .addComponent(jtPhone))
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,7 +185,7 @@ public class signUp extends javax.swing.JFrame {
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(btClear))
@@ -186,8 +198,8 @@ public class signUp extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,6 +217,27 @@ public class signUp extends javax.swing.JFrame {
     private void jtPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtPhoneActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtPhoneActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        signUp su=new signUp();
+        su.setLocationRelativeTo(null);
+        
+        String name = jtUsername.getText();
+        String email =jtEmail.getText();
+        String password = String.valueOf(jtpassword.getPassword());
+        String phone =jtPhone.getText();
+        if(name.isEmpty()|| email.isEmpty()|| phone.isEmpty()|| password.isEmpty()){
+        JOptionPane.showMessageDialog(this, "Please enter all the fields","Try again ",JOptionPane.ERROR_MESSAGE);
+        }else {
+        JOptionPane.showMessageDialog(this, "Your account created !", "Success", JOptionPane.INFORMATION_MESSAGE);
+        this.dispose();
+    }
+  
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btClearActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btClearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -259,4 +292,6 @@ public class signUp extends javax.swing.JFrame {
     private javax.swing.JTextField jtUsername;
     private javax.swing.JPasswordField jtpassword;
     // End of variables declaration//GEN-END:variables
+  
+    
 }
