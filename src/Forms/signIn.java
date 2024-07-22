@@ -170,17 +170,17 @@ public class signIn extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String name = txtName.getText().trim();
-        String pass = Arrays.toString(txtPass.getPassword()).trim();
+        String pass = String.valueOf(txtPass.getPassword()).trim();        
         if (name.isEmpty() || pass.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Please enter all fields", "Try Again!", JOptionPane.ERROR_MESSAGE);
-    } else if (name.equals("ines") && pass.equals("slifi")) {
-        JOptionPane.showMessageDialog(this, "Hey " + name, "Welcome", JOptionPane.INFORMATION_MESSAGE); 
-        home_screen hs = new home_screen(); 
-        hs.setLocationRelativeTo(null); 
-        hs.setVisible(true); 
-    } else {
-        JOptionPane.showMessageDialog(this, "Information invalid","Try again",JOptionPane.ERROR_MESSAGE);
-    }
+            JOptionPane.showMessageDialog(this, "Please enter all fields", "Try Again!", JOptionPane.ERROR_MESSAGE);
+        } else if (name.equals("ines") && pass.equals("slifi")) {
+            JOptionPane.showMessageDialog(this, "Hey " + name, "Welcome", JOptionPane.INFORMATION_MESSAGE);
+            home_screen hs = new home_screen();
+            hs.setLocationRelativeTo(null);
+            hs.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Information invalid", "Try again", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
