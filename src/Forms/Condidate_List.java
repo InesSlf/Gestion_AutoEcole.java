@@ -4,6 +4,7 @@
  */
 package Forms;
 
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -30,7 +31,7 @@ public class Condidate_List extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        buttonGroup2 = new javax.swing.ButtonGroup();
+        btnGroup = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -104,12 +105,12 @@ public class Condidate_List extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Gender");
 
-        buttonGroup2.add(rbMale);
+        btnGroup.add(rbMale);
         rbMale.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         rbMale.setForeground(new java.awt.Color(255, 255, 255));
         rbMale.setText("Male");
 
-        buttonGroup2.add(rbFemale);
+        btnGroup.add(rbFemale);
         rbFemale.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         rbFemale.setForeground(new java.awt.Color(255, 255, 255));
         rbFemale.setText("Female");
@@ -294,44 +295,50 @@ public class Condidate_List extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddActionPerformed
-       String name=jtName.getText();
-       String Fname=jtFirstName.getText();
-       String DBirth=jtDateB.getDateFormatString();
-       String Adress = jtAdress.getText();
-       String NumCrd=jtNumCard.getText();
-       String Age=jtAge.getText();
-       String Phone=jtPhone.getText();
-       String BooldTy=jtBooldType.getText();
-      
-       
-       if (name.isEmpty()|| Fname.isEmpty()|| DBirth.isEmpty()|| Adress.isEmpty()|| Age.isEmpty()||Phone.isEmpty()||BooldTy.isEmpty()||NumCrd.isEmpty()){
-        JOptionPane.showMessageDialog(this, "Please enter all fields","Try again",JOptionPane.ERROR_MESSAGE);
-       }else{
-        DefaultTableModel model = (DefaultTableModel)TableCondiates.getModel();
-        model.addRow(new Object[]{Adress,Age,BooldTy,Fname,name,NumCrd,Phone,DBirth});
-        jtAdress.setText("");
-        jtAge.setText("");
-        jtBooldType.setText("");
-        jtDateB.setDateFormatString("");
-        jtFirstName.setText("");
-        jtNumCard.setText("");
-        jtPhone.setText("");
-        jtName.setText("");
-        JOptionPane.showMessageDialog(this,"A candidate has been added.", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
-       }
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        String name = jtName.getText();
+        String Fname = jtFirstName.getText();
+        String DBirth = sdf.format(jtDateB.getDate());
+        String Adress = jtAdress.getText();
+        String NumCrd = jtNumCard.getText();
+        String Age = jtAge.getText();
+        String Phone = jtPhone.getText();
+        String BooldTy = jtBooldType.getText();
+        String gender;
+
+        if (name.isEmpty() || Fname.isEmpty() || DBirth.isEmpty() || Adress.isEmpty() || Age.isEmpty() || Phone.isEmpty() || BooldTy.isEmpty() || NumCrd.isEmpty() || !(rbMale.isSelected() || rbFemale.isSelected())) {
+            JOptionPane.showMessageDialog(this, "Please enter all fields", "Try again", JOptionPane.ERROR_MESSAGE);
+        } else {
+            if (rbMale.isSelected()) {
+                gender = "Male";
+            } else {
+                gender = "Female";
+            }
+            DefaultTableModel model = (DefaultTableModel) TableCondiates.getModel();
+            model.addRow(new Object[]{name, Fname, DBirth, Age, Phone, gender, BooldTy, Adress, NumCrd});
+            jtAdress.setText("");
+            jtAge.setText("");
+            jtBooldType.setText("");
+            jtDateB.setDateFormatString("");
+            jtFirstName.setText("");
+            jtNumCard.setText("");
+            jtPhone.setText("");
+            jtName.setText("");
+            JOptionPane.showMessageDialog(this, "A candidate has been added.", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_btAddActionPerformed
 
     private void btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteActionPerformed
-        DefaultTableModel model =(DefaultTableModel) TableCondiates.getModel();
+        DefaultTableModel model = (DefaultTableModel) TableCondiates.getModel();
         //get selected row index 
-        try{
-        int SelectedrowIndex=TableCondiates.getSelectedRow();
-        model.removeRow(SelectedrowIndex);
-        }catch (Exception ex){
-          JOptionPane.showMessageDialog(this,"No row is selected.","Error",JOptionPane.ERROR_MESSAGE);
+        try {
+            int SelectedrowIndex = TableCondiates.getSelectedRow();
+            model.removeRow(SelectedrowIndex);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "No row is selected.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
-        
+
+
     }//GEN-LAST:event_btDeleteActionPerformed
 
     private void btClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btClearActionPerformed
@@ -343,33 +350,33 @@ public class Condidate_List extends javax.swing.JFrame {
         jtNumCard.setText("");
         jtPhone.setText("");
         jtName.setText("");
-        
+
     }//GEN-LAST:event_btClearActionPerformed
 
     private void btModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModifyActionPerformed
-        DefaultTableModel model =(DefaultTableModel) TableCondiates.getModel();
-        int selectedRawIndex =TableCondiates.getSelectedRow();
-        String Name=(String) model.getValueAt(selectedRawIndex,0);
-        String FName=(String) model.getValueAt(selectedRawIndex,1);
-        String DBirth=(String) model.getValueAt(selectedRawIndex,2);
-        String Age=(String) model.getValueAt(selectedRawIndex,3);
-        String Phone=(String) model.getValueAt(selectedRawIndex,4);
-        String Gender=(String) model.getValueAt(selectedRawIndex,5);
-        String BooldTy=(String) model.getValueAt(selectedRawIndex,6);
-        String Adress=(String) model.getValueAt(selectedRawIndex,7);
-        String NumCard=(String) model.getValueAt(selectedRawIndex,8);
-       
-        String NewName=JOptionPane.showInputDialog(null,"Enter the new Name",Name);
-        String NewFName=JOptionPane.showInputDialog(null,"Enter the new First Name",FName);
-        String NewDBirth=JOptionPane.showInputDialog(null,"Enter the new Date of Birth ",DBirth);
-        String NewAge=JOptionPane.showInputDialog(null,"Enter the new Age",Age);
-        String NewPhone=JOptionPane.showInputDialog(null,"Enter the new Phone number",Phone);
-        String NewGender=JOptionPane.showInputDialog(null,"Enter the new Gender",Gender);
-        String NewBooldTy=JOptionPane.showInputDialog(null,"Enter the new Boold Type",BooldTy);
-        String NewAdress=JOptionPane.showInputDialog(null,"Enter the new Adress",Adress);
-        String NewNumCard=JOptionPane.showInputDialog(null,"Enter the new Num Card",NumCard);
-        
-        model.setValueAt(NewName,selectedRawIndex, 0);
+        DefaultTableModel model = (DefaultTableModel) TableCondiates.getModel();
+        int selectedRawIndex = TableCondiates.getSelectedRow();
+        String Name = (String) model.getValueAt(selectedRawIndex, 0);
+        String FName = (String) model.getValueAt(selectedRawIndex, 1);
+        String DBirth = (String) model.getValueAt(selectedRawIndex, 2);
+        String Age = (String) model.getValueAt(selectedRawIndex, 3);
+        String Phone = (String) model.getValueAt(selectedRawIndex, 4);
+        String Gender = (String) model.getValueAt(selectedRawIndex, 5);
+        String BooldTy = (String) model.getValueAt(selectedRawIndex, 6);
+        String Adress = (String) model.getValueAt(selectedRawIndex, 7);
+        String NumCard = (String) model.getValueAt(selectedRawIndex, 8);
+
+        String NewName = JOptionPane.showInputDialog(null, "Enter the new Name", Name);
+        String NewFName = JOptionPane.showInputDialog(null, "Enter the new First Name", FName);
+        String NewDBirth = JOptionPane.showInputDialog(null, "Enter the new Date of Birth ", DBirth);
+        String NewAge = JOptionPane.showInputDialog(null, "Enter the new Age", Age);
+        String NewPhone = JOptionPane.showInputDialog(null, "Enter the new Phone number", Phone);
+        String NewGender = JOptionPane.showInputDialog(null, "Enter the new Gender", Gender);
+        String NewBooldTy = JOptionPane.showInputDialog(null, "Enter the new Boold Type", BooldTy);
+        String NewAdress = JOptionPane.showInputDialog(null, "Enter the new Adress", Adress);
+        String NewNumCard = JOptionPane.showInputDialog(null, "Enter the new Num Card", NumCard);
+
+        model.setValueAt(NewName, selectedRawIndex, 0);
         model.setValueAt(NewFName, selectedRawIndex, 1);
         model.setValueAt(NewDBirth, selectedRawIndex, 2);
         model.setValueAt(NewAge, selectedRawIndex, 3);
@@ -377,12 +384,9 @@ public class Condidate_List extends javax.swing.JFrame {
         model.setValueAt(NewGender, selectedRawIndex, 5);
         model.setValueAt(NewBooldTy, selectedRawIndex, 6);
         model.setValueAt(NewAdress, selectedRawIndex, 7);
-        model.setValueAt(NewNumCard, selectedRawIndex,8);
-        
-        
-        
-        
-        
+        model.setValueAt(NewNumCard, selectedRawIndex, 8);
+
+
     }//GEN-LAST:event_btModifyActionPerformed
 
     /**
@@ -426,7 +430,7 @@ public class Condidate_List extends javax.swing.JFrame {
     private javax.swing.JButton btClear;
     private javax.swing.JButton btDelete;
     private javax.swing.JButton btModify;
-    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup btnGroup;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
