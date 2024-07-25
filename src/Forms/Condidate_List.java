@@ -346,7 +346,8 @@ public class Condidate_List extends javax.swing.JFrame {
             jtAdress.setText("");
             jtAge.setText("");
             jtBooldType.setText("");
-            jtDateB.setDateFormatString("");
+//            jtDateB.setDateFormatString("");
+            jtDateB.setCalendar(null);
             jtFirstName.setText("");
             jtNumCard.setText("");
             jtPhone.setText("");
@@ -382,32 +383,32 @@ public class Condidate_List extends javax.swing.JFrame {
     }//GEN-LAST:event_btClearActionPerformed
 
     private void btModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModifyActionPerformed
-     
+
     }//GEN-LAST:event_btModifyActionPerformed
 
     private void TableCondiatesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableCondiatesMouseClicked
-            int selectedRow=TableCondiates.getSelectedRow();
-            DefaultTableModel model =(DefaultTableModel) TableCondiates.getModel();
-            jtName.setText(model.getValueAt(selectedRow, 0).toString());
-            jtFirstName.setText(model.getValueAt(selectedRow, 1).toString());
-            Date date;
+        int selectedRow = TableCondiates.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) TableCondiates.getModel();
+        jtName.setText(model.getValueAt(selectedRow, 0).toString());
+        jtFirstName.setText(model.getValueAt(selectedRow, 1).toString());
+        Date date;
         try {
-            date = new SimpleDateFormat("yyyy-MM-dd").parse(model.getValueAt(selectedRow, 2).toString());
+            date = new SimpleDateFormat("dd-MM-yyyy").parse(model.getValueAt(selectedRow, 2).toString());
             jtDateB.setDate(date);
-        } catch (ParseException ex) {
-            Logger.getLogger(Condidate_List.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
-            jtAge.setText(model.getValueAt(selectedRow, 3).toString());
-            jtPhone.setText(model.getValueAt(selectedRow, 4).toString());
-            String Gender =model.getValueAt(selectedRow, 5).toString();
-            if (Gender.equals("Male")){
-                rbMale.setSelected(true);
-            }else{
-                rbFemale.setSelected(true);
-            }
-            jtBooldType.setText(model.getValueAt(selectedRow, 6).toString());
-            jtAdress.setText(model.getValueAt(selectedRow, 7).toString());
-            jtNumCard.setText(model.getValueAt(selectedRow, 8).toString());
+        jtAge.setText(model.getValueAt(selectedRow, 3).toString());
+        jtPhone.setText(model.getValueAt(selectedRow, 4).toString());
+        String Gender = model.getValueAt(selectedRow, 5).toString();
+        if (Gender.equals("Male")) {
+            rbMale.setSelected(true);
+        } else {
+            rbFemale.setSelected(true);
+        }
+        jtBooldType.setText(model.getValueAt(selectedRow, 6).toString());
+        jtAdress.setText(model.getValueAt(selectedRow, 7).toString());
+        jtNumCard.setText(model.getValueAt(selectedRow, 8).toString());
     }//GEN-LAST:event_TableCondiatesMouseClicked
 
     /**
