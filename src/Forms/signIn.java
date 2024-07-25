@@ -55,6 +55,7 @@ public class signIn extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Username");
 
+        txtName.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         txtName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNameActionPerformed(evt);
@@ -65,6 +66,7 @@ public class signIn extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Password");
 
+        txtPass.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         txtPass.setToolTipText("");
         txtPass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

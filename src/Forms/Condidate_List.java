@@ -4,7 +4,11 @@
  */
 package Forms;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -73,7 +77,7 @@ public class Condidate_List extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(255, 153, 153));
+        jPanel1.setBackground(new java.awt.Color(226, 114, 114));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -85,9 +89,13 @@ public class Condidate_List extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Name");
 
+        jtName.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("First Name");
+
+        jtFirstName.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -97,19 +105,25 @@ public class Condidate_List extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Age");
 
+        jtAge.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Phone Number");
+
+        jtPhone.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Gender");
 
+        rbMale.setBackground(new java.awt.Color(226, 114, 114));
         btnGroup.add(rbMale);
         rbMale.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         rbMale.setForeground(new java.awt.Color(255, 255, 255));
         rbMale.setText("Male");
 
+        rbFemale.setBackground(new java.awt.Color(226, 114, 114));
         btnGroup.add(rbFemale);
         rbFemale.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         rbFemale.setForeground(new java.awt.Color(255, 255, 255));
@@ -119,12 +133,16 @@ public class Condidate_List extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Blood Type");
 
+        jtBooldType.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Adress");
 
+        jtAdress.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
         btAdd.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btAdd.setForeground(new java.awt.Color(255, 153, 153));
+        btAdd.setForeground(new java.awt.Color(226, 114, 114));
         btAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/add-button.png"))); // NOI18N
         btAdd.setText("Add");
         btAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -134,7 +152,7 @@ public class Condidate_List extends javax.swing.JFrame {
         });
 
         btClear.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btClear.setForeground(new java.awt.Color(255, 153, 153));
+        btClear.setForeground(new java.awt.Color(226, 114, 114));
         btClear.setText("Clear");
         btClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,6 +160,8 @@ public class Condidate_List extends javax.swing.JFrame {
             }
         });
 
+        TableCondiates.setBackground(new java.awt.Color(250, 229, 229));
+        TableCondiates.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         TableCondiates.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -150,10 +170,15 @@ public class Condidate_List extends javax.swing.JFrame {
                 "Name", "FirstName", "DateBirth", "Age", "Phone", "Gender", "BooldeType", "Adress", "NumCard"
             }
         ));
+        TableCondiates.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TableCondiatesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(TableCondiates);
 
         btDelete.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btDelete.setForeground(new java.awt.Color(255, 153, 153));
+        btDelete.setForeground(new java.awt.Color(226, 114, 114));
         btDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cross.png"))); // NOI18N
         btDelete.setText("Delete");
         btDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -163,7 +188,7 @@ public class Condidate_List extends javax.swing.JFrame {
         });
 
         btModify.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btModify.setForeground(new java.awt.Color(255, 153, 153));
+        btModify.setForeground(new java.awt.Color(226, 114, 114));
         btModify.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/edit.png"))); // NOI18N
         btModify.setText("Modify");
         btModify.addActionListener(new java.awt.event.ActionListener() {
@@ -175,6 +200,8 @@ public class Condidate_List extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Identity Card Number");
+
+        jtNumCard.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -324,6 +351,7 @@ public class Condidate_List extends javax.swing.JFrame {
             jtNumCard.setText("");
             jtPhone.setText("");
             jtName.setText("");
+            btnGroup.clearSelection();
             JOptionPane.showMessageDialog(this, "A candidate has been added.", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btAddActionPerformed
@@ -350,44 +378,37 @@ public class Condidate_List extends javax.swing.JFrame {
         jtNumCard.setText("");
         jtPhone.setText("");
         jtName.setText("");
-
+        btnGroup.clearSelection();
     }//GEN-LAST:event_btClearActionPerformed
 
     private void btModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModifyActionPerformed
-        DefaultTableModel model = (DefaultTableModel) TableCondiates.getModel();
-        int selectedRawIndex = TableCondiates.getSelectedRow();
-        String Name = (String) model.getValueAt(selectedRawIndex, 0);
-        String FName = (String) model.getValueAt(selectedRawIndex, 1);
-        String DBirth = (String) model.getValueAt(selectedRawIndex, 2);
-        String Age = (String) model.getValueAt(selectedRawIndex, 3);
-        String Phone = (String) model.getValueAt(selectedRawIndex, 4);
-        String Gender = (String) model.getValueAt(selectedRawIndex, 5);
-        String BooldTy = (String) model.getValueAt(selectedRawIndex, 6);
-        String Adress = (String) model.getValueAt(selectedRawIndex, 7);
-        String NumCard = (String) model.getValueAt(selectedRawIndex, 8);
-
-        String NewName = JOptionPane.showInputDialog(null, "Enter the new Name", Name);
-        String NewFName = JOptionPane.showInputDialog(null, "Enter the new First Name", FName);
-        String NewDBirth = JOptionPane.showInputDialog(null, "Enter the new Date of Birth ", DBirth);
-        String NewAge = JOptionPane.showInputDialog(null, "Enter the new Age", Age);
-        String NewPhone = JOptionPane.showInputDialog(null, "Enter the new Phone number", Phone);
-        String NewGender = JOptionPane.showInputDialog(null, "Enter the new Gender", Gender);
-        String NewBooldTy = JOptionPane.showInputDialog(null, "Enter the new Boold Type", BooldTy);
-        String NewAdress = JOptionPane.showInputDialog(null, "Enter the new Adress", Adress);
-        String NewNumCard = JOptionPane.showInputDialog(null, "Enter the new Num Card", NumCard);
-
-        model.setValueAt(NewName, selectedRawIndex, 0);
-        model.setValueAt(NewFName, selectedRawIndex, 1);
-        model.setValueAt(NewDBirth, selectedRawIndex, 2);
-        model.setValueAt(NewAge, selectedRawIndex, 3);
-        model.setValueAt(NewPhone, selectedRawIndex, 4);
-        model.setValueAt(NewGender, selectedRawIndex, 5);
-        model.setValueAt(NewBooldTy, selectedRawIndex, 6);
-        model.setValueAt(NewAdress, selectedRawIndex, 7);
-        model.setValueAt(NewNumCard, selectedRawIndex, 8);
-
-
+     
     }//GEN-LAST:event_btModifyActionPerformed
+
+    private void TableCondiatesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableCondiatesMouseClicked
+            int selectedRow=TableCondiates.getSelectedRow();
+            DefaultTableModel model =(DefaultTableModel) TableCondiates.getModel();
+            jtName.setText(model.getValueAt(selectedRow, 0).toString());
+            jtFirstName.setText(model.getValueAt(selectedRow, 1).toString());
+            Date date;
+        try {
+            date = new SimpleDateFormat("yyyy-MM-dd").parse(model.getValueAt(selectedRow, 2).toString());
+            jtDateB.setDate(date);
+        } catch (ParseException ex) {
+            Logger.getLogger(Condidate_List.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            jtAge.setText(model.getValueAt(selectedRow, 3).toString());
+            jtPhone.setText(model.getValueAt(selectedRow, 4).toString());
+            String Gender =model.getValueAt(selectedRow, 5).toString();
+            if (Gender.equals("Male")){
+                rbMale.setSelected(true);
+            }else{
+                rbFemale.setSelected(true);
+            }
+            jtBooldType.setText(model.getValueAt(selectedRow, 6).toString());
+            jtAdress.setText(model.getValueAt(selectedRow, 7).toString());
+            jtNumCard.setText(model.getValueAt(selectedRow, 8).toString());
+    }//GEN-LAST:event_TableCondiatesMouseClicked
 
     /**
      * @param args the command line arguments
