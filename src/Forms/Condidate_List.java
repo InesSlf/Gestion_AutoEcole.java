@@ -4,6 +4,7 @@
  */
 package Forms;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -89,13 +90,13 @@ public class Condidate_List extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Name");
 
-        jtName.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jtName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("First Name");
 
-        jtFirstName.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jtFirstName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -105,13 +106,13 @@ public class Condidate_List extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Age");
 
-        jtAge.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jtAge.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Phone Number");
 
-        jtPhone.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jtPhone.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -133,13 +134,13 @@ public class Condidate_List extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Blood Type");
 
-        jtBooldType.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jtBooldType.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Adress");
 
-        jtAdress.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jtAdress.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         btAdd.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btAdd.setForeground(new java.awt.Color(226, 114, 114));
@@ -201,7 +202,7 @@ public class Condidate_List extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Identity Card Number");
 
-        jtNumCard.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jtNumCard.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -383,7 +384,37 @@ public class Condidate_List extends javax.swing.JFrame {
     }//GEN-LAST:event_btClearActionPerformed
 
     private void btModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModifyActionPerformed
-
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        String name = jtName.getText();
+        String Fname = jtFirstName.getText();
+        String DBirth = sdf.format(jtDateB.getDate());
+        String Adress = jtAdress.getText();
+        String NumCrd = jtNumCard.getText();
+        String Age = jtAge.getText();
+        String Phone = jtPhone.getText();
+        String BooldTy = jtBooldType.getText();
+        String gender;
+         if (rbMale.isSelected()) {
+                gender = "Male";
+            } else {
+                gender = "Female";
+            }
+        int i =TableCondiates.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) TableCondiates.getModel();
+        if(i>=0){
+        model.setValueAt(name, i, 0);
+        model.setValueAt(Fname, i, 1);
+        model.setValueAt(DBirth, i, 2);
+        model.setValueAt(Age, i, 3);
+        model.setValueAt(Phone, i, 4);
+        model.setValueAt(gender, i, 5);
+        model.setValueAt(BooldTy, i, 6);
+        model.setValueAt(Adress, i, 7);
+        model.setValueAt(NumCrd, i, 8);
+        }else{
+        JOptionPane.showMessageDialog(null,"Error : No row selected ");
+        }
+        
     }//GEN-LAST:event_btModifyActionPerformed
 
     private void TableCondiatesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableCondiatesMouseClicked
@@ -409,6 +440,7 @@ public class Condidate_List extends javax.swing.JFrame {
         jtBooldType.setText(model.getValueAt(selectedRow, 6).toString());
         jtAdress.setText(model.getValueAt(selectedRow, 7).toString());
         jtNumCard.setText(model.getValueAt(selectedRow, 8).toString());
+        
     }//GEN-LAST:event_TableCondiatesMouseClicked
 
     /**

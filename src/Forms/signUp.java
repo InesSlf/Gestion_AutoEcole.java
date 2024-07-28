@@ -92,20 +92,20 @@ public class signUp extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Username");
 
-        jtUsername.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jtUsername.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Password");
 
-        jtpassword.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jtpassword.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Email");
         jLabel6.setToolTipText("");
 
-        jtEmail.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jtEmail.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtEmailActionPerformed(evt);
@@ -116,7 +116,7 @@ public class signUp extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Phone number");
 
-        jtPhone.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jtPhone.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jtPhone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtPhoneActionPerformed(evt);
