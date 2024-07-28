@@ -275,35 +275,35 @@ public class SessionPlanner extends javax.swing.JFrame {
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        DefaultTableModel model=(DefaultTableModel) TableSession.getModel();
-        try{
-          int selectedRow =TableSession.getSelectedRow();
-          model.removeRow(selectedRow);
-        }catch(Exception ex){
-        JOptionPane.showMessageDialog(this, "No row is selected.", "Error", JOptionPane.ERROR_MESSAGE);
+        DefaultTableModel model = (DefaultTableModel) TableSession.getModel();
+        try {
+            int selectedRow = TableSession.getSelectedRow();
+            model.removeRow(selectedRow);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "No row is selected.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        String ID= jtID.getText();
-        String Name=jtNameC.getText();
-        String Date=sdf.format(jtDateS.getDate());
-        int Hour=(int) jtHour.getValue();
-        String Type="";
+        String ID = jtID.getText();
+        String Name = jtNameC.getText();
+        String Date = sdf.format(jtDateS.getDate());
+        int Hour = (int) jtHour.getValue();
+        String Type = "";
         if (jcCode.isSelected()) {
-        Type = "Code";
+            Type = "Code";
         } else if (jcDriving.isSelected()) {
-           Type = "Driving";
+            Type = "Driving";
         } else if (jcParking.isSelected()) {
-           Type = "Parking";
+            Type = "Parking";
         }
-        if(ID.isEmpty()|| Name.isEmpty()||Date.isEmpty()||Hour==0||!(jcCode.isSelected()||jcDriving.isSelected()||jcParking.isSelected())){
+        if (ID.isEmpty() || Name.isEmpty() || Date.isEmpty() || Hour == 0 || !(jcCode.isSelected() || jcDriving.isSelected() || jcParking.isSelected())) {
             JOptionPane.showMessageDialog(this, "Please enter all fields", "Try again", JOptionPane.ERROR_MESSAGE);
-        }else{
-        DefaultTableModel model=(DefaultTableModel)TableSession.getModel();
-        model.addRow(new Object[]{ID,Name,Date,Hour,Type});
-        JOptionPane.showMessageDialog(this, "Session has been added successfully!","Confirmation",JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            DefaultTableModel model = (DefaultTableModel) TableSession.getModel();
+            model.addRow(new Object[]{ID, Name, Date, Hour, Type});
+            JOptionPane.showMessageDialog(this, "Session has been added successfully!", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
             jtID.setText("");
             jtNameC.setText("");
             jtDateS.setCalendar(null);
@@ -313,12 +313,12 @@ public class SessionPlanner extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void TableSessionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableSessionMouseClicked
-        int selectedRow =TableSession.getSelectedRow();
-        DefaultTableModel model =(DefaultTableModel) TableSession.getModel();
+        int selectedRow = TableSession.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) TableSession.getModel();
         jtID.setText(model.getValueAt(selectedRow, 0).toString());
         jtNameC.setText(model.getValueAt(selectedRow, 1).toString());
-        Date date ;
-        try{
+        Date date;
+        try {
             date = new SimpleDateFormat("dd-MM-yyyy").parse(model.getValueAt(selectedRow, 2).toString());
             jtDateS.setDate(date);
         } catch (ParseException e) {
@@ -326,7 +326,7 @@ public class SessionPlanner extends javax.swing.JFrame {
         }
         int Hour = (int) (model.getValueAt(selectedRow, 3));
         jtHour.setValue(Hour);
-        String Type=model.getValueAt(selectedRow, 4).toString();
+        String Type = model.getValueAt(selectedRow, 4).toString();
         switch (Type) {
             case "Code":
                 jcCode.setSelected(true);
@@ -343,39 +343,40 @@ public class SessionPlanner extends javax.swing.JFrame {
     }//GEN-LAST:event_TableSessionMouseClicked
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
-        String ID= jtID.getText();
-        String Name=jtNameC.getText();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        String Date=sdf.format(jtDateS.getDate());
-        int Hour=(int) jtHour.getValue();
-        String Type;
-        if(jcCode.isSelected()){
-          Type="Code";
-          }else if(jcDriving.isSelected()){
-              Type="Driving";
-          }else if(jcParking.isSelected()){
-           Type="Parking";
-          }else{
-          Type="";
-          }
-        int i =TableSession.getSelectedRow();
+        int i = TableSession.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) TableSession.getModel();
-        if(i>=0){
-        model.setValueAt(ID, i, 0);
-        model.setValueAt(Name, i, 1);
-        model.setValueAt(Date, i, 2);
-        model.setValueAt(Hour, i, 3);
-        model.setValueAt(Type, i, 4);
-        }else{
+        if (i >= 0) {
+            String ID = jtID.getText();
+            String Name = jtNameC.getText();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            String Date = sdf.format(jtDateS.getDate());
+            int Hour = (int) jtHour.getValue();
+            String Type;
+            if (jcCode.isSelected()) {
+                Type = "Code";
+            } else if (jcDriving.isSelected()) {
+                Type = "Driving";
+            } else if (jcParking.isSelected()) {
+                Type = "Parking";
+            } else {
+                Type = "";
+            }
+
+            model.setValueAt(ID, i, 0);
+            model.setValueAt(Name, i, 1);
+            model.setValueAt(Date, i, 2);
+            model.setValueAt(Hour, i, 3);
+            model.setValueAt(Type, i, 4);
+        } else {
             //hna ki ma nselectionniwch une ligne ma rahou y'affichi had l msg
-        JOptionPane.showMessageDialog(this,"No row selected ","Try again !",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No row selected ", "Try again !", JOptionPane.ERROR_MESSAGE);
         }
         jtID.setText("");
         jtNameC.setText("");
         jtDateS.setCalendar(null);
         btGrpCheckBoxes.clearSelection();
         jtHour.setValue(0);
-        
+
     }//GEN-LAST:event_btnModifyActionPerformed
 
     /**
