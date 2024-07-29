@@ -4,7 +4,9 @@
  */
 package gestion_autoecole;
 
+import Database.Connect;
 import Forms.*;
+import java.sql.Connection;
 
 /**
  *
@@ -25,5 +27,8 @@ public class main {
         signIn login = new signIn();
         login.setLocationRelativeTo(null);
         login.setVisible(true);
+        
+        Connect conn = new Connect();
+        Connection c = conn.conn();
     }
 }
