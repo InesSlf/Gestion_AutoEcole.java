@@ -5,6 +5,7 @@
 package Forms;
 
 import javax.swing.JOptionPane;
+import Database.CRUD;
 
 /**
  *
@@ -86,7 +87,7 @@ public class signUp extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/auto-ecole (1).png"))); // NOI18N
-        jLabel1.setText("LOGIN");
+        jLabel1.setText("Register");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -125,7 +126,7 @@ public class signUp extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(226, 114, 114));
-        jButton1.setText("Login");
+        jButton1.setText("Register");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -220,20 +221,26 @@ public class signUp extends javax.swing.JFrame {
     }//GEN-LAST:event_jtPhoneActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        signUp su=new signUp();
+        signUp su = new signUp();
         su.setLocationRelativeTo(null);
-        
+
         String name = jtUsername.getText();
-        String email =jtEmail.getText();
+        String email = jtEmail.getText();
         String password = String.valueOf(jtpassword.getPassword());
-        String phone =jtPhone.getText();
-        if(name.isEmpty()|| email.isEmpty()|| phone.isEmpty()|| password.isEmpty()){
-        JOptionPane.showMessageDialog(this, "Please enter all the fields","Try again ",JOptionPane.ERROR_MESSAGE);
-        }else {
-        JOptionPane.showMessageDialog(this, "Your account created !", "Success", JOptionPane.INFORMATION_MESSAGE);
-        this.dispose();
-    }
-  
+        String phone = jtPhone.getText();
+        if (name.isEmpty() || email.isEmpty() || phone.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter all the fields", "Try again ", JOptionPane.ERROR_MESSAGE);
+        } else {
+            CRUD create = new CRUD();
+            boolean response = create.register(name, password, email, phone);
+            if (response) {
+                JOptionPane.showMessageDialog(this, "Your account created !", "Success", JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
+            }else {
+                JOptionPane.showMessageDialog(this, "There is some issues", "Error", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -289,6 +296,5 @@ public class signUp extends javax.swing.JFrame {
     private javax.swing.JTextField jtUsername;
     private javax.swing.JPasswordField jtpassword;
     // End of variables declaration//GEN-END:variables
-  
-    
+
 }

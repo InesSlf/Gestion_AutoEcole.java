@@ -14,7 +14,7 @@ import java.sql.SQLException;
  */
 public class Connect {
 
-    public Connection conn() {
+    public Connection connect() {
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver"); // hna ychecki esq driver hadak kayan wla nn
         } catch (ClassNotFoundException e) {
@@ -25,7 +25,7 @@ public class Connect {
         System.out.println("Oracle JDBC Driver Registered!"); // hna ma3ntha l9a driver ta3 oracle bach ykonikti b database
         Connection connection = null;
         try {
-            connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "faycal");
+            connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "auto_ecole", "ines2024");
         } catch (SQLException e) {
             System.out.println("Connection Failed! Check output console");
             e.printStackTrace();

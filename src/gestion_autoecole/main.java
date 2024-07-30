@@ -29,6 +29,6 @@ public class main {
         login.setVisible(true);
         
         Connect conn = new Connect();
-        Connection c = conn.conn();
+        Connection c = conn.connect();
     }
 }
