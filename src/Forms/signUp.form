@@ -275,6 +275,7 @@
               <Color blue="72" green="72" red="e2" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Register"/>
+            <Property name="borderPainted" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
@@ -289,6 +290,7 @@
               <Color blue="72" green="72" red="e2" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Clear"/>
+            <Property name="borderPainted" type="boolean" value="false"/>
           </Properties>
         </Component>
       </SubComponents>

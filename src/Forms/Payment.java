@@ -4,8 +4,11 @@
  */
 package Forms;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -48,9 +51,10 @@ public class Payment extends javax.swing.JFrame {
         btnAdd = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TablePayment = new javax.swing.JTable();
         btnDelete = new javax.swing.JButton();
         btnModify = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -108,6 +112,7 @@ public class Payment extends javax.swing.JFrame {
         btnAdd.setForeground(new java.awt.Color(226, 114, 114));
         btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/add-button.png"))); // NOI18N
         btnAdd.setText("Add");
+        btnAdd.setBorderPainted(false);
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
@@ -117,8 +122,14 @@ public class Payment extends javax.swing.JFrame {
         btnClear.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnClear.setForeground(new java.awt.Color(226, 114, 114));
         btnClear.setText("Clear");
+        btnClear.setBorderPainted(false);
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TablePayment.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -126,17 +137,45 @@ public class Payment extends javax.swing.JFrame {
                 "ID", "Name ", "Amount ", "InstAmount", "Remaining Bal", "Numnst", "Date"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        TablePayment.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablePaymentMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(TablePayment);
 
         btnDelete.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnDelete.setForeground(new java.awt.Color(226, 114, 114));
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cross.png"))); // NOI18N
         btnDelete.setText("Delete ");
+        btnDelete.setBorderPainted(false);
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         btnModify.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnModify.setForeground(new java.awt.Color(226, 114, 114));
         btnModify.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/edit.png"))); // NOI18N
         btnModify.setText("Modify");
+        btnModify.setBorderPainted(false);
+        btnModify.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModifyActionPerformed(evt);
+            }
+        });
+
+        jButton1.setBackground(new java.awt.Color(226, 114, 114));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/return.png"))); // NOI18N
+        jButton1.setBorder(null);
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -173,13 +212,20 @@ public class Payment extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnModify, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 792, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(126, 126, 126))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -218,7 +264,7 @@ public class Payment extends javax.swing.JFrame {
                             .addComponent(btnAdd)
                             .addComponent(btnClear)))
                     .addComponent(jScrollPane1))
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -229,9 +275,7 @@ public class Payment extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -241,14 +285,117 @@ public class Payment extends javax.swing.JFrame {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         String ID = jtPaymentID.getText();
         String NameC = jtNameC.getText();
+        String Amount=jtAmount.getText();
+        String InstAmount=jtAmountInst.getText();
+        String RemBalance =jtRemBalance.getText();
         String Date = sdf.format(jtDatePay.getDate());
         int Nbr=(int) jtNumInst.getValue();
-        if(ID.isEmpty()|| NameC.isEmpty()||Date.isEmpty()){
+        if (InstAmount.isEmpty()){
+        InstAmount="0";
+        }
+        if (RemBalance.isEmpty()){
+        RemBalance="0";
+        }
+        if(ID.isEmpty()|| NameC.isEmpty()||Date.isEmpty()||Amount.isEmpty()){
         JOptionPane.showMessageDialog(this, "Please enter all fields", "Try again", JOptionPane.ERROR_MESSAGE);
         }else{
-        
+            DefaultTableModel model=(DefaultTableModel) TablePayment.getModel();
+            model.addRow(new Object[]{ID,NameC,Amount,InstAmount,RemBalance,Nbr,Date});
+            jtPaymentID.setText("");
+            jtNameC.setText("");
+            jtAmount.setText("");
+            jtAmountInst.setText("");
+            jtRemBalance.setText("");
+            jtDatePay.setCalendar(null);
+            jtNumInst.setValue(0);
         }
+        
     }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+            jtPaymentID.setText("");
+            jtNameC.setText("");
+            jtAmount.setText("");
+            jtAmountInst.setText("");
+            jtRemBalance.setText("");
+            jtDatePay.setCalendar(null);
+            jtNumInst.setValue(0);
+    }//GEN-LAST:event_btnClearActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+         DefaultTableModel model = (DefaultTableModel) TablePayment.getModel();
+        try {
+            int selectedRow = TablePayment.getSelectedRow();
+            model.removeRow(selectedRow);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "No row is selected.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
+        int i = TablePayment.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) TablePayment.getModel();
+        if (i >= 0) {
+            String ID = jtPaymentID.getText();
+            String Name = jtNameC.getText();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            String Date = sdf.format(jtDatePay.getDate());
+            int num = (int) jtNumInst.getValue();
+            String InstAmount=jtAmountInst.getText();
+            String RemBalance =jtRemBalance.getText();
+            String Amount =jtAmount.getText();
+
+            model.setValueAt(ID, i, 0);
+            model.setValueAt(Name, i, 1);
+            model.setValueAt(Amount, i, 2);
+            model.setValueAt(InstAmount, i, 3);
+            model.setValueAt(RemBalance, i, 4);
+            model.setValueAt(num, i, 5);
+            model.setValueAt(Date, i, 6);
+        } else {
+            JOptionPane.showMessageDialog(this, "No row selected ", "Try again !", JOptionPane.ERROR_MESSAGE);
+        }
+            jtPaymentID.setText("");
+            jtNameC.setText("");
+            jtAmount.setText("");
+            jtAmountInst.setText("");
+            jtRemBalance.setText("");
+            jtDatePay.setCalendar(null);
+            jtNumInst.setValue(0);
+    }//GEN-LAST:event_btnModifyActionPerformed
+
+    private void TablePaymentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablePaymentMouseClicked
+        int selectedRow = TablePayment.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) TablePayment.getModel();
+        jtPaymentID.setText(model.getValueAt(selectedRow, 0).toString());
+        jtNameC.setText(model.getValueAt(selectedRow, 1).toString());
+        jtAmount.setText(model.getValueAt(selectedRow, 2).toString());
+        jtAmountInst.setText(model.getValueAt(selectedRow, 3).toString());
+        jtRemBalance.setText(model.getValueAt(selectedRow, 4).toString());
+        int num = (int) (model.getValueAt(selectedRow, 5));
+        jtNumInst.setValue(num);
+        Date date;
+        try {
+            date = new SimpleDateFormat("dd-MM-yyyy").parse(model.getValueAt(selectedRow, 6).toString());
+            jtDatePay.setDate(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+       if (jtAmountInst.equals(0)){
+        jtAmountInst.setText("");
+        }
+        if (jtRemBalance.equals(0)){
+        jtRemBalance.setText("");
+        }
+    }//GEN-LAST:event_TablePaymentMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.toBack();
+        home_screen hc=new home_screen();
+        hc.setVisible(true);
+        hc.toFront();
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -286,10 +433,12 @@ public class Payment extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable TablePayment;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnModify;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -300,7 +449,6 @@ public class Payment extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jtAmount;
     private javax.swing.JTextField jtAmountInst;
     private com.toedter.calendar.JDateChooser jtDatePay;

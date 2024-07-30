@@ -39,11 +39,11 @@ public class home_screen extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        btnCondidate = new javax.swing.JButton();
         btnPayment = new javax.swing.JButton();
         btnExams = new javax.swing.JButton();
         DateTime = new javax.swing.JLabel();
         btnSessionPlan = new javax.swing.JButton();
+        btnCondidateL = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -62,26 +62,14 @@ public class home_screen extends javax.swing.JFrame {
         jLabel1.setText("Home");
         jPanel8.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 358, 56));
 
-        btnCondidate.setBackground(new java.awt.Color(226, 114, 114));
-        btnCondidate.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnCondidate.setForeground(new java.awt.Color(255, 255, 255));
-        btnCondidate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cone.png"))); // NOI18N
-        btnCondidate.setText("Condidate");
-        btnCondidate.setBorderPainted(false);
-        btnCondidate.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnCondidate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCondidateActionPerformed(evt);
-            }
-        });
-        jPanel8.add(btnCondidate, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 360, -1));
-
         btnPayment.setBackground(new java.awt.Color(226, 114, 114));
         btnPayment.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnPayment.setForeground(new java.awt.Color(255, 255, 255));
         btnPayment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cone.png"))); // NOI18N
         btnPayment.setText("Payment");
+        btnPayment.setBorder(null);
         btnPayment.setBorderPainted(false);
+        btnPayment.setContentAreaFilled(false);
         btnPayment.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnPayment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,7 +83,9 @@ public class home_screen extends javax.swing.JFrame {
         btnExams.setForeground(new java.awt.Color(255, 255, 255));
         btnExams.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cone.png"))); // NOI18N
         btnExams.setText("Exams");
+        btnExams.setBorder(null);
         btnExams.setBorderPainted(false);
+        btnExams.setContentAreaFilled(false);
         btnExams.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnExams.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,7 +104,9 @@ public class home_screen extends javax.swing.JFrame {
         btnSessionPlan.setForeground(new java.awt.Color(255, 255, 255));
         btnSessionPlan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cone.png"))); // NOI18N
         btnSessionPlan.setText("Session Planner");
+        btnSessionPlan.setBorder(null);
         btnSessionPlan.setBorderPainted(false);
+        btnSessionPlan.setContentAreaFilled(false);
         btnSessionPlan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnSessionPlan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,6 +114,22 @@ public class home_screen extends javax.swing.JFrame {
             }
         });
         jPanel8.add(btnSessionPlan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 360, -1));
+
+        btnCondidateL.setBackground(new java.awt.Color(226, 114, 114));
+        btnCondidateL.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnCondidateL.setForeground(new java.awt.Color(255, 255, 255));
+        btnCondidateL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cone.png"))); // NOI18N
+        btnCondidateL.setText("Condidate");
+        btnCondidateL.setBorder(null);
+        btnCondidateL.setBorderPainted(false);
+        btnCondidateL.setContentAreaFilled(false);
+        btnCondidateL.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnCondidateL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCondidateLActionPerformed(evt);
+            }
+        });
+        jPanel8.add(btnCondidateL, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 360, -1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -193,13 +201,6 @@ public class home_screen extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCondidateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCondidateActionPerformed
-        Condidate_List CL =new Condidate_List();
-        CL.setVisible(true);
-        this.setVisible(false);
-
-    }//GEN-LAST:event_btnCondidateActionPerformed
-
     private void btnPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaymentActionPerformed
         Payment p=new Payment();
         p.setVisible(true);
@@ -215,6 +216,13 @@ public class home_screen extends javax.swing.JFrame {
         sp.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnSessionPlanActionPerformed
+
+    private void btnCondidateLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCondidateLActionPerformed
+        Condidate_List CL =new Condidate_List();
+        CL.setVisible(true);
+        this.setVisible(false);
+
+    }//GEN-LAST:event_btnCondidateLActionPerformed
 
     /**
      * @param args the command line arguments
@@ -253,7 +261,7 @@ public class home_screen extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel DateTime;
-    private javax.swing.JButton btnCondidate;
+    private javax.swing.JButton btnCondidateL;
     private javax.swing.JButton btnExams;
     private javax.swing.JButton btnPayment;
     private javax.swing.JButton btnSessionPlan;

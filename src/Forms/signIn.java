@@ -78,6 +78,7 @@ public class signIn extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(226, 114, 114));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/login.png"))); // NOI18N
         jButton1.setText("Login");
+        jButton1.setBorderPainted(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);

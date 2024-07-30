@@ -127,6 +127,7 @@ public class signUp extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(226, 114, 114));
         jButton1.setText("Register");
+        jButton1.setBorderPainted(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -136,6 +137,7 @@ public class signUp extends javax.swing.JFrame {
         btClear.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btClear.setForeground(new java.awt.Color(226, 114, 114));
         btClear.setText("Clear");
+        btClear.setBorderPainted(false);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
