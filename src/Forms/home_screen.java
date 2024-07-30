@@ -39,11 +39,11 @@ public class home_screen extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnCondidate = new javax.swing.JButton();
+        btnPayment = new javax.swing.JButton();
+        btnExams = new javax.swing.JButton();
         DateTime = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+        btnSessionPlan = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -62,62 +62,66 @@ public class home_screen extends javax.swing.JFrame {
         jLabel1.setText("Home");
         jPanel8.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 358, 56));
 
-        jButton1.setBackground(new java.awt.Color(226, 114, 114));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/driver.png"))); // NOI18N
-        jButton1.setText("Condidate");
-        jButton1.setBorderPainted(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnCondidate.setBackground(new java.awt.Color(226, 114, 114));
+        btnCondidate.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnCondidate.setForeground(new java.awt.Color(255, 255, 255));
+        btnCondidate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cone.png"))); // NOI18N
+        btnCondidate.setText("Condidate");
+        btnCondidate.setBorderPainted(false);
+        btnCondidate.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnCondidate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnCondidateActionPerformed(evt);
             }
         });
-        jPanel8.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 358, 76));
+        jPanel8.add(btnCondidate, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 360, -1));
 
-        jButton2.setBackground(new java.awt.Color(226, 114, 114));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/driver-license (1).png"))); // NOI18N
-        jButton2.setText("Formation");
-        jButton2.setBorderPainted(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnPayment.setBackground(new java.awt.Color(226, 114, 114));
+        btnPayment.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnPayment.setForeground(new java.awt.Color(255, 255, 255));
+        btnPayment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cone.png"))); // NOI18N
+        btnPayment.setText("Payment");
+        btnPayment.setBorderPainted(false);
+        btnPayment.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnPayment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnPaymentActionPerformed(evt);
             }
         });
-        jPanel8.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 358, 78));
+        jPanel8.add(btnPayment, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 360, -1));
 
-        jButton3.setBackground(new java.awt.Color(226, 114, 114));
-        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/calendar.png"))); // NOI18N
-        jButton3.setText("Exams");
-        jButton3.setBorderPainted(false);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnExams.setBackground(new java.awt.Color(226, 114, 114));
+        btnExams.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnExams.setForeground(new java.awt.Color(255, 255, 255));
+        btnExams.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cone.png"))); // NOI18N
+        btnExams.setText("Exams");
+        btnExams.setBorderPainted(false);
+        btnExams.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnExams.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnExamsActionPerformed(evt);
             }
         });
-        jPanel8.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 358, 77));
+        jPanel8.add(btnExams, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 360, -1));
 
         DateTime.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         DateTime.setForeground(new java.awt.Color(255, 255, 255));
         DateTime.setText("jLabel3");
         jPanel8.add(DateTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 676, 229, -1));
 
-        jButton4.setBackground(new java.awt.Color(226, 114, 114));
-        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/driving-school.png"))); // NOI18N
-        jButton4.setText("Session Planner");
-        jButton4.setBorderPainted(false);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnSessionPlan.setBackground(new java.awt.Color(226, 114, 114));
+        btnSessionPlan.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnSessionPlan.setForeground(new java.awt.Color(255, 255, 255));
+        btnSessionPlan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cone.png"))); // NOI18N
+        btnSessionPlan.setText("Session Planner");
+        btnSessionPlan.setBorderPainted(false);
+        btnSessionPlan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnSessionPlan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnSessionPlanActionPerformed(evt);
             }
         });
-        jPanel8.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 360, 70));
+        jPanel8.add(btnSessionPlan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 360, -1));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -153,7 +157,7 @@ public class home_screen extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addContainerGap(570, Short.MAX_VALUE))
+                .addContainerGap(557, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -189,26 +193,28 @@ public class home_screen extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnCondidateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCondidateActionPerformed
         Condidate_List CL =new Condidate_List();
         CL.setVisible(true);
         this.setVisible(false);
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnCondidateActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaymentActionPerformed
+        Payment p=new Payment();
+        p.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnPaymentActionPerformed
+
+    private void btnExamsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExamsActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnExamsActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnSessionPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSessionPlanActionPerformed
         SessionPlanner sp=new SessionPlanner();
         sp.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnSessionPlanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -247,10 +253,10 @@ public class home_screen extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel DateTime;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton btnCondidate;
+    private javax.swing.JButton btnExams;
+    private javax.swing.JButton btnPayment;
+    private javax.swing.JButton btnSessionPlan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
