@@ -94,19 +94,19 @@ public class SessionPlanner extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(226, 114, 114));
         jLabel7.setText("Type");
 
-        jcCode.setBackground(new java.awt.Color(250, 229, 229));
+        jcCode.setBackground(new java.awt.Color(250, 207, 207));
         btGrpCheckBoxes.add(jcCode);
         jcCode.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jcCode.setForeground(new java.awt.Color(226, 114, 114));
         jcCode.setText("Code");
 
-        jcParking.setBackground(new java.awt.Color(250, 229, 229));
+        jcParking.setBackground(new java.awt.Color(250, 207, 207));
         btGrpCheckBoxes.add(jcParking);
         jcParking.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jcParking.setForeground(new java.awt.Color(226, 114, 114));
         jcParking.setText("Parking ");
 
-        jcDriving.setBackground(new java.awt.Color(250, 229, 229));
+        jcDriving.setBackground(new java.awt.Color(250, 207, 207));
         btGrpCheckBoxes.add(jcDriving);
         jcDriving.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jcDriving.setForeground(new java.awt.Color(226, 114, 114));
