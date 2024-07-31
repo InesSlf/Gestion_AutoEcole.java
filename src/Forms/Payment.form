@@ -52,7 +52,7 @@
                               <Component id="jLabel2" max="32767" attributes="0"/>
                               <Component id="jtPaymentID" max="32767" attributes="0"/>
                               <Component id="jLabel3" max="32767" attributes="0"/>
-                              <Component id="jtNameC" max="32767" attributes="0"/>
+                              <Component id="jtIDCondidate" max="32767" attributes="0"/>
                               <Component id="jLabel4" max="32767" attributes="0"/>
                               <Component id="jtAmount" max="32767" attributes="0"/>
                               <Component id="jLabel5" pref="287" max="32767" attributes="0"/>
@@ -111,7 +111,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jtNameC" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="jtIDCondidate" min="-2" pref="30" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -187,10 +187,10 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Condidate Name"/>
+            <Property name="text" type="java.lang.String" value="Condidate ID"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jtNameC">
+        <Component class="javax.swing.JTextField" name="jtIDCondidate">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
@@ -333,7 +333,7 @@
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="7" rowCount="0">
                     <Column editable="true" title="ID" type="java.lang.Object"/>
-                    <Column editable="true" title="Name " type="java.lang.Object"/>
+                    <Column editable="true" title="Condidate ID" type="java.lang.Object"/>
                     <Column editable="true" title="Amount " type="java.lang.Object"/>
                     <Column editable="true" title="InstAmount" type="java.lang.Object"/>
                     <Column editable="true" title="Remaining Bal" type="java.lang.Object"/>

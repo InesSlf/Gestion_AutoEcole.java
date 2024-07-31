@@ -37,7 +37,7 @@ public class Payment extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jtPaymentID = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jtNameC = new javax.swing.JTextField();
+        jtIDCondidate = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jtAmount = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -74,9 +74,9 @@ public class Payment extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Condidate Name");
+        jLabel3.setText("Condidate ID");
 
-        jtNameC.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jtIDCondidate.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -134,7 +134,7 @@ public class Payment extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Name ", "Amount ", "InstAmount", "Remaining Bal", "Numnst", "Date"
+                "ID", "Condidate ID", "Amount ", "InstAmount", "Remaining Bal", "Numnst", "Date"
             }
         ));
         TablePayment.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -190,7 +190,7 @@ public class Payment extends javax.swing.JFrame {
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jtPaymentID)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jtNameC)
+                            .addComponent(jtIDCondidate)
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jtAmount)
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
@@ -238,7 +238,7 @@ public class Payment extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtNameC, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtIDCondidate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -284,7 +284,7 @@ public class Payment extends javax.swing.JFrame {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         String ID = jtPaymentID.getText();
-        String NameC = jtNameC.getText();
+        String IDC = jtIDCondidate.getText();
         String Amount=jtAmount.getText();
         String InstAmount=jtAmountInst.getText();
         String RemBalance =jtRemBalance.getText();
@@ -296,13 +296,13 @@ public class Payment extends javax.swing.JFrame {
         if (RemBalance.isEmpty()){
         RemBalance="0";
         }
-        if(ID.isEmpty()|| NameC.isEmpty()||Date.isEmpty()||Amount.isEmpty()){
+        if(ID.isEmpty()|| IDC.isEmpty()||Date.isEmpty()||Amount.isEmpty()){
         JOptionPane.showMessageDialog(this, "Please enter all fields", "Try again", JOptionPane.ERROR_MESSAGE);
         }else{
             DefaultTableModel model=(DefaultTableModel) TablePayment.getModel();
-            model.addRow(new Object[]{ID,NameC,Amount,InstAmount,RemBalance,Nbr,Date});
+            model.addRow(new Object[]{ID,IDC,Amount,InstAmount,RemBalance,Nbr,Date});
             jtPaymentID.setText("");
-            jtNameC.setText("");
+            jtIDCondidate.setText("");
             jtAmount.setText("");
             jtAmountInst.setText("");
             jtRemBalance.setText("");
@@ -314,7 +314,7 @@ public class Payment extends javax.swing.JFrame {
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
             jtPaymentID.setText("");
-            jtNameC.setText("");
+            jtIDCondidate.setText("");
             jtAmount.setText("");
             jtAmountInst.setText("");
             jtRemBalance.setText("");
@@ -337,7 +337,7 @@ public class Payment extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) TablePayment.getModel();
         if (i >= 0) {
             String ID = jtPaymentID.getText();
-            String Name = jtNameC.getText();
+            String IDC = jtIDCondidate.getText();
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
             String Date = sdf.format(jtDatePay.getDate());
             int num = (int) jtNumInst.getValue();
@@ -346,7 +346,7 @@ public class Payment extends javax.swing.JFrame {
             String Amount =jtAmount.getText();
 
             model.setValueAt(ID, i, 0);
-            model.setValueAt(Name, i, 1);
+            model.setValueAt(IDC, i, 1);
             model.setValueAt(Amount, i, 2);
             model.setValueAt(InstAmount, i, 3);
             model.setValueAt(RemBalance, i, 4);
@@ -356,7 +356,7 @@ public class Payment extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No row selected ", "Try again !", JOptionPane.ERROR_MESSAGE);
         }
             jtPaymentID.setText("");
-            jtNameC.setText("");
+            jtIDCondidate.setText("");
             jtAmount.setText("");
             jtAmountInst.setText("");
             jtRemBalance.setText("");
@@ -368,7 +368,7 @@ public class Payment extends javax.swing.JFrame {
         int selectedRow = TablePayment.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) TablePayment.getModel();
         jtPaymentID.setText(model.getValueAt(selectedRow, 0).toString());
-        jtNameC.setText(model.getValueAt(selectedRow, 1).toString());
+        jtIDCondidate.setText(model.getValueAt(selectedRow, 1).toString());
         jtAmount.setText(model.getValueAt(selectedRow, 2).toString());
         jtAmountInst.setText(model.getValueAt(selectedRow, 3).toString());
         jtRemBalance.setText(model.getValueAt(selectedRow, 4).toString());
@@ -452,7 +452,7 @@ public class Payment extends javax.swing.JFrame {
     private javax.swing.JTextField jtAmount;
     private javax.swing.JTextField jtAmountInst;
     private com.toedter.calendar.JDateChooser jtDatePay;
-    private javax.swing.JTextField jtNameC;
+    private javax.swing.JTextField jtIDCondidate;
     private javax.swing.JSpinner jtNumInst;
     private javax.swing.JTextField jtPaymentID;
     private javax.swing.JTextField jtRemBalance;

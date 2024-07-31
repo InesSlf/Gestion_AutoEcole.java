@@ -4,6 +4,7 @@
  */
 package Forms;
 
+import Database.CRUD;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -354,8 +355,9 @@ public class Condidate_List extends javax.swing.JFrame {
         String Age = jtAge.getText();
         String Phone = jtPhone.getText();
         String BooldTy = jtBooldType.getText();
-        String gender;
-
+        String gender = null;
+        CRUD crud =new CRUD();
+        
         if (name.isEmpty() || Fname.isEmpty() || DBirth.isEmpty() || Adress.isEmpty() || Age.isEmpty() || Phone.isEmpty() || BooldTy.isEmpty() || NumCrd.isEmpty() || !(rbMale.isSelected() || rbFemale.isSelected())) {
             JOptionPane.showMessageDialog(this, "Please enter all fields", "Try again", JOptionPane.ERROR_MESSAGE);
         } else {
@@ -376,8 +378,10 @@ public class Condidate_List extends javax.swing.JFrame {
             jtPhone.setText("");
             jtName.setText("");
             btnGroup.clearSelection();
-            JOptionPane.showMessageDialog(this, "A candidate has been added.", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
-        }
+           }if(crud.addCondidate(name, Fname, DBirth, Age, Phone, gender, BooldTy, Adress, NumCrd)){
+               JOptionPane.showMessageDialog(this, "A candidate has been added.", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
+            crud.affichage();
+           }
     }//GEN-LAST:event_btAddActionPerformed
 
     private void btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteActionPerformed
