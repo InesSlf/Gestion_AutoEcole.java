@@ -36,7 +36,20 @@ public class CRUD {
         return false;
     }
 
-    public boolean checkUser() {
-        return true;
+    public boolean checkUser(String username,String password) {
+        PreparedStatement ps;//envoie la requete
+        ResultSet rs;//recupere les infos 
+        String query ="select *from register where user_name=?and password =?";
+        try {
+            ps=conn.prepareStatement(query);
+            ps.setString(1, username);
+            ps.setString(2, password);
+            rs=ps.executeQuery();
+            return rs.next();
+        }catch (SQLException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false ;
     }
+    
 }
