@@ -4,8 +4,11 @@
  */
 package Forms;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import javax.swing.Timer;
 
 /**
  *
@@ -18,7 +21,7 @@ public class home_screen extends javax.swing.JFrame {
      */
     public home_screen() {
         initComponents();
-        curDateTime();//appel methode ta3 la date et heure 
+        updateTime();//appel methode ta3 la date et heure 
     }
     //methode date et heure 
     public void curDateTime(){
@@ -26,7 +29,16 @@ public class home_screen extends javax.swing.JFrame {
         LocalDateTime now=LocalDateTime.now();
         DateTime.setText(dtf.format(now));
     }
-
+    public void updateTime(){
+        curDateTime();
+        Timer timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                curDateTime();
+            }
+        });
+        timer.start();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

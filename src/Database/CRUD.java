@@ -21,7 +21,7 @@ public class CRUD {
         try {
             Statement stmt = conn.createStatement();
             String query = "insert into register (user_name, password, email, phone_number) VALUES (?, ?, ?, ?)";
-            PreparedStatement pstmt = conn.prepareStatement(query);            
+            PreparedStatement pstmt = conn.prepareStatement(query);
             pstmt.setString(1, username);
             pstmt.setString(2, password);
             pstmt.setString(3, email);
@@ -36,20 +36,20 @@ public class CRUD {
         return false;
     }
 
-    public boolean checkUser(String username,String password) {
+    public boolean checkUser(String username, String password) {
         PreparedStatement ps;//envoie la requete
         ResultSet rs;//recupere les infos 
-        String query ="select *from register where user_name=?and password =?";
+        String query = "select *from register where user_name=?and password =?";
         try {
-            ps=conn.prepareStatement(query);
+            ps = conn.prepareStatement(query);
             ps.setString(1, username);
             ps.setString(2, password);
-            rs=ps.executeQuery();
+            rs = ps.executeQuery();
             return rs.next();
-        }catch (SQLException ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return false ;
+        return false;
     }
-    
+
 }

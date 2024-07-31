@@ -172,13 +172,12 @@ public class signIn extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPassActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        CRUD crud =new CRUD();
+        CRUD crud = new CRUD();
         String name = txtName.getText().trim();
-        String pass = String.valueOf(txtPass.getPassword()).trim();        
+        String pass = String.valueOf(txtPass.getPassword()).trim();
         if (name.isEmpty() || pass.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter all fields", "Try Again!", JOptionPane.ERROR_MESSAGE);
-        } else
-            if (crud.checkUser(name, pass)) {
+        } else if (crud.checkUser(name, pass)) {
             JOptionPane.showMessageDialog(this, "Hey " + name, "Welcome", JOptionPane.INFORMATION_MESSAGE);
             home_screen hs = new home_screen();
             hs.setLocationRelativeTo(null);
