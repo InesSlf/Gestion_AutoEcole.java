@@ -5,12 +5,9 @@
 package Forms;
 
 import Database.CRUD;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -79,6 +76,11 @@ public class Condidate_List extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(226, 114, 114));
 
@@ -90,13 +92,13 @@ public class Condidate_List extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Name");
+        jLabel2.setText("First Name");
 
         jtName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("First Name");
+        jLabel3.setText("Last Name");
 
         jtFirstName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
@@ -170,7 +172,7 @@ public class Condidate_List extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Name", "FirstName", "DateBirth", "Age", "Phone", "Gender", "BooldeType", "Adress", "NumCard"
+                "FirstName", "LastName", "DateBirth", "Age", "Phone", "Gender", "BooldeType", "Adress", "NumCard"
             }
         ));
         TableCondiates.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -379,8 +381,7 @@ public class Condidate_List extends javax.swing.JFrame {
             jtName.setText("");
             btnGroup.clearSelection();
            }if(crud.addCondidate(name, Fname, DBirth, Age, Phone, gender, BooldTy, Adress, NumCrd)){
-               JOptionPane.showMessageDialog(this, "A candidate has been added.", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
-            crud.affichage();
+               JOptionPane.showMessageDialog(this, "A candidate has been added.", "Confirmation", JOptionPane.INFORMATION_MESSAGE);            
            }
     }//GEN-LAST:event_btAddActionPerformed
 
@@ -476,6 +477,12 @@ public class Condidate_List extends javax.swing.JFrame {
         hc.toFront();
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        CRUD crud = new CRUD();
+        crud.display_data(TableCondiates);
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments

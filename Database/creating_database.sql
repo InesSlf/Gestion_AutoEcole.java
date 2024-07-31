@@ -6,16 +6,16 @@ CREATE TABLE register (
    phone_number VARCHAR2(20) NOT NULL
 );
 create TABLE condidate(
-ID_C NUMBER(10) PRIMARY KEY,
-name VARCHAR2(50) NOT NULL,
-first_name VARCHAR2(50) NOT NULL,
-date_of_birth date NOT NULL,
-age NUMBER check (age>=18),
-phone VARCHAR2(10) unique,
-gender VARCHAR2(10),
-blood_type VARCHAR2(5),
-adress VARCHAR2(100),
-identity_card_number VARCHAR2(20) UNIQUE
+  ID_C NUMBER(10) PRIMARY KEY,
+  name VARCHAR2(50) NOT NULL,
+  first_name VARCHAR2(50) NOT NULL,
+  date_of_birth date NOT NULL,
+  age NUMBER check (age>=18),
+  phone VARCHAR2(10) unique,
+  gender VARCHAR2(10),
+  blood_type VARCHAR2(5),
+  adress VARCHAR2(100),
+  identity_card_number VARCHAR2(20) UNIQUE
 );
 
 ALTER TABLE register ADD (
