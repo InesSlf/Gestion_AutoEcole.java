@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import Database.CRUD;
 
 /**
  *
@@ -73,12 +74,24 @@ public class SessionPlanner extends javax.swing.JFrame {
         jLabel2.setText("Session ID");
 
         jtID.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jtID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtIDKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtIDKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtIDKeyTyped(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(226, 114, 114));
-        jLabel3.setText("Condidate Name");
+        jLabel3.setText("Condidate Full Name");
 
         jtNameC.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jtNameC.setEnabled(false);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(226, 114, 114));
@@ -189,7 +202,9 @@ public class SessionPlanner extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(81, 81, 81))
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -396,11 +411,25 @@ public class SessionPlanner extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.toBack();
-        home_screen hc=new home_screen();
+        home_screen hc = new home_screen();
         hc.setVisible(true);
         hc.toFront();
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jtIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDKeyTyped
+        // TODO add your handling code here:        
+    }//GEN-LAST:event_jtIDKeyTyped
+CRUD crud = new CRUD();
+    private void jtIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDKeyPressed
+        // TODO add your handling code here:        
+    }//GEN-LAST:event_jtIDKeyPressed
+
+    private void jtIDKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDKeyReleased
+        // TODO add your handling code here:
+        String id = jtID.getText().trim();        
+        jtNameC.setText(crud.getCondidateNameById(id));
+    }//GEN-LAST:event_jtIDKeyReleased
 
     /**
      * @param args the command line arguments

@@ -20,6 +20,8 @@ import javax.swing.tree.DefaultTreeModel;
 public class CRUD {
 
     Connection conn = new Connect().connect();
+    PreparedStatement ps;//envoie la requete
+    ResultSet rs;//recupere les infos 
 
     public boolean register(String username, String password, String email, String phoneNumber) {
         try {
@@ -41,8 +43,6 @@ public class CRUD {
     }
 
     public boolean checkUser(String username, String password) {
-        PreparedStatement ps;//envoie la requete
-        ResultSet rs;//recupere les infos 
         String query = "select *from register where user_name=?and password =?";
         try {
             ps = conn.prepareStatement(query);
@@ -57,7 +57,6 @@ public class CRUD {
     }
 
     public boolean addCondidate(String nameC, String FirstName, String DateB, String age, String phone, String gender, String bloodType, String adress, String identityNum) {
-        PreparedStatement ps;
         String query = "insert into condidate (name,first_name,date_of_birth,age,phone,gender,blood_type,adress,identity_card_number)values(?,?,to_date(?, 'DD-MM-YYYY'),?,?,?,?,?,?)";
         try {
             ps = conn.prepareStatement(query);
@@ -80,8 +79,6 @@ public class CRUD {
 
     public void display_data(JTable tableName) {
         String query = "select condidate.*, to_char(date_of_birth,'DD-MM-YYYY') as formatted_date from condidate";
-        PreparedStatement ps;
-        ResultSet rs;
         String[] afficher = new String[9];
         DefaultTableModel model = (DefaultTableModel) tableName.getModel();
         try {
@@ -108,11 +105,8 @@ public class CRUD {
 
     public void updateCondidate(String name, String firstName, String DateB, String age, String phone, String gender, String bloodType, String address, String identityNum) {
         String query = "update condidate set name=?,first_name=?,date_of_birth=to_date(?,'DD-MM-YYYY'),age=?,phone=?,gender=?,blood_type=?,adress=? where identity_card_number=?  ";
-        PreparedStatement ps;
-        //ResultSet rs ;
         try {
             ps = conn.prepareStatement(query);
-            //rs=ps.executeQuery();
             ps.setString(1, name);
             ps.setString(2, firstName);
             ps.setString(3, DateB);
@@ -131,7 +125,6 @@ public class CRUD {
 
     public void deleteCondidate(String identityNum) {
         String query = "delete from condidate where identity_card_number =? ";
-        PreparedStatement ps;
         try {
             ps = conn.prepareStatement(query);
             ps.setString(1, identityNum);
@@ -141,5 +134,21 @@ public class CRUD {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    // ==================== Session Planner Methods ==================== //
+    public String getCondidateNameById(String cardNumber) {
+        String query = "select name, first_name from condidate where identity_card_number = ?";
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setString(1, cardNumber);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                return rs.getString("name").concat(" ").concat(rs.getString("first_name"));
+            }                        
+        } catch (SQLException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "";
     }
 }
