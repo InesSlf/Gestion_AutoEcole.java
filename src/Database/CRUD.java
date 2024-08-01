@@ -105,4 +105,40 @@ public class CRUD {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void updateCondidate (String name, String firstName, String DateB, String age, String phone, String gender, String bloodType, String address, String identityNum){
+        String query ="update condidate set name=?,first_name=?,date_of_birth=to_date(?,'DD-MM-YYYY'),age=?,phone=?,gender=?,blood_type=?,adress=? where identity_card_number=?  ";
+        PreparedStatement ps;
+        //ResultSet rs ;
+        try {
+        ps=conn.prepareStatement(query);
+        //rs=ps.executeQuery();
+        ps.setString(1, name);
+        ps.setString(2, firstName);
+        ps.setString(3, DateB); 
+        ps.setString(4, age);
+        ps.setString(5, phone);
+        ps.setString(6, gender);
+        ps.setString(7, bloodType);
+        ps.setString(8, address);
+        ps.setString(9, identityNum);
+        ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    public void deleteCondidate(String identityNum ){
+        String query ="delete from condidate where identity_card_number =? ";
+        PreparedStatement ps;
+        try {
+            ps=conn.prepareStatement(query);
+            ps.setString(1, identityNum);
+            ps.executeUpdate();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
 }

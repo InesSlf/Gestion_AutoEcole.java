@@ -373,7 +373,7 @@ public class Condidate_List extends javax.swing.JFrame {
             jtAdress.setText("");
             jtAge.setText("");
             jtBooldType.setText("");
-//            jtDateB.setDateFormatString("");
+//          jtDateB.setDateFormatString("");
             jtDateB.setCalendar(null);
             jtFirstName.setText("");
             jtNumCard.setText("");
@@ -387,15 +387,15 @@ public class Condidate_List extends javax.swing.JFrame {
 
     private void btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteActionPerformed
         DefaultTableModel model = (DefaultTableModel) TableCondiates.getModel();
+        CRUD crud =new CRUD();
         //get selected row index 
         try {
             int SelectedrowIndex = TableCondiates.getSelectedRow();
             model.removeRow(SelectedrowIndex);
+            crud.deleteCondidate(jtNumCard.getText());
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "No row is selected.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-
-
     }//GEN-LAST:event_btDeleteActionPerformed
 
     private void btClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btClearActionPerformed
@@ -421,6 +421,7 @@ public class Condidate_List extends javax.swing.JFrame {
         String Phone = jtPhone.getText();
         String BooldTy = jtBooldType.getText();
         String gender;
+        CRUD crud =new CRUD();
          if (rbMale.isSelected()) {
                 gender = "Male";
             } else {
@@ -438,6 +439,7 @@ public class Condidate_List extends javax.swing.JFrame {
         model.setValueAt(BooldTy, i, 6);
         model.setValueAt(Adress, i, 7);
         model.setValueAt(NumCrd, i, 8);
+        crud.updateCondidate(name, Fname, DBirth, Age, Phone, gender, BooldTy, Adress, NumCrd);
         }else{
         JOptionPane.showMessageDialog(null,"Error : No row selected ");
         }
