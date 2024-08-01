@@ -79,10 +79,10 @@ public class CRUD {
     }
 
     public void display_data(JTable tableName) {
-        String query = "select * from condidate";
+        String query = "select condidate.*, to_char(date_of_birth,'DD-MM-YYYY') as formatted_date from condidate";
         PreparedStatement ps;
-        ResultSet rs;        
-        String[] afficher = new String[9];        
+        ResultSet rs;
+        String[] afficher = new String[9];
         DefaultTableModel model = (DefaultTableModel) tableName.getModel();
         try {
             ps = conn.prepareStatement(query);
@@ -92,7 +92,7 @@ public class CRUD {
             while (rs.next()) {
                 afficher[0] = rs.getString("name");
                 afficher[1] = rs.getString("first_name");
-                afficher[2] = rs.getString("date_of_birth");
+                afficher[2] = rs.getString("formatted_date");
                 afficher[3] = rs.getString("age");
                 afficher[4] = rs.getString("phone");
                 afficher[5] = rs.getString("gender");
@@ -105,40 +105,41 @@ public class CRUD {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void updateCondidate (String name, String firstName, String DateB, String age, String phone, String gender, String bloodType, String address, String identityNum){
-        String query ="update condidate set name=?,first_name=?,date_of_birth=to_date(?,'DD-MM-YYYY'),age=?,phone=?,gender=?,blood_type=?,adress=? where identity_card_number=?  ";
+
+    public void updateCondidate(String name, String firstName, String DateB, String age, String phone, String gender, String bloodType, String address, String identityNum) {
+        String query = "update condidate set name=?,first_name=?,date_of_birth=to_date(?,'DD-MM-YYYY'),age=?,phone=?,gender=?,blood_type=?,adress=? where identity_card_number=?  ";
         PreparedStatement ps;
         //ResultSet rs ;
         try {
-        ps=conn.prepareStatement(query);
-        //rs=ps.executeQuery();
-        ps.setString(1, name);
-        ps.setString(2, firstName);
-        ps.setString(3, DateB); 
-        ps.setString(4, age);
-        ps.setString(5, phone);
-        ps.setString(6, gender);
-        ps.setString(7, bloodType);
-        ps.setString(8, address);
-        ps.setString(9, identityNum);
-        ps.executeUpdate();
+            ps = conn.prepareStatement(query);
+            //rs=ps.executeQuery();
+            ps.setString(1, name);
+            ps.setString(2, firstName);
+            ps.setString(3, DateB);
+            ps.setString(4, age);
+            ps.setString(5, phone);
+            ps.setString(6, gender);
+            ps.setString(7, bloodType);
+            ps.setString(8, address);
+            ps.setString(9, identityNum);
+            ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    public void deleteCondidate(String identityNum ){
-        String query ="delete from condidate where identity_card_number =? ";
+
+    public void deleteCondidate(String identityNum) {
+        String query = "delete from condidate where identity_card_number =? ";
         PreparedStatement ps;
         try {
-            ps=conn.prepareStatement(query);
+            ps = conn.prepareStatement(query);
             ps.setString(1, identityNum);
             ps.executeUpdate();
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 }
