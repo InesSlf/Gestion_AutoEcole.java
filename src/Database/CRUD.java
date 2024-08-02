@@ -151,4 +151,84 @@ public class CRUD {
         }
         return "";
     }
+    public boolean addSession (String sessionID,String identityNum ,String condidateFullName,String DateS, int hour,String Type){
+        //condidateFullName =getCondidateNameById(identityNum);
+        String query ="insert into sessionP (session_ID,condidate_full_name,identity_card_number,session_date,hour,session_type) values(?,?,?,?,?,?) ";
+        PreparedStatement ps;
+        try {
+            ps=conn.prepareStatement(query);
+            ps.setString(1, sessionID);
+            ps.setString(2,identityNum);
+            ps.setString(3,getCondidateNameById(identityNum) );
+            ps.setString(4, DateS);
+            ps.setInt(5, hour);
+            ps.setString(6, Type);
+           int rs= ps.executeUpdate();
+           return rs > 0;
+        } catch (SQLException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false ;
+    }
+   /* public String getIDsession (String identityNum){
+          String query ="select ID_C from condidate where identity_card_num =?";
+        try {
+            ps=conn.prepareStatement(query);
+            ps.setString(1, identityNum);
+            ps.executeQuery();
+            if (rs.next()) {
+            return rs.getString("session_ID"); 
+        }
+        } catch (SQLException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          return "";
+    }*/
+    public void displayDataSessionTable(JTable tabName){
+          String query = "select sessionP.*, to_char(session_date,'DD-MM-YYYY') as formatted_date from sessionP";
+          String[] session = new String[6];
+          DefaultTableModel model =(DefaultTableModel) tabName.getModel();
+        try {
+            ps=conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            model.setRowCount(0);
+            while (rs.next()) {
+                session[0] = rs.getString("session_ID");
+                session[1] = rs.getString("condidate_full_name");
+                session[2] = rs.getString("identity_card_number");
+                session[3] = rs.getString("formatted_date");
+                session[4] = rs.getString("hour");
+                session[5] = rs.getString("session_type");
+                model.addRow(session);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void deleteSession (String identityNum){
+            String query ="delete from sessionP where identity_card_number =? ";
+        try {
+            ps=conn.prepareStatement(query);
+            ps.setString(1, identityNum);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }     
+    }
+    public void updateSession (String sessionID,String identityNum ,String condidateFullName,String DateS, int hour,String Type){
+           String query ="update sessionP set session_ID=?,condidate_full_name=?,session_date=to_date(?,'DD-MM-YYYY'),hour=?,session_type=? where identity_card_number=?";
+        try {
+            ps=conn.prepareStatement(query);
+            ps.setString(1, sessionID);
+            ps.setString(2, condidateFullName);
+            ps.setString(3, identityNum);
+            ps.setString(4, DateS);
+            ps.setInt(5, hour);
+            ps.setString(6,Type);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
 }

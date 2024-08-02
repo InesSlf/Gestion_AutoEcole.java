@@ -38,7 +38,7 @@ public class SessionPlanner extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jtID = new javax.swing.JTextField();
+        jtIDcard = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jtNameC = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -56,12 +56,24 @@ public class SessionPlanner extends javax.swing.JFrame {
         btnModify = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jtIDsession = new javax.swing.JTextField();
 
         jLabel5.setText("jLabel5");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(250, 207, 207));
+        jPanel1.addHierarchyListener(new java.awt.event.HierarchyListener() {
+            public void hierarchyChanged(java.awt.event.HierarchyEvent evt) {
+                jPanel1HierarchyChanged(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(226, 114, 114));
@@ -71,18 +83,18 @@ public class SessionPlanner extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(226, 114, 114));
-        jLabel2.setText("Session ID");
+        jLabel2.setText("Identity Card Number");
 
-        jtID.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jtID.addKeyListener(new java.awt.event.KeyAdapter() {
+        jtIDcard.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jtIDcard.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jtIDKeyPressed(evt);
+                jtIDcardKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jtIDKeyReleased(evt);
+                jtIDcardKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jtIDKeyTyped(evt);
+                jtIDcardKeyTyped(evt);
             }
         });
 
@@ -125,6 +137,11 @@ public class SessionPlanner extends javax.swing.JFrame {
         jcDriving.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jcDriving.setForeground(new java.awt.Color(226, 114, 114));
         jcDriving.setText("Driving");
+        jcDriving.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcDrivingActionPerformed(evt);
+            }
+        });
 
         btnAdd.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         btnAdd.setForeground(new java.awt.Color(226, 114, 114));
@@ -152,7 +169,7 @@ public class SessionPlanner extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Name", "Date", "Hour", "Type"
+                "ID Card", "Full Name ", "SessionID", "Date ", "Hour", "Type"
             }
         ));
         TableSession.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -193,6 +210,10 @@ public class SessionPlanner extends javax.swing.JFrame {
             }
         });
 
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(226, 114, 114));
+        jLabel8.setText("Session ID");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -201,29 +222,31 @@ public class SessionPlanner extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(16, 16, 16)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(81, 81, 81))
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jcCode, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jcParking, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jcDriving, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnClear, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jtID)
-                            .addComponent(jtNameC)
-                            .addComponent(jtDateS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jtHour))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGap(81, 81, 81))
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jtIDcard)
+                                .addComponent(jtNameC)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jcCode, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jcParking, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jcDriving, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jtHour, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtDateS, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtIDsession, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(29, 29, 29)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -251,36 +274,40 @@ public class SessionPlanner extends javax.swing.JFrame {
                     .addComponent(btnModify)
                     .addComponent(btnDelete))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtID, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtIDcard, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jtNameC, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtIDsession, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jtDateS, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jtHour, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jcCode)
                             .addComponent(jcParking)
                             .addComponent(jcDriving))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(32, 32, 32)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnAdd)
                             .addComponent(btnClear)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE))
-                .addGap(18, 18, 18))
+                    .addComponent(jScrollPane1))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -298,9 +325,10 @@ public class SessionPlanner extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
-        jtID.setText("");
+        jtIDcard.setText("");
         jtNameC.setText("");
         jtDateS.setDateFormatString("");
+        jtIDsession.setText("");
         btGrpCheckBoxes.clearSelection();
         jtHour.setValue(0);
     }//GEN-LAST:event_btnClearActionPerformed
@@ -310,6 +338,7 @@ public class SessionPlanner extends javax.swing.JFrame {
         try {
             int selectedRow = TableSession.getSelectedRow();
             model.removeRow(selectedRow);
+            crud.deleteSession(jtIDcard.getText());
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "No row is selected.", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -317,7 +346,8 @@ public class SessionPlanner extends javax.swing.JFrame {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        String ID = jtID.getText();
+        String IDc = jtIDcard.getText();
+        String IDs=jtIDsession.getText();
         String Name = jtNameC.getText();
         String Date = sdf.format(jtDateS.getDate());
         int Hour = (int) jtHour.getValue();
@@ -329,35 +359,43 @@ public class SessionPlanner extends javax.swing.JFrame {
         } else if (jcParking.isSelected()) {
             Type = "Parking";
         }
-        if (ID.isEmpty() || Name.isEmpty() || Date.isEmpty() || Hour == 0 || !(jcCode.isSelected() || jcDriving.isSelected() || jcParking.isSelected())) {
+        String candidateFullName = crud.getCondidateNameById(IDc);
+
+        if (IDc.isEmpty() || Name.isEmpty()|| Date.isEmpty() || Hour == 0 ||IDs.isEmpty() || !(jcCode.isSelected() || jcDriving.isSelected() || jcParking.isSelected())) {
             JOptionPane.showMessageDialog(this, "Please enter all fields", "Try again", JOptionPane.ERROR_MESSAGE);
         } else {
             DefaultTableModel model = (DefaultTableModel) TableSession.getModel();
-            model.addRow(new Object[]{ID, Name, Date, Hour, Type});
+            model.addRow(new Object[]{IDc, candidateFullName, IDs,Date, Hour, Type});
             JOptionPane.showMessageDialog(this, "Session has been added successfully!", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
-            jtID.setText("");
+            jtIDcard.setText("");
             jtNameC.setText("");
+            jtIDsession.setText("");
             jtDateS.setCalendar(null);
             btGrpCheckBoxes.clearSelection();
             jtHour.setValue(0);
+        }
+        jtNameC.setText(crud.getCondidateNameById(IDc));
+        if (crud.addSession(IDc,candidateFullName, IDs, Date, Hour, Type)){
+        JOptionPane.showMessageDialog(this, "Session has been added successfully!", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void TableSessionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableSessionMouseClicked
         int selectedRow = TableSession.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) TableSession.getModel();
-        jtID.setText(model.getValueAt(selectedRow, 0).toString());
-        jtNameC.setText(model.getValueAt(selectedRow, 1).toString());
+        jtIDcard.setText(model.getValueAt(selectedRow, 0).toString());
+       // jtNameC.setText(model.getValueAt(selectedRow, 1).toString());
+        jtIDsession.setText(model.getValueAt(selectedRow, 2).toString());
         Date date;
         try {
-            date = new SimpleDateFormat("dd-MM-yyyy").parse(model.getValueAt(selectedRow, 2).toString());
+            date = new SimpleDateFormat("dd-MM-yyyy").parse(model.getValueAt(selectedRow, 3).toString());
             jtDateS.setDate(date);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        int Hour = (int) (model.getValueAt(selectedRow, 3));
+        int Hour = (int) (model.getValueAt(selectedRow, 4));
         jtHour.setValue(Hour);
-        String Type = model.getValueAt(selectedRow, 4).toString();
+        String Type = model.getValueAt(selectedRow, 5).toString();
         switch (Type) {
             case "Code":
                 jcCode.setSelected(true);
@@ -377,11 +415,13 @@ public class SessionPlanner extends javax.swing.JFrame {
         int i = TableSession.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) TableSession.getModel();
         if (i >= 0) {
-            String ID = jtID.getText();
+            String IDc = jtIDcard.getText();
             String Name = jtNameC.getText();
+            String IDs =jtIDsession.getText();
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
             String Date = sdf.format(jtDateS.getDate());
             int Hour = (int) jtHour.getValue();
+            String candidateFullName = crud.getCondidateNameById(IDc);
             String Type;
             if (jcCode.isSelected()) {
                 Type = "Code";
@@ -393,17 +433,21 @@ public class SessionPlanner extends javax.swing.JFrame {
                 Type = "";
             }
 
-            model.setValueAt(ID, i, 0);
+            model.setValueAt(IDc, i, 0);
             model.setValueAt(Name, i, 1);
-            model.setValueAt(Date, i, 2);
-            model.setValueAt(Hour, i, 3);
-            model.setValueAt(Type, i, 4);
+            model.setValueAt(IDs, i, 2);
+            model.setValueAt(Date, i, 3);
+            model.setValueAt(Hour, i, 4);
+            model.setValueAt(Type, i, 5);
+            jtNameC.setText(crud.getCondidateNameById(IDc));
+            crud.updateSession(IDs,candidateFullName , IDc, Date, Hour, Type);
         } else {
             JOptionPane.showMessageDialog(this, "No row selected ", "Try again !", JOptionPane.ERROR_MESSAGE);
         }
-        jtID.setText("");
+        jtIDcard.setText("");
         jtNameC.setText("");
         jtDateS.setCalendar(null);
+        jtIDsession.setText("");
         btGrpCheckBoxes.clearSelection();
         jtHour.setValue(0);
 
@@ -417,19 +461,31 @@ public class SessionPlanner extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jtIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDKeyTyped
+    private void jtIDcardKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDcardKeyTyped
         // TODO add your handling code here:        
-    }//GEN-LAST:event_jtIDKeyTyped
+    }//GEN-LAST:event_jtIDcardKeyTyped
 CRUD crud = new CRUD();
-    private void jtIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDKeyPressed
+    private void jtIDcardKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDcardKeyPressed
         // TODO add your handling code here:        
-    }//GEN-LAST:event_jtIDKeyPressed
+    }//GEN-LAST:event_jtIDcardKeyPressed
 
-    private void jtIDKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDKeyReleased
+    private void jtIDcardKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDcardKeyReleased
         // TODO add your handling code here:
-        String id = jtID.getText().trim();        
-        jtNameC.setText(crud.getCondidateNameById(id));
-    }//GEN-LAST:event_jtIDKeyReleased
+        String idc = jtIDcard.getText().trim();        
+        jtNameC.setText(crud.getCondidateNameById(idc));
+    }//GEN-LAST:event_jtIDcardKeyReleased
+
+    private void jcDrivingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcDrivingActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcDrivingActionPerformed
+
+    private void jPanel1HierarchyChanged(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_jPanel1HierarchyChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel1HierarchyChanged
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        crud.displayDataSessionTable(TableSession);
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -481,6 +537,7 @@ CRUD crud = new CRUD();
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JCheckBox jcCode;
@@ -488,7 +545,8 @@ CRUD crud = new CRUD();
     private javax.swing.JCheckBox jcParking;
     private com.toedter.calendar.JDateChooser jtDateS;
     private javax.swing.JSpinner jtHour;
-    private javax.swing.JTextField jtID;
+    private javax.swing.JTextField jtIDcard;
+    private javax.swing.JTextField jtIDsession;
     private javax.swing.JTextField jtNameC;
     // End of variables declaration//GEN-END:variables
 }

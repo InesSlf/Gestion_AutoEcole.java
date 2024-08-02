@@ -18,6 +18,17 @@ create TABLE condidate(
   identity_card_number VARCHAR2(20) UNIQUE
 );
 
+create TABLE sessionP (
+  session_ID VARCHAR2(20) PRIMARY KEY,
+  condidate_full_name VARCHAR2(50),
+  identity_card_number VARCHAR2(20),
+  session_date date NOT NULL,
+  hour NUMBER NOT NULL,
+  session_type VARCHAR2(10) check (session_type IN ('Code', 'Driving', 'Parking')),
+  CONSTRAINT fk_identity_card FOREIGN KEY (identity_card_number)
+    REFERENCES condidate(identity_card_number)
+);
+
 ALTER TABLE register ADD (
   CONSTRAINT dept_pk PRIMARY KEY (ID));
 
@@ -41,6 +52,18 @@ FOR EACH ROW
 BEGIN
 IF :NEW.ID_C IS NULL THEN 
    SELECT ID_C_seq.NEXTVAL INTO :NEW.ID_C FROM dual;
+END IF;
+END;
+/
+
+CREATE SEQUENCE ID_S_seq START WITH 1;
+
+create or REPLACE TRIGGER sessionP_before_insert
+BEFORE INSERT ON sessionP
+FOR EACH ROW 
+BEGIN
+IF :NEW.session_ID IS NULL THEN 
+   SELECT ID_s_seq.NEXTVAL INTO :NEW.session_ID FROM dual;
 END IF;
 END;
 /
