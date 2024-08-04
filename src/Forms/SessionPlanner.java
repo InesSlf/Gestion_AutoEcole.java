@@ -353,7 +353,7 @@ public class SessionPlanner extends javax.swing.JFrame {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         String IDc = jtIDcard.getText();
-        String IDs=jtIDsession.getText();
+        String IDs = jtIDsession.getText();
         String Name = jtNameC.getText();
         String Date = sdf.format(jtDateS.getDate());
         int Hour = (int) jtHour.getValue();
@@ -367,11 +367,11 @@ public class SessionPlanner extends javax.swing.JFrame {
         }
         String candidateFullName = crud.getCondidateNameById(IDc);
 
-        if (IDc.isEmpty() || Name.isEmpty()|| Date.isEmpty() || Hour == 0 ||IDs.isEmpty() || !(jcCode.isSelected() || jcDriving.isSelected() || jcParking.isSelected())) {
+        if (IDc.isEmpty() || Name.isEmpty() || Date.isEmpty() || Hour == 0 || IDs.isEmpty() || !(jcCode.isSelected() || jcDriving.isSelected() || jcParking.isSelected())) {
             JOptionPane.showMessageDialog(this, "Please enter all fields", "Try again", JOptionPane.ERROR_MESSAGE);
         } else {
             DefaultTableModel model = (DefaultTableModel) TableSession.getModel();
-            model.addRow(new Object[]{IDc, candidateFullName, IDs,Date, Hour, Type});
+            model.addRow(new Object[]{IDc, candidateFullName, IDs, Date, Hour, Type});
             JOptionPane.showMessageDialog(this, "Session has been added successfully!", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
             jtIDcard.setText("");
             jtNameC.setText("");
@@ -381,8 +381,8 @@ public class SessionPlanner extends javax.swing.JFrame {
             jtHour.setValue(0);
         }
         jtNameC.setText(crud.getCondidateNameById(IDc));
-        if (crud.addSession(IDc,candidateFullName, IDs, Date, Hour, Type)){
-        JOptionPane.showMessageDialog(this, "Session has been added successfully!", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
+        if (crud.addSession(IDs, IDc, candidateFullName, Date, Hour, Type)) {
+            JOptionPane.showMessageDialog(this, "Session has been added successfully!", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -399,7 +399,7 @@ public class SessionPlanner extends javax.swing.JFrame {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        int Hour = (int) (model.getValueAt(selectedRow, 4));
+        int Hour = Integer.parseInt(String.valueOf(model.getValueAt(selectedRow, 4)));
         jtHour.setValue(Hour);
         String Type = model.getValueAt(selectedRow, 5).toString();
         switch (Type) {
@@ -423,7 +423,7 @@ public class SessionPlanner extends javax.swing.JFrame {
         if (i >= 0) {
             String IDc = jtIDcard.getText();
             String Name = jtNameC.getText();
-            String IDs =jtIDsession.getText();
+            String IDs = jtIDsession.getText();
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
             String Date = sdf.format(jtDateS.getDate());
             int Hour = (int) jtHour.getValue();
@@ -446,7 +446,7 @@ public class SessionPlanner extends javax.swing.JFrame {
             model.setValueAt(Hour, i, 4);
             model.setValueAt(Type, i, 5);
             jtNameC.setText(crud.getCondidateNameById(IDc));
-            crud.updateSession(IDs,candidateFullName , IDc, Date, Hour, Type);
+            crud.updateSession(IDs, candidateFullName, IDc, Date, Hour, Type);
         } else {
             JOptionPane.showMessageDialog(this, "No row selected ", "Try again !", JOptionPane.ERROR_MESSAGE);
         }
@@ -470,14 +470,14 @@ public class SessionPlanner extends javax.swing.JFrame {
     private void jtIDcardKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDcardKeyTyped
         // TODO add your handling code here:        
     }//GEN-LAST:event_jtIDcardKeyTyped
-CRUD crud = new CRUD();
+    CRUD crud = new CRUD();
     private void jtIDcardKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDcardKeyPressed
         // TODO add your handling code here:        
     }//GEN-LAST:event_jtIDcardKeyPressed
 
     private void jtIDcardKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDcardKeyReleased
         // TODO add your handling code here:
-        String idc = jtIDcard.getText().trim();        
+        String idc = jtIDcard.getText().trim();
         jtNameC.setText(crud.getCondidateNameById(idc));
     }//GEN-LAST:event_jtIDcardKeyReleased
 
@@ -494,7 +494,7 @@ CRUD crud = new CRUD();
     }//GEN-LAST:event_formWindowOpened
 
     private void jtIDsessionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDsessionKeyReleased
-       
+
     }//GEN-LAST:event_jtIDsessionKeyReleased
 
     /**

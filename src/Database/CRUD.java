@@ -143,39 +143,41 @@ public class CRUD {
             ps = conn.prepareStatement(query);
             ps.setString(1, cardNumber);
             rs = ps.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 return rs.getString("name").concat(" ").concat(rs.getString("first_name"));
-            }                        
+            }
         } catch (SQLException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return "";
     }
-    public boolean addSession (String sessionID,String identityNum ,String condidateFullName,String DateS, int hour,String Type){
+
+    public boolean addSession(String sessionID, String identityNum, String condidateFullName, String DateS, int hour, String Type) {
         //condidateFullName =getCondidateNameById(identityNum);
-        String query ="insert into sessionP (session_ID,condidate_full_name,identity_card_number,session_date,hour,session_type) values(?,?,?,to_date(?, 'DD-MM-YYYY'),?,?) ";
+        String query = "insert into sessionP (session_ID,condidate_full_name,identity_card_number,session_date,hour,session_type) values(?,?,?,to_date(?, 'DD-MM-YYYY'),?,?) ";
         PreparedStatement ps;
         try {
-            ps=conn.prepareStatement(query);
+            ps = conn.prepareStatement(query);
             ps.setString(1, sessionID);
-            ps.setString(2,identityNum);
-            ps.setString(3,getCondidateNameById(identityNum) );
+            ps.setString(2, getCondidateNameById(identityNum));
+            ps.setString(3, identityNum);            
             ps.setString(4, DateS);
             ps.setInt(5, hour);
             ps.setString(6, Type);
-           int rs= ps.executeUpdate();
-           return rs > 0;
+            int rs = ps.executeUpdate();
+            return rs > 0;
         } catch (SQLException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return false ;
-    } 
-    public void displayDataSessionTable(JTable tabName){
-          String query = "select sessionP.*, to_char(session_date,'DD-MM-YYYY') as formatted_date from sessionP";
-          String[] session = new String[6];
-          DefaultTableModel model =(DefaultTableModel) tabName.getModel();
+        return false;
+    }
+
+    public void displayDataSessionTable(JTable tabName) {
+        String query = "select sessionP.*, to_char(session_date,'DD-MM-YYYY') as formatted_date from sessionP";
+        String[] session = new String[6];
+        DefaultTableModel model = (DefaultTableModel) tabName.getModel();
         try {
-            ps=conn.prepareStatement(query);
+            ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             model.setRowCount(0);
             while (rs.next()) {
@@ -191,30 +193,32 @@ public class CRUD {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void deleteSession (String fullName){
-            String query ="delete from sessionP where condidate_full_name =? ";
+
+    public void deleteSession(String fullName) {
+        String query = "delete from sessionP where condidate_full_name =? ";
         try {
-            ps=conn.prepareStatement(query);
+            ps = conn.prepareStatement(query);
             ps.setString(1, fullName);
-            ps.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
-        }     
-    }
-    public void updateSession (String sessionID,String identityNum ,String condidateFullName,String DateS, int hour,String Type){
-           String query ="update sessionP set session_ID=?,condidate_full_name=?,session_date=to_date(?,'DD-MM-YYYY'),hour=?,session_type=? where identity_card_number=?";
-        try {
-            ps=conn.prepareStatement(query);
-            ps.setString(1, sessionID);
-            ps.setString(2, condidateFullName);
-            ps.setString(3, identityNum);
-            ps.setString(4, DateS);
-            ps.setInt(5, hour);
-            ps.setString(6,Type);
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
+    public void updateSession(String sessionID, String identityNum, String condidateFullName, String DateS, int hour, String Type) {
+        String query = "update sessionP set session_ID=?,condidate_full_name=?,session_date=to_date(?,'DD-MM-YYYY'),hour=?,session_type=? where identity_card_number=?";
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setString(1, sessionID);
+            ps.setString(2, condidateFullName);
+            ps.setString(3, identityNum);
+            ps.setString(4, DateS);
+            ps.setInt(5, hour);
+            ps.setString(6, Type);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }
