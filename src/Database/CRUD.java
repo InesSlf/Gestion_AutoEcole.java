@@ -153,7 +153,7 @@ public class CRUD {
     }
     public boolean addSession (String sessionID,String identityNum ,String condidateFullName,String DateS, int hour,String Type){
         //condidateFullName =getCondidateNameById(identityNum);
-        String query ="insert into sessionP (session_ID,condidate_full_name,identity_card_number,session_date,hour,session_type) values(?,?,?,?,?,?) ";
+        String query ="insert into sessionP (session_ID,condidate_full_name,identity_card_number,session_date,hour,session_type) values(?,?,?,to_date(?, 'DD-MM-YYYY'),?,?) ";
         PreparedStatement ps;
         try {
             ps=conn.prepareStatement(query);
