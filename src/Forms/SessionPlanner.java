@@ -214,6 +214,12 @@ public class SessionPlanner extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(226, 114, 114));
         jLabel8.setText("Session ID");
 
+        jtIDsession.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtIDsessionKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -338,7 +344,7 @@ public class SessionPlanner extends javax.swing.JFrame {
         try {
             int selectedRow = TableSession.getSelectedRow();
             model.removeRow(selectedRow);
-            crud.deleteSession(jtIDcard.getText());
+            crud.deleteSession(jtNameC.getText());
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "No row is selected.", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -384,7 +390,7 @@ public class SessionPlanner extends javax.swing.JFrame {
         int selectedRow = TableSession.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) TableSession.getModel();
         jtIDcard.setText(model.getValueAt(selectedRow, 0).toString());
-       // jtNameC.setText(model.getValueAt(selectedRow, 1).toString());
+        jtNameC.setText(model.getValueAt(selectedRow, 1).toString());
         jtIDsession.setText(model.getValueAt(selectedRow, 2).toString());
         Date date;
         try {
@@ -486,6 +492,10 @@ CRUD crud = new CRUD();
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         crud.displayDataSessionTable(TableSession);
     }//GEN-LAST:event_formWindowOpened
+
+    private void jtIDsessionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDsessionKeyReleased
+       
+    }//GEN-LAST:event_jtIDsessionKeyReleased
 
     /**
      * @param args the command line arguments

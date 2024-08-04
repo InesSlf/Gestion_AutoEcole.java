@@ -169,21 +169,7 @@ public class CRUD {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false ;
-    }
-   /* public String getIDsession (String identityNum){
-          String query ="select ID_C from condidate where identity_card_num =?";
-        try {
-            ps=conn.prepareStatement(query);
-            ps.setString(1, identityNum);
-            ps.executeQuery();
-            if (rs.next()) {
-            return rs.getString("session_ID"); 
-        }
-        } catch (SQLException ex) {
-            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
-        }
-          return "";
-    }*/
+    } 
     public void displayDataSessionTable(JTable tabName){
           String query = "select sessionP.*, to_char(session_date,'DD-MM-YYYY') as formatted_date from sessionP";
           String[] session = new String[6];
@@ -205,11 +191,11 @@ public class CRUD {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void deleteSession (String identityNum){
-            String query ="delete from sessionP where identity_card_number =? ";
+    public void deleteSession (String fullName){
+            String query ="delete from sessionP where condidate_full_name =? ";
         try {
             ps=conn.prepareStatement(query);
-            ps.setString(1, identityNum);
+            ps.setString(1, fullName);
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
