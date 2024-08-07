@@ -82,7 +82,7 @@ public class Condidate_List extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(226, 114, 114));
+        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -122,13 +122,13 @@ public class Condidate_List extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Gender");
 
-        rbMale.setBackground(new java.awt.Color(226, 114, 114));
+        rbMale.setBackground(new java.awt.Color(0, 153, 153));
         btnGroup.add(rbMale);
         rbMale.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         rbMale.setForeground(new java.awt.Color(255, 255, 255));
         rbMale.setText("Male");
 
-        rbFemale.setBackground(new java.awt.Color(226, 114, 114));
+        rbFemale.setBackground(new java.awt.Color(0, 153, 153));
         btnGroup.add(rbFemale);
         rbFemale.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         rbFemale.setForeground(new java.awt.Color(255, 255, 255));
@@ -147,8 +147,8 @@ public class Condidate_List extends javax.swing.JFrame {
         jtAdress.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         btAdd.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btAdd.setForeground(new java.awt.Color(226, 114, 114));
-        btAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/add-button.png"))); // NOI18N
+        btAdd.setForeground(new java.awt.Color(0, 153, 153));
+        btAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/add.png"))); // NOI18N
         btAdd.setText("Add");
         btAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,7 +157,8 @@ public class Condidate_List extends javax.swing.JFrame {
         });
 
         btClear.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btClear.setForeground(new java.awt.Color(226, 114, 114));
+        btClear.setForeground(new java.awt.Color(0, 153, 153));
+        btClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/eraser.png"))); // NOI18N
         btClear.setText("Clear");
         btClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,7 +166,6 @@ public class Condidate_List extends javax.swing.JFrame {
             }
         });
 
-        TableCondiates.setBackground(new java.awt.Color(250, 229, 229));
         TableCondiates.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         TableCondiates.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -183,8 +183,8 @@ public class Condidate_List extends javax.swing.JFrame {
         jScrollPane1.setViewportView(TableCondiates);
 
         btDelete.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btDelete.setForeground(new java.awt.Color(226, 114, 114));
-        btDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cross.png"))); // NOI18N
+        btDelete.setForeground(new java.awt.Color(0, 153, 153));
+        btDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/close.png"))); // NOI18N
         btDelete.setText("Delete");
         btDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -193,8 +193,8 @@ public class Condidate_List extends javax.swing.JFrame {
         });
 
         btModify.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btModify.setForeground(new java.awt.Color(226, 114, 114));
-        btModify.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/edit.png"))); // NOI18N
+        btModify.setForeground(new java.awt.Color(0, 153, 153));
+        btModify.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/edit (1).png"))); // NOI18N
         btModify.setText("Modify");
         btModify.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

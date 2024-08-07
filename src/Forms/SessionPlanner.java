@@ -68,7 +68,7 @@ public class SessionPlanner extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(250, 207, 207));
+        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
         jPanel1.addHierarchyListener(new java.awt.event.HierarchyListener() {
             public void hierarchyChanged(java.awt.event.HierarchyEvent evt) {
                 jPanel1HierarchyChanged(evt);
@@ -76,13 +76,13 @@ public class SessionPlanner extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(226, 114, 114));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/driving-school.png"))); // NOI18N
         jLabel1.setText("Session Planner");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(226, 114, 114));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Identity Card Number");
 
         jtIDcard.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -99,43 +99,43 @@ public class SessionPlanner extends javax.swing.JFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(226, 114, 114));
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Condidate Full Name");
 
         jtNameC.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jtNameC.setEnabled(false);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(226, 114, 114));
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Session Date");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(226, 114, 114));
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Hour");
 
         jtHour.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jtHour.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(226, 114, 114));
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Type");
 
-        jcCode.setBackground(new java.awt.Color(250, 207, 207));
+        jcCode.setBackground(new java.awt.Color(0, 153, 153));
         btGrpCheckBoxes.add(jcCode);
         jcCode.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        jcCode.setForeground(new java.awt.Color(226, 114, 114));
+        jcCode.setForeground(new java.awt.Color(255, 255, 255));
         jcCode.setText("Code");
 
-        jcParking.setBackground(new java.awt.Color(250, 207, 207));
+        jcParking.setBackground(new java.awt.Color(0, 153, 153));
         btGrpCheckBoxes.add(jcParking);
         jcParking.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        jcParking.setForeground(new java.awt.Color(226, 114, 114));
+        jcParking.setForeground(new java.awt.Color(255, 255, 255));
         jcParking.setText("Parking ");
 
-        jcDriving.setBackground(new java.awt.Color(250, 207, 207));
+        jcDriving.setBackground(new java.awt.Color(0, 153, 153));
         btGrpCheckBoxes.add(jcDriving);
         jcDriving.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        jcDriving.setForeground(new java.awt.Color(226, 114, 114));
+        jcDriving.setForeground(new java.awt.Color(255, 255, 255));
         jcDriving.setText("Driving");
         jcDriving.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,8 +144,8 @@ public class SessionPlanner extends javax.swing.JFrame {
         });
 
         btnAdd.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        btnAdd.setForeground(new java.awt.Color(226, 114, 114));
-        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/add-button.png"))); // NOI18N
+        btnAdd.setForeground(new java.awt.Color(0, 153, 153));
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/add.png"))); // NOI18N
         btnAdd.setText("Add");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,8 +154,8 @@ public class SessionPlanner extends javax.swing.JFrame {
         });
 
         btnClear.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        btnClear.setForeground(new java.awt.Color(226, 114, 114));
-        btnClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/delete.png"))); // NOI18N
+        btnClear.setForeground(new java.awt.Color(0, 153, 153));
+        btnClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/eraser.png"))); // NOI18N
         btnClear.setText("Clear");
         btnClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,7 +163,6 @@ public class SessionPlanner extends javax.swing.JFrame {
             }
         });
 
-        TableSession.setBackground(new java.awt.Color(250, 229, 229));
         TableSession.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -180,8 +179,8 @@ public class SessionPlanner extends javax.swing.JFrame {
         jScrollPane1.setViewportView(TableSession);
 
         btnModify.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        btnModify.setForeground(new java.awt.Color(226, 114, 114));
-        btnModify.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/edit.png"))); // NOI18N
+        btnModify.setForeground(new java.awt.Color(0, 153, 153));
+        btnModify.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/edit (1).png"))); // NOI18N
         btnModify.setText("Modify");
         btnModify.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,8 +189,8 @@ public class SessionPlanner extends javax.swing.JFrame {
         });
 
         btnDelete.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        btnDelete.setForeground(new java.awt.Color(226, 114, 114));
-        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cross.png"))); // NOI18N
+        btnDelete.setForeground(new java.awt.Color(0, 153, 153));
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/close.png"))); // NOI18N
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -211,7 +210,7 @@ public class SessionPlanner extends javax.swing.JFrame {
         });
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(226, 114, 114));
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Session ID");
 
         jtIDsession.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -372,7 +371,6 @@ public class SessionPlanner extends javax.swing.JFrame {
         } else {
             DefaultTableModel model = (DefaultTableModel) TableSession.getModel();
             model.addRow(new Object[]{IDc, candidateFullName, IDs, Date, Hour, Type});
-            JOptionPane.showMessageDialog(this, "Session has been added successfully!", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
             jtIDcard.setText("");
             jtNameC.setText("");
             jtIDsession.setText("");
@@ -438,7 +436,7 @@ public class SessionPlanner extends javax.swing.JFrame {
             } else {
                 Type = "";
             }
-
+            crud.updateSession(IDs, IDc, candidateFullName, Date, Hour, Type);
             model.setValueAt(IDc, i, 0);
             model.setValueAt(Name, i, 1);
             model.setValueAt(IDs, i, 2);
@@ -446,7 +444,8 @@ public class SessionPlanner extends javax.swing.JFrame {
             model.setValueAt(Hour, i, 4);
             model.setValueAt(Type, i, 5);
             jtNameC.setText(crud.getCondidateNameById(IDc));
-            crud.updateSession(IDs, candidateFullName, IDc, Date, Hour, Type);
+           // crud.updateSession(IDs, candidateFullName, IDc, Date, Hour, Type);
+          // crud.updateSession(IDs, IDc, candidateFullName, Date, Hour, Type);
         } else {
             JOptionPane.showMessageDialog(this, "No row selected ", "Try again !", JOptionPane.ERROR_MESSAGE);
         }

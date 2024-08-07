@@ -211,14 +211,90 @@ public class CRUD {
             ps = conn.prepareStatement(query);
             ps.setString(1, sessionID);
             ps.setString(2, condidateFullName);
-            ps.setString(3, identityNum);
-            ps.setString(4, DateS);
-            ps.setInt(5, hour);
-            ps.setString(6, Type);
+            ps.setString(3, DateS);
+            //ps.setString(4, DateS);
+            ps.setInt(4, hour);
+            ps.setString(5, Type);
+            ps.setString(6, identityNum);
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    // ==================== Payment Methods ==================== //
 
+    public boolean addPayment(String payment_ID, String identityNum, String amount, String instAmount, String remBalance, int nbr, String dateP) {
+    String query = "insert into payment (payment_ID, identity_card_number, amount, installment_amount, remaining_balance, number_installments, payment_date) values(?,?,?,?,?,?,?)";
+    try {
+        ps = conn.prepareStatement(query);
+        ps.setString(1, payment_ID);
+        ps.setString(2, identityNum);
+        ps.setString(3, amount);
+        ps.setString(4, instAmount);
+        ps.setString(5, remBalance);
+        ps.setInt(6, nbr);
+        ps.setString(7, dateP);
+        
+        int rs = ps.executeUpdate();
+        return rs > 0;
+    } catch (SQLException ex) {
+        Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return false;
 }
+   public void displayDataPayment (JTable tab){
+      String query ="select payment.*, to_char(payment_date,'DD-MM-YYYY') as formatted_date from payment";
+      String [] payment =new String [7];
+      DefaultTableModel model =  (DefaultTableModel) tab.getModel();
+        try {
+            ps=conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            model.setRowCount(0);
+            while (rs.next()) {
+            payment[0] = rs.getString("payment_ID");
+            payment[1] = rs.getString("identity_card_number");
+            payment[2] = rs.getString("amount");
+            payment[3] = rs.getString("installment_amount");
+            payment[4] = rs.getString("remaining_balance");
+            payment[5] = rs.getString("number_installments");
+            payment[6] = rs.getString("payment_date");
+            
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+   }
+    public void deletePay(String identityNum){
+            String query="delete from payment where identity_card_number =?";
+        try {
+            ps=conn.prepareStatement(query);
+            ps.setString(1, identityNum);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+   }
+
+   public void updatePay(String paymentID,String identityNum,String amount,String instAmount ,String remBalance,int nbr,String Date){
+       String query="update payment set payment_ID=?,amount =?,installment_amount=?,remainig_balance =?,number_installments=?,payment_date=to_date(?,'DD-MM-YYYY') where identity_card_number =?";
+        try {
+            ps=conn.prepareStatement(query);
+            ps.setString(1, paymentID);
+            ps.setString(2, amount);
+            ps.setString(3, instAmount);
+            ps.setString(4, remBalance);
+            ps.setInt(5, nbr);
+            ps.setString(6,Date );
+            ps.setString(7, identityNum);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+   
+   
+   }
+}
+
+   
+    

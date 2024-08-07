@@ -4,6 +4,7 @@
  */
 package Forms;
 
+import Database.CRUD;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -57,8 +58,13 @@ public class Payment extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
-        jPanel1.setBackground(new java.awt.Color(226, 114, 114));
+        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -74,7 +80,7 @@ public class Payment extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Condidate ID");
+        jLabel3.setText("Condidate ID Card");
 
         jtIDCondidate.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
@@ -109,8 +115,8 @@ public class Payment extends javax.swing.JFrame {
         jLabel8.setText("Payment Date");
 
         btnAdd.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnAdd.setForeground(new java.awt.Color(226, 114, 114));
-        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/add-button.png"))); // NOI18N
+        btnAdd.setForeground(new java.awt.Color(0, 153, 153));
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/add.png"))); // NOI18N
         btnAdd.setText("Add");
         btnAdd.setBorderPainted(false);
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -120,7 +126,8 @@ public class Payment extends javax.swing.JFrame {
         });
 
         btnClear.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnClear.setForeground(new java.awt.Color(226, 114, 114));
+        btnClear.setForeground(new java.awt.Color(0, 153, 153));
+        btnClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/eraser.png"))); // NOI18N
         btnClear.setText("Clear");
         btnClear.setBorderPainted(false);
         btnClear.addActionListener(new java.awt.event.ActionListener() {
@@ -134,7 +141,7 @@ public class Payment extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Condidate ID", "Amount ", "InstAmount", "Remaining Bal", "Numnst", "Date"
+                "ID", "Condidate ID Card", "Amount ", "InstAmount", "Remaining Bal", "Numnst", "Date"
             }
         ));
         TablePayment.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -145,8 +152,8 @@ public class Payment extends javax.swing.JFrame {
         jScrollPane1.setViewportView(TablePayment);
 
         btnDelete.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnDelete.setForeground(new java.awt.Color(226, 114, 114));
-        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cross.png"))); // NOI18N
+        btnDelete.setForeground(new java.awt.Color(0, 153, 153));
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/close.png"))); // NOI18N
         btnDelete.setText("Delete ");
         btnDelete.setBorderPainted(false);
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -156,8 +163,8 @@ public class Payment extends javax.swing.JFrame {
         });
 
         btnModify.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnModify.setForeground(new java.awt.Color(226, 114, 114));
-        btnModify.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/edit.png"))); // NOI18N
+        btnModify.setForeground(new java.awt.Color(0, 153, 153));
+        btnModify.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/edit (1).png"))); // NOI18N
         btnModify.setText("Modify");
         btnModify.setBorderPainted(false);
         btnModify.addActionListener(new java.awt.event.ActionListener() {
@@ -204,14 +211,14 @@ public class Payment extends javax.swing.JFrame {
                         .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 689, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnModify, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(btnModify, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 678, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -280,7 +287,7 @@ public class Payment extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+CRUD crud =new CRUD();
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         String ID = jtPaymentID.getText();
@@ -309,7 +316,9 @@ public class Payment extends javax.swing.JFrame {
             jtDatePay.setCalendar(null);
             jtNumInst.setValue(0);
         }
-        
+        if(crud.addPayment(ID, IDC, Amount, InstAmount, RemBalance, Nbr, Date)){
+        JOptionPane.showMessageDialog(null, "Payment has been successfully processed.");
+        }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
@@ -396,6 +405,10 @@ public class Payment extends javax.swing.JFrame {
         hc.toFront();
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+       crud.displayDataPayment(TablePayment);
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments

@@ -61,23 +61,23 @@ public class home_screen extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel8.setBackground(new java.awt.Color(226, 114, 114));
-        jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel8.setBackground(new java.awt.Color(255, 255, 204));
+        jPanel8.setForeground(new java.awt.Color(0, 153, 153));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(0, 153, 153));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/driver-license.png"))); // NOI18N
         jLabel1.setText("Home");
-        jPanel8.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 358, 56));
 
         btnPayment.setBackground(new java.awt.Color(226, 114, 114));
         btnPayment.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnPayment.setForeground(new java.awt.Color(255, 255, 255));
-        btnPayment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cone.png"))); // NOI18N
+        btnPayment.setForeground(new java.awt.Color(0, 153, 153));
+        btnPayment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/steering-wheel.png"))); // NOI18N
         btnPayment.setText("Payment");
         btnPayment.setBorder(null);
         btnPayment.setBorderPainted(false);
@@ -88,12 +88,11 @@ public class home_screen extends javax.swing.JFrame {
                 btnPaymentActionPerformed(evt);
             }
         });
-        jPanel8.add(btnPayment, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 360, -1));
 
         btnExams.setBackground(new java.awt.Color(226, 114, 114));
         btnExams.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnExams.setForeground(new java.awt.Color(255, 255, 255));
-        btnExams.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cone.png"))); // NOI18N
+        btnExams.setForeground(new java.awt.Color(0, 153, 153));
+        btnExams.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/steering-wheel.png"))); // NOI18N
         btnExams.setText("Exams");
         btnExams.setBorder(null);
         btnExams.setBorderPainted(false);
@@ -104,17 +103,15 @@ public class home_screen extends javax.swing.JFrame {
                 btnExamsActionPerformed(evt);
             }
         });
-        jPanel8.add(btnExams, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 360, -1));
 
         DateTime.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        DateTime.setForeground(new java.awt.Color(255, 255, 255));
+        DateTime.setForeground(new java.awt.Color(0, 153, 153));
         DateTime.setText("jLabel3");
-        jPanel8.add(DateTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 676, 229, -1));
 
         btnSessionPlan.setBackground(new java.awt.Color(226, 114, 114));
         btnSessionPlan.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnSessionPlan.setForeground(new java.awt.Color(255, 255, 255));
-        btnSessionPlan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cone.png"))); // NOI18N
+        btnSessionPlan.setForeground(new java.awt.Color(0, 153, 153));
+        btnSessionPlan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/steering-wheel.png"))); // NOI18N
         btnSessionPlan.setText("Session Planner");
         btnSessionPlan.setBorder(null);
         btnSessionPlan.setBorderPainted(false);
@@ -125,12 +122,11 @@ public class home_screen extends javax.swing.JFrame {
                 btnSessionPlanActionPerformed(evt);
             }
         });
-        jPanel8.add(btnSessionPlan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 360, -1));
 
         btnCondidateL.setBackground(new java.awt.Color(226, 114, 114));
         btnCondidateL.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnCondidateL.setForeground(new java.awt.Color(255, 255, 255));
-        btnCondidateL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cone.png"))); // NOI18N
+        btnCondidateL.setForeground(new java.awt.Color(0, 153, 153));
+        btnCondidateL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/steering-wheel.png"))); // NOI18N
         btnCondidateL.setText("Condidate");
         btnCondidateL.setBorder(null);
         btnCondidateL.setBorderPainted(false);
@@ -141,7 +137,48 @@ public class home_screen extends javax.swing.JFrame {
                 btnCondidateLActionPerformed(evt);
             }
         });
-        jPanel8.add(btnCondidateL, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 360, -1));
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(DateTime, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnCondidateL, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnSessionPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnExams, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(11, Short.MAX_VALUE))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54)
+                .addComponent(btnCondidateL)
+                .addGap(15, 15, 15)
+                .addComponent(btnSessionPlan)
+                .addGap(15, 15, 15)
+                .addComponent(btnExams)
+                .addGap(15, 15, 15)
+                .addComponent(btnPayment)
+                .addGap(401, 401, 401)
+                .addComponent(DateTime)
+                .addContainerGap(13, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -154,14 +191,16 @@ public class home_screen extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 712, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jPanel3.setBackground(new java.awt.Color(250, 229, 229));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jPanel3.setBackground(new java.awt.Color(0, 153, 153));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(226, 114, 114));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 204));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/car (1).png"))); // NOI18N
         jLabel2.setText("AceDrive");
@@ -170,7 +209,7 @@ public class home_screen extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 702, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,20 +234,7 @@ public class home_screen extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(366, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

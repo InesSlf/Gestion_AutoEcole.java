@@ -1,3 +1,5 @@
+-- Create the register table
+
 CREATE TABLE register (
    ID NUMBER(10),
    user_name VARCHAR2(50) NOT NULL,
@@ -5,6 +7,8 @@ CREATE TABLE register (
    password VARCHAR2(100) NOT NULL,
    phone_number VARCHAR2(20) NOT NULL
 );
+
+-- Create the condidate table
 create TABLE condidate(
   ID_C NUMBER(10) PRIMARY KEY,
   name VARCHAR2(50) NOT NULL,
@@ -18,6 +22,7 @@ create TABLE condidate(
   identity_card_number VARCHAR2(20) UNIQUE
 );
 
+-- Create the sessionP table
 create TABLE sessionP (
   session_ID VARCHAR2(20) PRIMARY KEY,
   condidate_full_name VARCHAR2(50),
@@ -26,6 +31,19 @@ create TABLE sessionP (
   hour NUMBER NOT NULL,
   session_type VARCHAR2(10) check (session_type IN ('Code', 'Driving', 'Parking')),
   CONSTRAINT fk_identity_card FOREIGN KEY (identity_card_number)
+    REFERENCES condidate(identity_card_number)
+);
+
+-- Create the payment table
+create TABLE payment (
+  payment_ID NUMBER PRIMARY KEY,
+  identity_card_number VARCHAR2(20) NOT NULL,
+  amount NUMBER NOT NULL,
+  installment_amount NUMBER,
+  remaining_balance NUMBER,
+  number_installments NUMBER(3),
+  payment_date date NOT NULL,
+   CONSTRAINT fk_identity_card_payment FOREIGN KEY (identity_card_number)
     REFERENCES condidate(identity_card_number)
 );
 
@@ -67,3 +85,16 @@ IF :NEW.session_ID IS NULL THEN
 END IF;
 END;
 /
+
+CREATE SEQUENCE payment_seq START WITH 1;
+
+create or REPLACE TRIGGER payment_befor_insert 
+BEFORE INSERT ON payment 
+FOR EACH ROW 
+BEGIN
+IF :NEW.payment_ID IS NULL THEN
+    SELECT payment_seq.NEXTVAL INTO :NEW.payment_ID FROM dual;
+END IF;
+END;
+/
+
