@@ -287,27 +287,27 @@ public class Payment extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-CRUD crud =new CRUD();
+CRUD crud = new CRUD();
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         String ID = jtPaymentID.getText();
         String IDC = jtIDCondidate.getText();
-        String Amount=jtAmount.getText();
-        String InstAmount=jtAmountInst.getText();
-        String RemBalance =jtRemBalance.getText();
+        String Amount = jtAmount.getText();
+        String InstAmount = jtAmountInst.getText();
+        String RemBalance = jtRemBalance.getText();
         String Date = sdf.format(jtDatePay.getDate());
-        int Nbr=(int) jtNumInst.getValue();
-        if (InstAmount.isEmpty()){
-        InstAmount="0";
+        int Nbr = (int) jtNumInst.getValue();
+        if (InstAmount.isEmpty()) {
+            InstAmount = "0";
         }
-        if (RemBalance.isEmpty()){
-        RemBalance="0";
+        if (RemBalance.isEmpty()) {
+            RemBalance = "0";
         }
-        if(ID.isEmpty()|| IDC.isEmpty()||Date.isEmpty()||Amount.isEmpty()){
-        JOptionPane.showMessageDialog(this, "Please enter all fields", "Try again", JOptionPane.ERROR_MESSAGE);
-        }else{
-            DefaultTableModel model=(DefaultTableModel) TablePayment.getModel();
-            model.addRow(new Object[]{ID,IDC,Amount,InstAmount,RemBalance,Nbr,Date});
+        if (ID.isEmpty() || IDC.isEmpty() || Date.isEmpty() || Amount.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter all fields", "Try again", JOptionPane.ERROR_MESSAGE);
+        } else {
+            DefaultTableModel model = (DefaultTableModel) TablePayment.getModel();
+            model.addRow(new Object[]{ID, IDC, Amount, InstAmount, RemBalance, Nbr, Date});
             jtPaymentID.setText("");
             jtIDCondidate.setText("");
             jtAmount.setText("");
@@ -316,23 +316,23 @@ CRUD crud =new CRUD();
             jtDatePay.setCalendar(null);
             jtNumInst.setValue(0);
         }
-        if(crud.addPayment(ID, IDC, Amount, InstAmount, RemBalance, Nbr, Date)){
-        JOptionPane.showMessageDialog(null, "Payment has been successfully processed.");
+        if (crud.addPayment(ID, IDC, Amount, InstAmount, RemBalance, Nbr, Date)) {
+            JOptionPane.showMessageDialog(null, "Payment has been successfully processed.");
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
-            jtPaymentID.setText("");
-            jtIDCondidate.setText("");
-            jtAmount.setText("");
-            jtAmountInst.setText("");
-            jtRemBalance.setText("");
-            jtDatePay.setCalendar(null);
-            jtNumInst.setValue(0);
+        jtPaymentID.setText("");
+        jtIDCondidate.setText("");
+        jtAmount.setText("");
+        jtAmountInst.setText("");
+        jtRemBalance.setText("");
+        jtDatePay.setCalendar(null);
+        jtNumInst.setValue(0);
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-         DefaultTableModel model = (DefaultTableModel) TablePayment.getModel();
+        DefaultTableModel model = (DefaultTableModel) TablePayment.getModel();
         try {
             int selectedRow = TablePayment.getSelectedRow();
             model.removeRow(selectedRow);
@@ -350,9 +350,9 @@ CRUD crud =new CRUD();
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
             String Date = sdf.format(jtDatePay.getDate());
             int num = (int) jtNumInst.getValue();
-            String InstAmount=jtAmountInst.getText();
-            String RemBalance =jtRemBalance.getText();
-            String Amount =jtAmount.getText();
+            String InstAmount = jtAmountInst.getText();
+            String RemBalance = jtRemBalance.getText();
+            String Amount = jtAmount.getText();
 
             model.setValueAt(ID, i, 0);
             model.setValueAt(IDC, i, 1);
@@ -364,13 +364,13 @@ CRUD crud =new CRUD();
         } else {
             JOptionPane.showMessageDialog(this, "No row selected ", "Try again !", JOptionPane.ERROR_MESSAGE);
         }
-            jtPaymentID.setText("");
-            jtIDCondidate.setText("");
-            jtAmount.setText("");
-            jtAmountInst.setText("");
-            jtRemBalance.setText("");
-            jtDatePay.setCalendar(null);
-            jtNumInst.setValue(0);
+        jtPaymentID.setText("");
+        jtIDCondidate.setText("");
+        jtAmount.setText("");
+        jtAmountInst.setText("");
+        jtRemBalance.setText("");
+        jtDatePay.setCalendar(null);
+        jtNumInst.setValue(0);
     }//GEN-LAST:event_btnModifyActionPerformed
 
     private void TablePaymentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablePaymentMouseClicked
@@ -390,24 +390,24 @@ CRUD crud =new CRUD();
         } catch (ParseException e) {
             e.printStackTrace();
         }
-       if (jtAmountInst.equals(0)){
-        jtAmountInst.setText("");
+        if (jtAmountInst.equals(0)) {
+            jtAmountInst.setText("");
         }
-        if (jtRemBalance.equals(0)){
-        jtRemBalance.setText("");
+        if (jtRemBalance.equals(0)) {
+            jtRemBalance.setText("");
         }
     }//GEN-LAST:event_TablePaymentMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.toBack();
-        home_screen hc=new home_screen();
+        home_screen hc = new home_screen();
         hc.setVisible(true);
         hc.toFront();
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-       crud.displayDataPayment(TablePayment);
+        crud.displayDataPayment(TablePayment);
     }//GEN-LAST:event_formWindowOpened
 
     /**
