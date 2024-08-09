@@ -144,6 +144,7 @@ public class Payment extends javax.swing.JFrame {
                 "ID", "Condidate ID Card", "Amount ", "InstAmount", "Remaining Bal", "Numnst", "Date"
             }
         ));
+        TablePayment.setSelectionBackground(new java.awt.Color(255, 50, 91));
         TablePayment.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TablePaymentMouseClicked(evt);
@@ -336,9 +337,17 @@ CRUD crud = new CRUD();
         try {
             int selectedRow = TablePayment.getSelectedRow();
             model.removeRow(selectedRow);
+            crud.deletePay(jtIDCondidate.getText());
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "No row is selected.", "Error", JOptionPane.ERROR_MESSAGE);
         }
+        jtPaymentID.setText("");
+        jtIDCondidate.setText("");
+        jtAmount.setText("");
+        jtAmountInst.setText("");
+        jtRemBalance.setText("");
+        jtDatePay.setCalendar(null);
+        jtNumInst.setValue(0);
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
@@ -353,7 +362,7 @@ CRUD crud = new CRUD();
             String InstAmount = jtAmountInst.getText();
             String RemBalance = jtRemBalance.getText();
             String Amount = jtAmount.getText();
-
+            crud.updatePay(ID, IDC, Amount, InstAmount, RemBalance, num, Date);
             model.setValueAt(ID, i, 0);
             model.setValueAt(IDC, i, 1);
             model.setValueAt(Amount, i, 2);
@@ -381,7 +390,8 @@ CRUD crud = new CRUD();
         jtAmount.setText(model.getValueAt(selectedRow, 2).toString());
         jtAmountInst.setText(model.getValueAt(selectedRow, 3).toString());
         jtRemBalance.setText(model.getValueAt(selectedRow, 4).toString());
-        int num = (int) (model.getValueAt(selectedRow, 5));
+        int num = Integer.parseInt(model.getValueAt(selectedRow, 5).toString());
+        //int num = (int) (model.getValueAt(selectedRow, 5));
         jtNumInst.setValue(num);
         Date date;
         try {

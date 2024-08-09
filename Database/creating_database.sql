@@ -36,14 +36,25 @@ create TABLE sessionP (
 
 -- Create the payment table
 create TABLE payment (
-  payment_ID NUMBER PRIMARY KEY,
+  payment_ID VARCHAR2(20) PRIMARY KEY,
   identity_card_number VARCHAR2(20) NOT NULL,
-  amount NUMBER NOT NULL,
-  installment_amount NUMBER,
-  remaining_balance NUMBER,
+  amount VARCHAR2(20) NOT NULL,
+  installment_amount VARCHAR2(20),
+  remaining_balance VARCHAR2 (20),
   number_installments NUMBER(3),
   payment_date date NOT NULL,
    CONSTRAINT fk_identity_card_payment FOREIGN KEY (identity_card_number)
+    REFERENCES condidate(identity_card_number)
+);
+
+-- Create the exams table
+CREATE TABLE exams (
+  exam_ID NUMBER(10) PRIMARY KEY,
+  identity_card_number VARCHAR2(20) NOT NULL,
+  full_name VARCHAR2(100) NOT NULL,
+  exam_type VARCHAR2(10) ,
+  exam_date DATE NOT NULL,
+  CONSTRAINT fk_identity_card_exams FOREIGN KEY (identity_card_number)
     REFERENCES condidate(identity_card_number)
 );
 
@@ -98,3 +109,15 @@ END IF;
 END;
 /
 
+
+CREATE SEQUENCE exam_seq START WITH 1;
+
+CREATE OR REPLACE TRIGGER exams_before_insert
+BEFORE INSERT ON exams
+FOR EACH ROW
+BEGIN
+  IF :NEW.exam_ID IS NULL THEN
+    SELECT exam_seq.NEXTVAL INTO :NEW.exam_ID FROM dual;
+  END IF;
+END;
+/

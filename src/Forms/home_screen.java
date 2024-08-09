@@ -77,7 +77,7 @@ public class home_screen extends javax.swing.JFrame {
         btnPayment.setBackground(new java.awt.Color(226, 114, 114));
         btnPayment.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnPayment.setForeground(new java.awt.Color(0, 153, 153));
-        btnPayment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/steering-wheel.png"))); // NOI18N
+        btnPayment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/traffic-light.png"))); // NOI18N
         btnPayment.setText("Payment");
         btnPayment.setBorder(null);
         btnPayment.setBorderPainted(false);
@@ -92,7 +92,7 @@ public class home_screen extends javax.swing.JFrame {
         btnExams.setBackground(new java.awt.Color(226, 114, 114));
         btnExams.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnExams.setForeground(new java.awt.Color(0, 153, 153));
-        btnExams.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/steering-wheel.png"))); // NOI18N
+        btnExams.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/traffic-light.png"))); // NOI18N
         btnExams.setText("Exams");
         btnExams.setBorder(null);
         btnExams.setBorderPainted(false);
@@ -111,7 +111,7 @@ public class home_screen extends javax.swing.JFrame {
         btnSessionPlan.setBackground(new java.awt.Color(226, 114, 114));
         btnSessionPlan.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnSessionPlan.setForeground(new java.awt.Color(0, 153, 153));
-        btnSessionPlan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/steering-wheel.png"))); // NOI18N
+        btnSessionPlan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/traffic-light.png"))); // NOI18N
         btnSessionPlan.setText("Session Planner");
         btnSessionPlan.setBorder(null);
         btnSessionPlan.setBorderPainted(false);
@@ -126,7 +126,7 @@ public class home_screen extends javax.swing.JFrame {
         btnCondidateL.setBackground(new java.awt.Color(226, 114, 114));
         btnCondidateL.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnCondidateL.setForeground(new java.awt.Color(0, 153, 153));
-        btnCondidateL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/steering-wheel.png"))); // NOI18N
+        btnCondidateL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/traffic-light.png"))); // NOI18N
         btnCondidateL.setText("Condidate");
         btnCondidateL.setBorder(null);
         btnCondidateL.setBorderPainted(false);
@@ -177,7 +177,7 @@ public class home_screen extends javax.swing.JFrame {
                 .addComponent(btnPayment)
                 .addGap(401, 401, 401)
                 .addComponent(DateTime)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -246,7 +246,9 @@ public class home_screen extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPaymentActionPerformed
 
     private void btnExamsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExamsActionPerformed
-        // TODO add your handling code here:
+        Exams ex =new Exams();
+        ex.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnExamsActionPerformed
 
     private void btnSessionPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSessionPlanActionPerformed

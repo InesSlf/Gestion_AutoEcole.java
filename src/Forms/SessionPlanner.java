@@ -171,6 +171,7 @@ public class SessionPlanner extends javax.swing.JFrame {
                 "ID Card", "Full Name ", "SessionID", "Date ", "Hour", "Type"
             }
         ));
+        TableSession.setSelectionBackground(new java.awt.Color(255, 50, 91));
         TableSession.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TableSessionMouseClicked(evt);
@@ -347,6 +348,12 @@ public class SessionPlanner extends javax.swing.JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "No row is selected.", "Error", JOptionPane.ERROR_MESSAGE);
         }
+        jtIDcard.setText("");
+        jtNameC.setText("");
+        jtDateS.setDateFormatString("");
+        jtIDsession.setText("");
+        btGrpCheckBoxes.clearSelection();
+        jtHour.setValue(0);
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed

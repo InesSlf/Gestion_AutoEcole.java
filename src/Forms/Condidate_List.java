@@ -175,6 +175,7 @@ public class Condidate_List extends javax.swing.JFrame {
                 "FirstName", "LastName", "DateBirth", "Age", "Phone", "Gender", "BooldeType", "Adress", "NumCard"
             }
         ));
+        TableCondiates.setSelectionBackground(new java.awt.Color(255, 50, 91));
         TableCondiates.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TableCondiatesMouseClicked(evt);
@@ -396,6 +397,15 @@ public class Condidate_List extends javax.swing.JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "No row is selected.", "Error", JOptionPane.ERROR_MESSAGE);
         }
+        jtAdress.setText("");
+        jtAge.setText("");
+        jtBooldType.setText("");
+        jtDateB.setDateFormatString("");
+        jtFirstName.setText("");
+        jtNumCard.setText("");
+        jtPhone.setText("");
+        jtName.setText("");
+        btnGroup.clearSelection();
     }//GEN-LAST:event_btDeleteActionPerformed
 
     private void btClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btClearActionPerformed

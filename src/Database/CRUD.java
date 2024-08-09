@@ -224,7 +224,7 @@ public class CRUD {
 
     // ==================== Payment Methods ==================== //
     public boolean addPayment(String payment_ID, String identityNum, String amount, String instAmount, String remBalance, int nbr, String dateP) {
-        String query = "insert into payment (payment_ID, identity_card_number, amount, installment_amount, remaining_balance, number_installments, payment_date) values(?,?,?,?,?,?,to_date(?, 'MM-DD-YYYY'))";
+        String query = "insert into payment (payment_ID, identity_card_number, amount, installment_amount, remaining_balance, number_installments, payment_date) values(?,?,?,?,?,?,to_date(?, 'DD-MM-YYYY'))";
         try {
             ps = conn.prepareStatement(query);
             ps.setString(1, payment_ID);
@@ -278,7 +278,9 @@ public class CRUD {
     }
 
     public void updatePay(String paymentID, String identityNum, String amount, String instAmount, String remBalance, int nbr, String Date) {
-        String query = "update payment set payment_ID=?,amount =?,installment_amount=?,remainig_balance =?,number_installments=?,payment_date=to_date(?,'DD-MM-YYYY') where identity_card_number =?";
+        //String query = "update payment set payment_ID=?,amount =?,installment_amount=?,remainig_balance =?,number_installments=?,payment_date=to_date(?,'DD-MM-YYYY') where identity_card_number =?";
+        String query = "update payment set payment_ID=?,amount =?,installment_amount=?,remaining_balance =?,number_installments=?,payment_date=to_date(?,'DD-MM-YYYY') where identity_card_number =?";
+
         try {
             ps = conn.prepareStatement(query);
             ps.setString(1, paymentID);
@@ -293,5 +295,68 @@ public class CRUD {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+    
+    // ==================== Exams Methods ==================== //
+    
+    public boolean addExam(String IDc,String fName ,String date ,String type){
+        String query ="insert into exams (identity_card_number,full_name,exam_date,exam_type)values(?,?,to_date(?, 'DD-MM-YYYY'),?)";
+        try {
+            ps=conn.prepareStatement(query);
+            ps.setString(1, IDc);
+            ps.setString(2, fName);
+            ps.setString(3, date);
+            ps.setString(4, type);
+            int rs = ps.executeUpdate();
+            return rs > 0;
+        } catch (SQLException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false ;
+    }
+    
+    public void displayaDataExams(JTable tab){
+        String query ="select exams.*, to_char(exam_date,'DD-MM-YYYY') as formatted_date from exams";
+        String[] exams = new String[4];
+        DefaultTableModel model = (DefaultTableModel) tab.getModel();
+        try {
+            ps=conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            model.setRowCount(0);
+            while (rs.next()) {
+                exams[0] = rs.getString("identity_card_number");
+                exams[1] = rs.getString("full_name");
+                exams[2] = rs.getString("formatted_date");
+                exams[3] = rs.getString("exam_type");
+                model.addRow(exams);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void deleteExam(String identityNum){
+        String query = "delete from exams where identity_card_number =?";
+        try {
+            ps=conn.prepareStatement(query);
+            ps.setString(1, identityNum);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void updateExam(String IDc,String fName ,String date ,String type){
+        String query="update exams set full_name =?,exam_date=to_date(?,'DD-MM-YYYY'),exam_type=? where identity_card_number=?";
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setString(1, fName);
+            ps.setString(2, date);
+            ps.setString(3,type );
+            ps.setString(4, IDc);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
