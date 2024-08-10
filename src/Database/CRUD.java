@@ -296,13 +296,12 @@ public class CRUD {
         }
 
     }
-    
+
     // ==================== Exams Methods ==================== //
-    
-    public boolean addExam(String IDc,String fName ,String date ,String type){
-        String query ="insert into exams (identity_card_number,full_name,exam_date,exam_type)values(?,?,to_date(?, 'DD-MM-YYYY'),?)";
+    public boolean addExam(String IDc, String fName, String date, String type) {
+        String query = "insert into exams (identity_card_number,full_name,exam_date,exam_type)values(?,?,to_date(?, 'DD-MM-YYYY'),?)";
         try {
-            ps=conn.prepareStatement(query);
+            ps = conn.prepareStatement(query);
             ps.setString(1, IDc);
             ps.setString(2, fName);
             ps.setString(3, date);
@@ -312,15 +311,15 @@ public class CRUD {
         } catch (SQLException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return false ;
+        return false;
     }
-    
-    public void displayaDataExams(JTable tab){
-        String query ="select exams.*, to_char(exam_date,'DD-MM-YYYY') as formatted_date from exams";
+
+    public void displayaDataExams(JTable tab) {
+        String query = "select exams.*, to_char(exam_date,'DD-MM-YYYY') as formatted_date from exams";
         String[] exams = new String[4];
         DefaultTableModel model = (DefaultTableModel) tab.getModel();
         try {
-            ps=conn.prepareStatement(query);
+            ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             model.setRowCount(0);
             while (rs.next()) {
@@ -334,29 +333,71 @@ public class CRUD {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void deleteExam(String identityNum){
+
+    public void deleteExam(String identityNum) {
         String query = "delete from exams where identity_card_number =?";
         try {
-            ps=conn.prepareStatement(query);
+            ps = conn.prepareStatement(query);
             ps.setString(1, identityNum);
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void updateExam(String IDc,String fName ,String date ,String type){
-        String query="update exams set full_name =?,exam_date=to_date(?,'DD-MM-YYYY'),exam_type=? where identity_card_number=?";
+
+    public void updateExam(String IDc, String fName, String date, String type) {
+        String query = "update exams set full_name =?,exam_date=to_date(?,'DD-MM-YYYY'),exam_type=? where identity_card_number=?";
         try {
             ps = conn.prepareStatement(query);
             ps.setString(1, fName);
             ps.setString(2, date);
-            ps.setString(3,type );
+            ps.setString(3, type);
             ps.setString(4, IDc);
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    // ==================== Rapport Methods ==================== //
+    public String getHours(String condidateID, String sessionType) {
+        String query = "select sum(hour) as total_hours from sessionP where session_type = ? and identity_card_number = ?";
+        String totalHours = "0";
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setString(1, sessionType);
+            ps.setString(2, condidateID);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                totalHours = rs.getString("total_hours");
+                totalHours = totalHours != null ? totalHours : "0";
+                return totalHours;
+            } else {
+                return totalHours;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            return "ERROR!";
+        }
+    }
+
+    public String getExamDate(String condidateID) {
+        String query = "select to_char(exam_date,'DD-MM-YYYY') as formatted_date from exams where identity_card_number = ? and exam_type = 'Driving'";
+        String date = "0";
+        try {
+            ps = conn.prepareStatement(query);
+            ps.setString(1, condidateID);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                date = rs.getString("formatted_date");                
+                date = date != null ? date : "0";                
+                return date;
+            } else {
+                return date;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            return "ERROR!";
         }
     }
 }
