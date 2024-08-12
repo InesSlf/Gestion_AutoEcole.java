@@ -56,6 +56,7 @@ public class home_screen extends javax.swing.JFrame {
         DateTime = new javax.swing.JLabel();
         btnSessionPlan = new javax.swing.JButton();
         btnCondidateL = new javax.swing.JButton();
+        btnPayment1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -138,6 +139,21 @@ public class home_screen extends javax.swing.JFrame {
             }
         });
 
+        btnPayment1.setBackground(new java.awt.Color(226, 114, 114));
+        btnPayment1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnPayment1.setForeground(new java.awt.Color(0, 153, 153));
+        btnPayment1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/traffic-light.png"))); // NOI18N
+        btnPayment1.setText("Report");
+        btnPayment1.setBorder(null);
+        btnPayment1.setBorderPainted(false);
+        btnPayment1.setContentAreaFilled(false);
+        btnPayment1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnPayment1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPayment1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
@@ -159,8 +175,11 @@ public class home_screen extends javax.swing.JFrame {
                         .addComponent(btnExams, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btnPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(11, Short.MAX_VALUE))
+                        .addComponent(btnPayment, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnPayment1, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,7 +194,9 @@ public class home_screen extends javax.swing.JFrame {
                 .addComponent(btnExams)
                 .addGap(15, 15, 15)
                 .addComponent(btnPayment)
-                .addGap(401, 401, 401)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnPayment1)
+                .addGap(352, 352, 352)
                 .addComponent(DateTime)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -264,6 +285,12 @@ public class home_screen extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnCondidateLActionPerformed
 
+    private void btnPayment1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayment1ActionPerformed
+       Report rp=new Report();
+       rp.setVisible(true);
+       this.setVisible(false);
+    }//GEN-LAST:event_btnPayment1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -304,6 +331,7 @@ public class home_screen extends javax.swing.JFrame {
     private javax.swing.JButton btnCondidateL;
     private javax.swing.JButton btnExams;
     private javax.swing.JButton btnPayment;
+    private javax.swing.JButton btnPayment1;
     private javax.swing.JButton btnSessionPlan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

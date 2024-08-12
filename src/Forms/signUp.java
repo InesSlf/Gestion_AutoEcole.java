@@ -213,7 +213,7 @@ public class signUp extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void jtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtEmailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtEmailActionPerformed
@@ -225,7 +225,6 @@ public class signUp extends javax.swing.JFrame {
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         signUp su = new signUp();
         su.setLocationRelativeTo(null);
-
         String name = jtUsername.getText();
         String email = jtEmail.getText();
         String password = String.valueOf(jtpassword.getPassword());
@@ -233,8 +232,9 @@ public class signUp extends javax.swing.JFrame {
         if (name.isEmpty() || email.isEmpty() || phone.isEmpty() || password.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter all the fields", "Try again ", JOptionPane.ERROR_MESSAGE);
         } else {
+            String encryptedPassword=encrypt(password, 5);
             CRUD create = new CRUD();
-            boolean response = create.register(name, password, email, phone);
+            boolean response = create.register(name,encryptedPassword, email, phone);
             if (response) {
                 JOptionPane.showMessageDialog(this, "Your account created !", "Success", JOptionPane.INFORMATION_MESSAGE);
                 this.dispose();
@@ -247,6 +247,21 @@ public class signUp extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnRegisterActionPerformed
 
+     public static String encrypt (String password ,int shift ){
+        StringBuilder encryptedPass = new StringBuilder(); //construire le password chiffré
+        password =password.toLowerCase();//convertire le password en min pour simplifier le chiff
+        
+        for(int i=0;i<password.length();i++){
+            char c=password.charAt(i);
+            if(Character.isLetter(c)){  //pour vérifier si le caractère est une lettre 
+                c= (char) ((c-'a'+shift+26)%26+'a');
+            }else if(Character.isDigit(c)){
+               c= (char) ((c-'0'+shift+10)%10+'0'); //pour vérifier si le caractère est un chiffre 
+            }
+            encryptedPass.append(c); // ajouter le char chiffré au string builder 
+        }
+        return encryptedPass.toString();
+    }
     /**
      * @param args the command line arguments
      */

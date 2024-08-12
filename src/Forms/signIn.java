@@ -201,6 +201,19 @@ public class signIn extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
+    public static String decrypt(String password ,int shift){
+        StringBuilder decryptedPass =new StringBuilder();
+        for(int i=0;i<password.length();i++){
+           char c=password.charAt(i);
+           if(Character.isLetter(c)){
+               c= (char) ((c-'a'- shift+26)%26+'a');
+           }else if(Character.isDigit(c)){
+               c= (char) ((c-'0'-shift+10)%10+'0'); 
+            }
+           decryptedPass.append(c);
+        }
+        return decryptedPass.toString();
+    }
     /**
      * @param args the command line arguments
      */
