@@ -55,38 +55,39 @@ public class CRUD {
         }
         return false;
     }
+
     public String getEncryptedPassword(String username) {
         String query = "select password from register where user_name=?";
         try {
-           ps = conn.prepareStatement(query);
-           ps.setString(1, username);
-           rs = ps.executeQuery();
-           if (rs.next()) {
-            String encryptedPassword = rs.getString("password");
-           return decrypt(encryptedPassword, 5);
-        }
-           
+            ps = conn.prepareStatement(query);
+            ps.setString(1, username);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                String encryptedPassword = rs.getString("password");
+                return decrypt(encryptedPassword, 5);
+            }
+
         } catch (SQLException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return "ERROR !"; 
+        return "ERROR !";
     }
-    
-    public static String decrypt(String password ,int shift){
-        StringBuilder decryptedPass =new StringBuilder();
-        for(int i=0;i<password.length();i++){
-           char c=password.charAt(i);
-           if(Character.isLetter(c)){
-               c= (char) ((c-'a'- shift+26)%26+'a');
-           }else if(Character.isDigit(c)){
-               c= (char) ((c-'0'-shift+10)%10+'0'); 
+
+    public static String decrypt(String password, int shift) {
+        StringBuilder decryptedPass = new StringBuilder();
+        for (int i = 0; i < password.length(); i++) {
+            char c = password.charAt(i);
+            if (Character.isLetter(c)) {
+                c = (char) ((c - 'a' - shift + 26) % 26 + 'a');
+            } else if (Character.isDigit(c)) {
+                c = (char) ((c - '0' - shift + 10) % 10 + '0');
             }
-           decryptedPass.append(c);
+            decryptedPass.append(c);
         }
         return decryptedPass.toString();
     }
-        // ==================== Condidate Methods ==================== //
-    
+    // ==================== Condidate Methods ==================== //
+
     public boolean addCondidate(String nameC, String FirstName, String DateB, String age, String phone, String gender, String bloodType, String adress, String identityNum) {
         String query = "insert into condidate (name,first_name,date_of_birth,age,phone,gender,blood_type,adress,identity_card_number)values(?,?,to_date(?, 'DD-MM-YYYY'),?,?,?,?,?,?)";
         try {
@@ -166,7 +167,7 @@ public class CRUD {
         }
 
     }
-   
+
     // ==================== Session Planner Methods ==================== //
     public String getCondidateNameById(String cardNumber) {
         String query = "select name, first_name from condidate where identity_card_number = ?";
@@ -182,7 +183,7 @@ public class CRUD {
         }
         return "";
     }
-    
+
     public boolean addSession(String sessionID, String identityNum, String condidateFullName, String DateS, int hour, String Type) {
         //condidateFullName =getCondidateNameById(identityNum);
         String query = "insert into sessionP (session_ID,condidate_full_name,identity_card_number,session_date,hour,session_type) values(?,?,?,to_date(?, 'DD-MM-YYYY'),?,?) ";
@@ -420,8 +421,8 @@ public class CRUD {
             ps.setString(1, condidateID);
             rs = ps.executeQuery();
             if (rs.next()) {
-                date = rs.getString("formatted_date");                
-                date = date != null ? date : "0";                
+                date = rs.getString("formatted_date");
+                date = date != null ? date : "0";
                 return date;
             } else {
                 return date;
