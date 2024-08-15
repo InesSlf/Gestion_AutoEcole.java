@@ -5,10 +5,18 @@
 package Forms;
 
 import Database.CRUD;
+import com.sun.mail.handlers.message_rfc822;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.print.PrinterException;
+import java.io.File;
+import java.text.MessageFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -38,9 +46,9 @@ public class Condidate_List extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jtName = new javax.swing.JTextField();
+        jtFName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jtFirstName = new javax.swing.JTextField();
+        jtName = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jtAge = new javax.swing.JTextField();
@@ -63,6 +71,7 @@ public class Condidate_List extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jtNumCard = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        btnPrint = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -94,13 +103,13 @@ public class Condidate_List extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("First Name");
 
-        jtName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jtFName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Last Name");
 
-        jtFirstName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jtName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -220,10 +229,28 @@ public class Condidate_List extends javax.swing.JFrame {
             }
         });
 
+        btnPrint.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnPrint.setForeground(new java.awt.Color(0, 153, 153));
+        btnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/printer.png"))); // NOI18N
+        btnPrint.setText("Print");
+        btnPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrintActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 769, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,8 +263,8 @@ public class Condidate_List extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(rbFemale, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtName, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtFName, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtName, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jtDateB, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -263,12 +290,6 @@ public class Condidate_List extends javax.swing.JFrame {
                         .addComponent(btModify, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1))
                 .addGap(17, 17, 17))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 769, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(128, 128, 128))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -279,22 +300,23 @@ public class Condidate_List extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btDelete)
                         .addComponent(btModify))
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jtName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(jtFName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -328,10 +350,11 @@ public class Condidate_List extends javax.swing.JFrame {
                         .addGap(30, 30, 30)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btAdd)
-                            .addComponent(btClear))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1))
-                .addGap(22, 22, 22))
+                            .addComponent(btClear)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1)))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -342,7 +365,7 @@ public class Condidate_List extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -350,8 +373,8 @@ public class Condidate_List extends javax.swing.JFrame {
 
     private void btAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddActionPerformed
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        String name = jtName.getText();
-        String Fname = jtFirstName.getText().trim();
+        String name = jtFName.getText();
+        String Fname = jtName.getText().trim();
         String DBirth = sdf.format(jtDateB.getDate());
         String Adress = jtAdress.getText();
         String NumCrd = jtNumCard.getText();
@@ -376,10 +399,10 @@ public class Condidate_List extends javax.swing.JFrame {
             jtBooldType.setText("");
 //          jtDateB.setDateFormatString("");
             jtDateB.setCalendar(null);
-            jtFirstName.setText("");
+            jtName.setText("");
             jtNumCard.setText("");
             jtPhone.setText("");
-            jtName.setText("");
+            jtFName.setText("");
             btnGroup.clearSelection();
            }if(crud.addCondidate(name, Fname, DBirth, Age, Phone, gender, BooldTy, Adress, NumCrd)){
                JOptionPane.showMessageDialog(this, "A candidate has been added.", "Confirmation", JOptionPane.INFORMATION_MESSAGE);            
@@ -401,10 +424,10 @@ public class Condidate_List extends javax.swing.JFrame {
         jtAge.setText("");
         jtBooldType.setText("");
         jtDateB.setDateFormatString("");
-        jtFirstName.setText("");
+        jtName.setText("");
         jtNumCard.setText("");
         jtPhone.setText("");
-        jtName.setText("");
+        jtFName.setText("");
         btnGroup.clearSelection();
     }//GEN-LAST:event_btDeleteActionPerformed
 
@@ -413,17 +436,17 @@ public class Condidate_List extends javax.swing.JFrame {
         jtAge.setText("");
         jtBooldType.setText("");
         jtDateB.setDateFormatString("");
-        jtFirstName.setText("");
+        jtName.setText("");
         jtNumCard.setText("");
         jtPhone.setText("");
-        jtName.setText("");
+        jtFName.setText("");
         btnGroup.clearSelection();
     }//GEN-LAST:event_btClearActionPerformed
 
     private void btModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModifyActionPerformed
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        String name = jtName.getText();
-        String Fname = jtFirstName.getText();
+        String name = jtFName.getText();
+        String Fname = jtName.getText();
         String DBirth = sdf.format(jtDateB.getDate());
         String Adress = jtAdress.getText();
         String NumCrd = jtNumCard.getText();
@@ -459,8 +482,8 @@ public class Condidate_List extends javax.swing.JFrame {
     private void TableCondiatesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableCondiatesMouseClicked
         int selectedRow = TableCondiates.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) TableCondiates.getModel();
-        jtName.setText(model.getValueAt(selectedRow, 0).toString());
-        jtFirstName.setText(model.getValueAt(selectedRow, 1).toString());
+        jtFName.setText(model.getValueAt(selectedRow, 0).toString());
+        jtName.setText(model.getValueAt(selectedRow, 1).toString());
         Date date;
         try {
             date = new SimpleDateFormat("dd-MM-yyyy").parse(model.getValueAt(selectedRow, 2).toString());
@@ -495,6 +518,32 @@ public class Condidate_List extends javax.swing.JFrame {
         CRUD crud = new CRUD();
         crud.display_data(TableCondiates);
     }//GEN-LAST:event_formWindowOpened
+
+    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
+        JTextArea textArea = new JTextArea(); // objet utilisé pour formater le texte à imprimer
+        textArea.setFont(new Font("Georgia", Font.PLAIN, 12));
+        textArea.setBackground(new Color(255, 255, 204));
+    // la récupération et l'ajout des infromations 
+        textArea.append("Name : " + jtName.getText() + "\n");
+        textArea.append("First Name : " + jtFName.getText() + "\n");
+        textArea.append("Date of Birth : " + new SimpleDateFormat("dd-MM-yyyy").format(jtDateB.getDate()) + "\n");
+        textArea.append("Age : " + jtAge.getText() + "\n");
+        textArea.append("Phone : " + jtPhone.getText() + "\n");
+        textArea.append("Gender : " + (rbMale.isSelected() ? "Male" : "Female") + "\n"); //elle affiche male si le bouton rbMale sinon elle affiche female
+        textArea.append("Blood Type : " + jtBooldType.getText() + "\n");
+        textArea.append("Adress : " + jtAdress.getText() + "\n");
+        textArea.append("Identity Number : " + jtNumCard.getText() + "\n");
+        textArea.append("\n-------------------------------------------------------------------------------------------\n\n");
+        textArea.append("Thank you for choosing AceDriver. We appreciate your trust in us.\n");
+        textArea.append("For any inquiries, please contact our support team.\n");
+    
+        try {
+    //l'impression du JTextArea 
+        textArea.print(new MessageFormat("Condidate Information"), new MessageFormat("AceDriver"));
+    } catch (PrinterException e) {
+        JOptionPane.showMessageDialog(null, "Error while printing the candidate's information.");
+    }
+    }//GEN-LAST:event_btnPrintActionPerformed
 
     /**
      * @param args the command line arguments
@@ -538,6 +587,7 @@ public class Condidate_List extends javax.swing.JFrame {
     private javax.swing.JButton btDelete;
     private javax.swing.JButton btModify;
     private javax.swing.ButtonGroup btnGroup;
+    private javax.swing.JButton btnPrint;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -556,7 +606,7 @@ public class Condidate_List extends javax.swing.JFrame {
     private javax.swing.JTextField jtAge;
     private javax.swing.JTextField jtBooldType;
     private com.toedter.calendar.JDateChooser jtDateB;
-    private javax.swing.JTextField jtFirstName;
+    private javax.swing.JTextField jtFName;
     private javax.swing.JTextField jtName;
     private javax.swing.JTextField jtNumCard;
     private javax.swing.JTextField jtPhone;
