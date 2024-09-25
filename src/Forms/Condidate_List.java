@@ -31,7 +31,12 @@ public class Condidate_List extends javax.swing.JFrame {
     public Condidate_List() {
         initComponents();
     }
-
+   public Condidate_List(String userName) {
+        //initComponents();
+        this();
+        jLUserName.setText(userName);
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -72,6 +77,7 @@ public class Condidate_List extends javax.swing.JFrame {
         jtNumCard = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         btnPrint = new javax.swing.JButton();
+        jLUserName = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -239,18 +245,13 @@ public class Condidate_List extends javax.swing.JFrame {
             }
         });
 
+        jLUserName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLUserName.setForeground(new java.awt.Color(0, 153, 153));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 769, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -290,6 +291,18 @@ public class Condidate_List extends javax.swing.JFrame {
                         .addComponent(btModify, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1))
                 .addGap(17, 17, 17))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jLUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 769, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -302,8 +315,10 @@ public class Condidate_List extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(31, 31, 31)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btDelete)
@@ -354,7 +369,7 @@ public class Condidate_List extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1)))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -371,52 +386,100 @@ public class Condidate_List extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddActionPerformed
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        String userName =jLUserName.getText();
+        CRUD crud = new CRUD();
+        crud.display_data(TableCondiates,userName);
+    }//GEN-LAST:event_formWindowOpened
+
+    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
+        JTextArea textArea = new JTextArea(); // objet utilisé pour formater le texte à imprimer
+        textArea.setFont(new Font("Georgia", Font.PLAIN, 12));//pour changer la police d'écriture
+        // la récupération et l'ajout des infromations
+        textArea.append("Name : " + jtName.getText() + "\n");
+        textArea.append("First Name : " + jtFName.getText() + "\n");
+        textArea.append("Date of Birth : " + new SimpleDateFormat("dd-MM-yyyy").format(jtDateB.getDate()) + "\n");
+        textArea.append("Age : " + jtAge.getText() + "\n");
+        textArea.append("Phone : " + jtPhone.getText() + "\n");
+        textArea.append("Gender : " + (rbMale.isSelected() ? "Male" : "Female") + "\n"); //elle affiche male si le bouton rbMale sinon elle affiche female
+        textArea.append("Blood Type : " + jtBooldType.getText() + "\n");
+        textArea.append("Adress : " + jtAdress.getText() + "\n");
+        textArea.append("Identity Number : " + jtNumCard.getText() + "\n");
+        textArea.append("\n-------------------------------------------------------------------------------------------\n\n");
+        textArea.append("Thank you for choosing AceDriver. We appreciate your trust in us.\n");
+        textArea.append("For any inquiries, please contact our support team.\n");
+
+        try {
+            //l'impression du JTextArea
+            textArea.print(new MessageFormat("Condidate Information"), new MessageFormat("AceDriver"));
+        } catch (PrinterException e) {
+            JOptionPane.showMessageDialog(null, "Error while printing the candidate's information.");
+        }
+    }//GEN-LAST:event_btnPrintActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.toBack();
+        home_screen hc=new home_screen();
+        hc.setVisible(true);
+        hc.toFront();
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModifyActionPerformed
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         String name = jtFName.getText();
-        String Fname = jtName.getText().trim();
+        String Fname = jtName.getText();
         String DBirth = sdf.format(jtDateB.getDate());
         String Adress = jtAdress.getText();
         String NumCrd = jtNumCard.getText();
         String Age = jtAge.getText();
         String Phone = jtPhone.getText();
         String BooldTy = jtBooldType.getText();
-        String gender = null;
+        String gender;
+        String userName= jLUserName.getText();
         CRUD crud =new CRUD();
-        
-        if (name.isEmpty() || Fname.isEmpty() || DBirth.isEmpty() || Adress.isEmpty() || Age.isEmpty() || Phone.isEmpty() || BooldTy.isEmpty() || NumCrd.isEmpty() || !(rbMale.isSelected() || rbFemale.isSelected())) {
-            JOptionPane.showMessageDialog(this, "Please enter all fields", "Try again", JOptionPane.ERROR_MESSAGE);
+        String dbUserName = crud.getUserName(userName);
+        if (rbMale.isSelected()) {
+            gender = "Male";
         } else {
-            if (rbMale.isSelected()) {
-                gender = "Male";
-            } else {
-                gender = "Female";
+            gender = "Female";
+        }
+        int i =TableCondiates.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) TableCondiates.getModel();
+        if(i>=0){
+            if (dbUserName.equals(userName)) {
+            model.setValueAt(name, i, 0);
+            model.setValueAt(Fname, i, 1);
+            model.setValueAt(DBirth, i, 2);
+            model.setValueAt(Age, i, 3);
+            model.setValueAt(Phone, i, 4);
+            model.setValueAt(gender, i, 5);
+            model.setValueAt(BooldTy, i, 6);
+            model.setValueAt(Adress, i, 7);
+            model.setValueAt(NumCrd, i, 8);
+            crud.updateCondidate(name, Fname, DBirth, Age, Phone, gender, BooldTy, Adress, NumCrd);
+            JOptionPane.showMessageDialog(this, "Candidate updated successfully.", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
             }
-            DefaultTableModel model = (DefaultTableModel) TableCondiates.getModel();
-            model.addRow(new Object[]{name, Fname, DBirth, Age, Phone, gender, BooldTy, Adress, NumCrd});
-            jtAdress.setText("");
-            jtAge.setText("");
-            jtBooldType.setText("");
-//          jtDateB.setDateFormatString("");
-            jtDateB.setCalendar(null);
-            jtName.setText("");
-            jtNumCard.setText("");
-            jtPhone.setText("");
-            jtFName.setText("");
-            btnGroup.clearSelection();
-           }if(crud.addCondidate(name, Fname, DBirth, Age, Phone, gender, BooldTy, Adress, NumCrd)){
-               JOptionPane.showMessageDialog(this, "A candidate has been added.", "Confirmation", JOptionPane.INFORMATION_MESSAGE);            
-           }
-    }//GEN-LAST:event_btAddActionPerformed
+        }else{
+            JOptionPane.showMessageDialog(null,"Error : No row selected ");
+        }
+
+    }//GEN-LAST:event_btModifyActionPerformed
 
     private void btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteActionPerformed
         DefaultTableModel model = (DefaultTableModel) TableCondiates.getModel();
+        String userName= jLUserName.getText();
         CRUD crud =new CRUD();
-        //get selected row index 
+        String dbUserName = crud.getUserName(userName);
+        //get selected row index
         try {
             int SelectedrowIndex = TableCondiates.getSelectedRow();
             model.removeRow(SelectedrowIndex);
-            crud.deleteCondidate(jtNumCard.getText());
+            if(dbUserName.equals(userName)){
+            crud.deleteCondidate(jtNumCard.getText(),userName);
+            JOptionPane.showMessageDialog(this, "Candidate deleted successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+            }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "No row is selected.", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -430,54 +493,6 @@ public class Condidate_List extends javax.swing.JFrame {
         jtFName.setText("");
         btnGroup.clearSelection();
     }//GEN-LAST:event_btDeleteActionPerformed
-
-    private void btClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btClearActionPerformed
-        jtAdress.setText("");
-        jtAge.setText("");
-        jtBooldType.setText("");
-        jtDateB.setDateFormatString("");
-        jtName.setText("");
-        jtNumCard.setText("");
-        jtPhone.setText("");
-        jtFName.setText("");
-        btnGroup.clearSelection();
-    }//GEN-LAST:event_btClearActionPerformed
-
-    private void btModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModifyActionPerformed
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        String name = jtFName.getText();
-        String Fname = jtName.getText();
-        String DBirth = sdf.format(jtDateB.getDate());
-        String Adress = jtAdress.getText();
-        String NumCrd = jtNumCard.getText();
-        String Age = jtAge.getText();
-        String Phone = jtPhone.getText();
-        String BooldTy = jtBooldType.getText();
-        String gender;
-        CRUD crud =new CRUD();
-         if (rbMale.isSelected()) {
-                gender = "Male";
-            } else {
-                gender = "Female";
-            }
-        int i =TableCondiates.getSelectedRow();
-        DefaultTableModel model = (DefaultTableModel) TableCondiates.getModel();
-        if(i>=0){
-        model.setValueAt(name, i, 0);
-        model.setValueAt(Fname, i, 1);
-        model.setValueAt(DBirth, i, 2);
-        model.setValueAt(Age, i, 3);
-        model.setValueAt(Phone, i, 4);
-        model.setValueAt(gender, i, 5);
-        model.setValueAt(BooldTy, i, 6);
-        model.setValueAt(Adress, i, 7);
-        model.setValueAt(NumCrd, i, 8);
-        crud.updateCondidate(name, Fname, DBirth, Age, Phone, gender, BooldTy, Adress, NumCrd);
-        }else{
-        JOptionPane.showMessageDialog(null,"Error : No row selected ");
-        }
-         
-    }//GEN-LAST:event_btModifyActionPerformed
 
     private void TableCondiatesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableCondiatesMouseClicked
         int selectedRow = TableCondiates.getSelectedRow();
@@ -502,49 +517,65 @@ public class Condidate_List extends javax.swing.JFrame {
         jtBooldType.setText(model.getValueAt(selectedRow, 6).toString());
         jtAdress.setText(model.getValueAt(selectedRow, 7).toString());
         jtNumCard.setText(model.getValueAt(selectedRow, 8).toString());
-        
+
     }//GEN-LAST:event_TableCondiatesMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.toBack();
-        home_screen hc=new home_screen();
-        hc.setVisible(true);
-        hc.toFront();
-        this.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btClearActionPerformed
+        jtAdress.setText("");
+        jtAge.setText("");
+        jtBooldType.setText("");
+        jtDateB.setDateFormatString("");
+        jtName.setText("");
+        jtNumCard.setText("");
+        jtPhone.setText("");
+        jtFName.setText("");
+        btnGroup.clearSelection();
+    }//GEN-LAST:event_btClearActionPerformed
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
-        CRUD crud = new CRUD();
-        crud.display_data(TableCondiates);
-    }//GEN-LAST:event_formWindowOpened
-
-    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
-        JTextArea textArea = new JTextArea(); // objet utilisé pour formater le texte à imprimer
-        textArea.setFont(new Font("Georgia", Font.PLAIN, 12));
-        textArea.setBackground(new Color(255, 255, 204));
-    // la récupération et l'ajout des infromations 
-        textArea.append("Name : " + jtName.getText() + "\n");
-        textArea.append("First Name : " + jtFName.getText() + "\n");
-        textArea.append("Date of Birth : " + new SimpleDateFormat("dd-MM-yyyy").format(jtDateB.getDate()) + "\n");
-        textArea.append("Age : " + jtAge.getText() + "\n");
-        textArea.append("Phone : " + jtPhone.getText() + "\n");
-        textArea.append("Gender : " + (rbMale.isSelected() ? "Male" : "Female") + "\n"); //elle affiche male si le bouton rbMale sinon elle affiche female
-        textArea.append("Blood Type : " + jtBooldType.getText() + "\n");
-        textArea.append("Adress : " + jtAdress.getText() + "\n");
-        textArea.append("Identity Number : " + jtNumCard.getText() + "\n");
-        textArea.append("\n-------------------------------------------------------------------------------------------\n\n");
-        textArea.append("Thank you for choosing AceDriver. We appreciate your trust in us.\n");
-        textArea.append("For any inquiries, please contact our support team.\n");
+    private void btAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddActionPerformed
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        String name = jtFName.getText();
+        String Fname = jtName.getText().trim();
+        String DBirth = sdf.format(jtDateB.getDate());
+        String Adress = jtAdress.getText();
+        String NumCrd = jtNumCard.getText();
+        String Age = jtAge.getText();
+        String Phone = jtPhone.getText();
+        String BooldTy = jtBooldType.getText();
+        String gender = null;
+        CRUD crud =new CRUD();
+        String userName= jLUserName.getText();
+        String dbUserName = crud.getUserName(userName);
+        if (name.isEmpty() || Fname.isEmpty() || DBirth.isEmpty() || Adress.isEmpty() || Age.isEmpty() || Phone.isEmpty() || BooldTy.isEmpty() || NumCrd.isEmpty() || !(rbMale.isSelected() || rbFemale.isSelected())) {
+            JOptionPane.showMessageDialog(this, "Please enter all fields", "Try again", JOptionPane.ERROR_MESSAGE);
+        } else {
+            if (rbMale.isSelected()) {
+                gender = "Male";
+            } else {
+                gender = "Female";
+            }
+            DefaultTableModel model = (DefaultTableModel) TableCondiates.getModel();
+            model.addRow(new Object[]{name, Fname, DBirth, Age, Phone, gender, BooldTy, Adress, NumCrd});
+            jtAdress.setText("");
+            jtAge.setText("");
+            jtBooldType.setText("");
+            //          jtDateB.setDateFormatString("");
+            jtDateB.setCalendar(null);
+            jtName.setText("");
+            jtNumCard.setText("");
+            jtPhone.setText("");
+            jtFName.setText("");
+            btnGroup.clearSelection();
+        }/*if(crud.addCondidate(userName,name, Fname, DBirth, Age, Phone, gender, BooldTy, Adress, NumCrd)){
+            JOptionPane.showMessageDialog(this, "A candidate has been added.", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
+        }*/
+        if(dbUserName.equals(userName)){
+            if (crud.addCondidate(userName, name, Fname, DBirth, Age, Phone, gender, BooldTy, Adress, NumCrd)) {
+        JOptionPane.showMessageDialog(this, "A candidate has been added.", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
+    } 
+        }
+    }//GEN-LAST:event_btAddActionPerformed
     
-        try {
-    //l'impression du JTextArea 
-        textArea.print(new MessageFormat("Condidate Information"), new MessageFormat("AceDriver"));
-    } catch (PrinterException e) {
-        JOptionPane.showMessageDialog(null, "Error while printing the candidate's information.");
-    }
-    }//GEN-LAST:event_btnPrintActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -589,6 +620,7 @@ public class Condidate_List extends javax.swing.JFrame {
     private javax.swing.ButtonGroup btnGroup;
     private javax.swing.JButton btnPrint;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLUserName;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

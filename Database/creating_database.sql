@@ -1,5 +1,4 @@
 -- Create the register table
-
 CREATE TABLE register (
    ID NUMBER(10),
    user_name VARCHAR2(50) NOT NULL,
@@ -61,7 +60,7 @@ CREATE TABLE exams (
 ALTER TABLE register ADD (
   CONSTRAINT dept_pk PRIMARY KEY (ID));
 
-CREATE SEQUENCE dept_seq START WITH 1;
+/*CREATE SEQUENCE dept_seq START WITH 1;
 
 CREATE OR REPLACE TRIGGER register_before_insert
 BEFORE INSERT ON register
@@ -72,6 +71,7 @@ BEGIN
   END IF;
 END;
 /
+*/
 
 CREATE SEQUENCE ID_C_seq START WITH 1;
 
@@ -121,3 +121,26 @@ BEGIN
   END IF;
 END;
 /
+
+
+CREATE SEQUENCE register_seq START WITH 1;
+
+CREATE OR REPLACE TRIGGER register_before_insert
+BEFORE INSERT ON register
+FOR EACH ROW
+BEGIN
+  IF :NEW.ID IS NULL THEN
+    SELECT register_seq.NEXTVAL INTO :NEW.ID FROM dual;
+  END IF;
+END;
+/
+
+
+-- Ajout la colonne user_name à la table condidate
+ALTER TABLE condidate ADD user_name VARCHAR2(50);
+
+-- Ajout la colonne user_name à la table sessionP
+ALTER TABLE sessionP ADD user_name VARCHAR2(50);
+
+-- Ajout la colonne user_name à la table payment
+ALTER TABLE payment ADD user_name VARCHAR2(50);

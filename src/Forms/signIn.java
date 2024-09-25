@@ -177,11 +177,11 @@ public class signIn extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
-        // TODO add your handling code here:
+         
     }//GEN-LAST:event_txtNameActionPerformed
 
     private void txtPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassActionPerformed
-        // TODO add your handling code here:
+           
     }//GEN-LAST:event_txtPassActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
@@ -192,7 +192,9 @@ public class signIn extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please enter all fields", "Try Again!", JOptionPane.ERROR_MESSAGE);
         } else if (crud.checkUser(name, pass)) {
             JOptionPane.showMessageDialog(this, "Hey " + name, "Welcome", JOptionPane.INFORMATION_MESSAGE);
-            home_screen hs = new home_screen();
+           // home_screen hs = new home_screen();
+            home_screen hs=new home_screen(name);
+            //hs.setVisible(true);
             hs.setLocationRelativeTo(null);
             hs.setVisible(true);
             this.setVisible(false);

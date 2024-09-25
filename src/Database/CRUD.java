@@ -88,7 +88,7 @@ public class CRUD {
     }
     // ==================== Condidate Methods ==================== //
 
-    public boolean addCondidate(String nameC, String FirstName, String DateB, String age, String phone, String gender, String bloodType, String adress, String identityNum) {
+    /*public boolean addCondidate(String nameC, String FirstName, String DateB, String age, String phone, String gender, String bloodType, String adress, String identityNum) {
         String query = "insert into condidate (name,first_name,date_of_birth,age,phone,gender,blood_type,adress,identity_card_number)values(?,?,to_date(?, 'DD-MM-YYYY'),?,?,?,?,?,?)";
         try {
             ps = conn.prepareStatement(query);
@@ -107,9 +107,31 @@ public class CRUD {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
+    }*/
+    public boolean addCondidate(String userName, String nameC, String FirstName, String DateB, String age, String phone, String gender, String bloodType, String adress, String identityNum) {
+    String query = "insert into condidate (user_name, name, first_name, date_of_birth, age, phone, gender, blood_type, adress, identity_card_number)values(?, ?, ?, to_date(?, 'DD-MM-YYYY'), ?, ?, ?, ?, ?, ?)";
+    try {
+        ps = conn.prepareStatement(query);
+        ps.setString(1, userName);  
+        ps.setString(2, nameC);
+        ps.setString(3, FirstName);
+        ps.setString(4, DateB);
+        ps.setString(5, age);
+        ps.setString(6, phone);
+        ps.setString(7, gender);
+        ps.setString(8, bloodType);
+        ps.setString(9, adress);
+        ps.setString(10, identityNum);
+        int rs = ps.executeUpdate();
+        return rs > 0;
+    } catch (SQLException ex) {
+        Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
     }
+    return false;
+}
 
-    public void display_data(JTable tableName) {
+
+   /* public void display_data(JTable tableName) {
         String query = "select condidate.*, to_char(date_of_birth,'DD-MM-YYYY') as formatted_date from condidate";
         String[] afficher = new String[9];
         DefaultTableModel model = (DefaultTableModel) tableName.getModel();
@@ -134,9 +156,34 @@ public class CRUD {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    public void updateCondidate(String name, String firstName, String DateB, String age, String phone, String gender, String bloodType, String address, String identityNum) {
-        String query = "update condidate set name=?,first_name=?,date_of_birth=to_date(?,'DD-MM-YYYY'),age=?,phone=?,gender=?,blood_type=?,adress=? where identity_card_number=?  ";
+*/
+    public void display_data(JTable tableName, String userName) {
+    String query = "select condidate.*, to_char(date_of_birth,'DD-MM-YYYY') as formatted_date from condidate where user_name = ?";
+    String[] afficher = new String[9];
+    DefaultTableModel model = (DefaultTableModel) tableName.getModel();
+    try {
+        ps = conn.prepareStatement(query);
+        ps.setString(1, userName); 
+        rs = ps.executeQuery();
+        model.setRowCount(0);
+        while (rs.next()) {
+            afficher[0] = rs.getString("name");
+            afficher[1] = rs.getString("first_name");
+            afficher[2] = rs.getString("formatted_date");
+            afficher[3] = rs.getString("age");
+            afficher[4] = rs.getString("phone");
+            afficher[5] = rs.getString("gender");
+            afficher[6] = rs.getString("blood_type");
+            afficher[7] = rs.getString("adress");
+            afficher[8] = rs.getString("identity_card_number");
+            model.addRow(afficher);
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+    }
+}
+    public void updateCondidate(String name, String firstName, String DateB, String age, String phone, String gender, String bloodType, String address, String userName) {
+        String query = "update condidate set name=?, first_name=?, date_of_birth=to_date(?,'DD-MM-YYYY'), age=?, phone=?, gender=?, blood_type=?, adress=? where user_name=?";
         try {
             ps = conn.prepareStatement(query);
             ps.setString(1, name);
@@ -147,7 +194,7 @@ public class CRUD {
             ps.setString(6, gender);
             ps.setString(7, bloodType);
             ps.setString(8, address);
-            ps.setString(9, identityNum);
+            ps.setString(9, userName);
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
@@ -155,17 +202,16 @@ public class CRUD {
 
     }
 
-    public void deleteCondidate(String identityNum) {
-        String query = "delete from condidate where identity_card_number =? ";
+    public void deleteCondidate(String identityNum, String userName ) {
+        String query = "delete from condidate where identity_card_number =? and user_name=? ";
         try {
             ps = conn.prepareStatement(query);
             ps.setString(1, identityNum);
+            ps.setString(2, userName);
             ps.executeUpdate();
-
         } catch (SQLException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     // ==================== Session Planner Methods ==================== //
@@ -431,5 +477,21 @@ public class CRUD {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
             return "ERROR!";
         }
+    }
+    
+    public String getUserName(String userName){
+        String query ="select user_name from register where user_name=?"; //récupérer user_name à partir de la base de données 
+        String userN="";
+        try {
+            ps=conn.prepareStatement(query);
+            ps.setString(1, userName);
+            rs=ps.executeQuery();
+            if(rs.next()){
+                userN = rs.getString("user_name");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return userN;
     }
 }
