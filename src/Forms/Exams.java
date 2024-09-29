@@ -23,6 +23,10 @@ public class Exams extends javax.swing.JFrame {
     public Exams() {
         initComponents();
     }
+    public Exams(String userName){
+        this();
+        jLUserName.setText(userName);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -52,6 +56,7 @@ public class Exams extends javax.swing.JFrame {
         btnClear = new javax.swing.JButton();
         btnDel = new javax.swing.JButton();
         btnModify = new javax.swing.JButton();
+        jLUserName = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -104,16 +109,19 @@ public class Exams extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Exam Type ");
 
+        jcCode.setBackground(new java.awt.Color(0, 153, 153));
         buttonGroupCheck.add(jcCode);
         jcCode.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jcCode.setForeground(new java.awt.Color(255, 255, 255));
         jcCode.setText("Code");
 
+        jcParking.setBackground(new java.awt.Color(0, 153, 153));
         buttonGroupCheck.add(jcParking);
         jcParking.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jcParking.setForeground(new java.awt.Color(255, 255, 255));
         jcParking.setText("Parking ");
 
+        jcDriving.setBackground(new java.awt.Color(0, 153, 153));
         buttonGroupCheck.add(jcDriving);
         jcDriving.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jcDriving.setForeground(new java.awt.Color(255, 255, 255));
@@ -180,6 +188,9 @@ public class Exams extends javax.swing.JFrame {
             }
         });
 
+        jLUserName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLUserName.setForeground(new java.awt.Color(0, 153, 153));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -200,11 +211,11 @@ public class Exams extends javax.swing.JFrame {
                     .addComponent(jtDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jcCode, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jcParking, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jcDriving, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jcCode, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jcParking, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jcDriving, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jtIDc)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -218,6 +229,10 @@ public class Exams extends javax.swing.JFrame {
                         .addComponent(btnModify, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 556, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(jLUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,7 +241,9 @@ public class Exams extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(3, 3, 3)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDel)
                     .addComponent(btnModify))
@@ -278,7 +295,8 @@ public class Exams extends javax.swing.JFrame {
         home_screen hc = new home_screen();
         hc.setVisible(true);
         hc.toFront();
-        this.setVisible(false);
+        //this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
     CRUD crud =new CRUD();
             
@@ -289,6 +307,8 @@ public class Exams extends javax.swing.JFrame {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
        String IDc=jtIDc.getText();
+       String userName= jLUserName.getText();
+       String dbUserName = crud.getUserName(userName);
        //String Fname =jtFname.getText();
        String Date = sdf.format(jtDate.getDate());
        String Type = "";
@@ -309,9 +329,10 @@ public class Exams extends javax.swing.JFrame {
             jtFname.setText("");
             jtDate.setCalendar(null);
             buttonGroupCheck.clearSelection();
-        }
-        if(crud.addExam(IDc, candidateFullName, Date, Type)){
+        }if(dbUserName.equals(userName)){
+        if(crud.addExam(IDc, candidateFullName, Date, Type,userName)){
             JOptionPane.showMessageDialog(this, "The exam has been added successfully!", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
+        }
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -329,10 +350,15 @@ public class Exams extends javax.swing.JFrame {
 
     private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
         DefaultTableModel model = (DefaultTableModel) TableExams.getModel();
+        String userName= jLUserName.getText();
+        String dbUserName = crud.getUserName(userName);
         try {
         int selectedRow = TableExams.getSelectedRow();
         model.removeRow(selectedRow);
-        crud.deleteExam(jtIDc.getText());
+        if(dbUserName.equals(userName)){
+        crud.deleteExam(jtIDc.getText(),userName);
+        JOptionPane.showMessageDialog(this, "Exam successfully deleted.", "Success", JOptionPane.INFORMATION_MESSAGE);
+        }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "No row is selected.", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -372,6 +398,8 @@ public class Exams extends javax.swing.JFrame {
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
         int i = TableExams.getSelectedRow();
+        String userName= jLUserName.getText();
+        String dbUserName = crud.getUserName(userName);
         DefaultTableModel model = (DefaultTableModel) TableExams.getModel();
         if (i >= 0) {
             String IDc = jtIDc.getText();
@@ -389,12 +417,15 @@ public class Exams extends javax.swing.JFrame {
             } else {
                 Type = "";
             }
-            crud.updateExam(IDc, fName, Date, Type);
+            if(dbUserName.equals(userName)){
+            crud.updateExam(IDc, fName, Date, Type,userName);
             model.setValueAt(IDc, i, 0);
             model.setValueAt(fName, i, 1);
             model.setValueAt(Date, i, 2);
             model.setValueAt(Type, i, 3);
             jtFname.setText(crud.getCondidateNameById(IDc));
+            JOptionPane.showMessageDialog(this, "Exam updated successfully.", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
+            }
         } else {
             JOptionPane.showMessageDialog(this, "No row selected ", "Try again !", JOptionPane.ERROR_MESSAGE);
         }
@@ -405,7 +436,12 @@ public class Exams extends javax.swing.JFrame {
     }//GEN-LAST:event_btnModifyActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        crud.displayaDataExams(TableExams);
+        String userName= jLUserName.getText();
+        String dbUserName = crud.getUserName(userName);
+        CRUD crud = new CRUD();
+        if(dbUserName.equals(userName)){
+        crud.displayaDataExams(TableExams,userName);
+        }
     }//GEN-LAST:event_formWindowOpened
 
     /**
@@ -451,6 +487,7 @@ public class Exams extends javax.swing.JFrame {
     private javax.swing.JButton btnModify;
     private javax.swing.ButtonGroup buttonGroupCheck;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLUserName;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

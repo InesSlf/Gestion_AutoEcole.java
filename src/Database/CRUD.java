@@ -182,20 +182,21 @@ public class CRUD {
         Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
     }
 }
-    public void updateCondidate(String name, String firstName, String DateB, String age, String phone, String gender, String bloodType, String address, String userName) {
-        String query = "update condidate set name=?, first_name=?, date_of_birth=to_date(?,'DD-MM-YYYY'), age=?, phone=?, gender=?, blood_type=?, adress=? where user_name=?";
-        try {
-            ps = conn.prepareStatement(query);
-            ps.setString(1, name);
-            ps.setString(2, firstName);
-            ps.setString(3, DateB);
-            ps.setString(4, age);
-            ps.setString(5, phone);
-            ps.setString(6, gender);
-            ps.setString(7, bloodType);
-            ps.setString(8, address);
-            ps.setString(9, userName);
-            ps.executeUpdate();
+    public void updateCondidate(String name, String firstName, String DateB, String age, String phone, String gender, String bloodType, String address, String numCard, String userName) {
+    String query = "update condidate set name=?, first_name=?, date_of_birth=to_date(?,'DD-MM-YYYY'), age=?, phone=?, gender=?, blood_type=?, adress=?, identity_card_number=? where user_name=?";
+    try {
+        ps = conn.prepareStatement(query);
+        ps.setString(1, name);
+        ps.setString(2, firstName);
+        ps.setString(3, DateB);
+        ps.setString(4, age);
+        ps.setString(5, phone);
+        ps.setString(6, gender);
+        ps.setString(7, bloodType);
+        ps.setString(8, address);
+        ps.setString(9, numCard);  
+        ps.setString(10, userName);  
+        ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -230,9 +231,9 @@ public class CRUD {
         return "";
     }
 
-    public boolean addSession(String sessionID, String identityNum, String condidateFullName, String DateS, int hour, String Type) {
+    public boolean addSession(String sessionID, String identityNum, String condidateFullName, String DateS, int hour, String Type,String userName) {
         //condidateFullName =getCondidateNameById(identityNum);
-        String query = "insert into sessionP (session_ID,condidate_full_name,identity_card_number,session_date,hour,session_type) values(?,?,?,to_date(?, 'DD-MM-YYYY'),?,?) ";
+        String query = "insert into sessionP (session_ID,condidate_full_name,identity_card_number,session_date,hour,session_type,user_name) values(?,?,?,to_date(?, 'DD-MM-YYYY'),?,?,?) ";
         PreparedStatement ps;
         try {
             ps = conn.prepareStatement(query);
@@ -242,6 +243,7 @@ public class CRUD {
             ps.setString(4, DateS);
             ps.setInt(5, hour);
             ps.setString(6, Type);
+            ps.setString(7, userName);
             int rs = ps.executeUpdate();
             return rs > 0;
         } catch (SQLException ex) {
@@ -250,12 +252,13 @@ public class CRUD {
         return false;
     }
 
-    public void displayDataSessionTable(JTable tabName) {
-        String query = "select sessionP.*, to_char(session_date,'DD-MM-YYYY') as formatted_date from sessionP";
+    public void displayDataSessionTable(JTable tabName,String userName) {
+        String query = "select sessionP.*, to_char(session_date,'DD-MM-YYYY') as formatted_date from sessionP where user_name=?";
         String[] session = new String[6];
         DefaultTableModel model = (DefaultTableModel) tabName.getModel();
         try {
             ps = conn.prepareStatement(query);
+            ps.setString(1, userName);
             rs = ps.executeQuery();
             model.setRowCount(0);
             while (rs.next()) {
@@ -272,19 +275,19 @@ public class CRUD {
         }
     }
 
-    public void deleteSession(String fullName) {
-        String query = "delete from sessionP where condidate_full_name =? ";
+    public void deleteSession(String userName) {
+        String query = "delete from sessionP where user_name =? ";
         try {
             ps = conn.prepareStatement(query);
-            ps.setString(1, fullName);
+            ps.setString(1, userName);
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public void updateSession(String sessionID, String identityNum, String condidateFullName, String DateS, int hour, String Type) {
-        String query = "update sessionP set session_ID=?,condidate_full_name=?,session_date=to_date(?,'DD-MM-YYYY'),hour=?,session_type=? where identity_card_number=?";
+    public void updateSession(String sessionID, String identityNum, String condidateFullName, String DateS, int hour, String Type,String userName) {
+        String query = "update sessionP set session_ID=?,condidate_full_name=?,session_date=to_date(?,'DD-MM-YYYY'),hour=?,session_type=? where identity_card_number=? and user_name=?";
         try {
             ps = conn.prepareStatement(query);
             ps.setString(1, sessionID);
@@ -294,6 +297,7 @@ public class CRUD {
             ps.setInt(4, hour);
             ps.setString(5, Type);
             ps.setString(6, identityNum);
+            ps.setString(7, userName);
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
@@ -301,8 +305,8 @@ public class CRUD {
     }
 
     // ==================== Payment Methods ==================== //
-    public boolean addPayment(String payment_ID, String identityNum, String amount, String instAmount, String remBalance, int nbr, String dateP) {
-        String query = "insert into payment (payment_ID, identity_card_number, amount, installment_amount, remaining_balance, number_installments, payment_date) values(?,?,?,?,?,?,to_date(?, 'DD-MM-YYYY'))";
+    public boolean addPayment(String payment_ID, String identityNum, String amount, String instAmount, String remBalance, int nbr, String dateP,String userName) {
+        String query = "insert into payment (payment_ID, identity_card_number, amount, installment_amount, remaining_balance, number_installments, payment_date,user_name) values(?,?,?,?,?,?,to_date(?, 'DD-MM-YYYY'),?)";
         try {
             ps = conn.prepareStatement(query);
             ps.setString(1, payment_ID);
@@ -312,7 +316,7 @@ public class CRUD {
             ps.setString(5, remBalance);
             ps.setInt(6, nbr);
             ps.setString(7, dateP);
-
+            ps.setString(8, userName);
             int rs = ps.executeUpdate();
             return rs > 0;
         } catch (SQLException ex) {
@@ -321,12 +325,13 @@ public class CRUD {
         return false;
     }
 
-    public void displayDataPayment(JTable tab) {
-        String query = "select payment.*, to_char(payment_date,'DD-MM-YYYY') as formatted_date from payment";
+    public void displayDataPayment(JTable tab,String userName) {
+        String query = "select payment.*, to_char(payment_date,'DD-MM-YYYY') as formatted_date from payment where user_name=?";
         String[] payment = new String[7];
         DefaultTableModel model = (DefaultTableModel) tab.getModel();
         try {
             ps = conn.prepareStatement(query);
+            ps.setString(1, userName);
             rs = ps.executeQuery();
             model.setRowCount(0);
             while (rs.next()) {
@@ -344,20 +349,21 @@ public class CRUD {
         }
     }
 
-    public void deletePay(String identityNum) {
-        String query = "delete from payment where identity_card_number =?";
+    public void deletePay(String identityNum,String userName) {
+        String query = "delete from payment where identity_card_number =? and user_name=?";
         try {
             ps = conn.prepareStatement(query);
             ps.setString(1, identityNum);
+            ps.setString(2, userName);
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public void updatePay(String paymentID, String identityNum, String amount, String instAmount, String remBalance, int nbr, String Date) {
+    public void updatePay(String paymentID, String identityNum, String amount, String instAmount, String remBalance, int nbr, String Date,String userName) {
         //String query = "update payment set payment_ID=?,amount =?,installment_amount=?,remainig_balance =?,number_installments=?,payment_date=to_date(?,'DD-MM-YYYY') where identity_card_number =?";
-        String query = "update payment set payment_ID=?,amount =?,installment_amount=?,remaining_balance =?,number_installments=?,payment_date=to_date(?,'DD-MM-YYYY') where identity_card_number =?";
+        String query = "update payment set payment_ID=?,amount =?,installment_amount=?,remaining_balance =?,number_installments=?,payment_date=to_date(?,'DD-MM-YYYY') where identity_card_number =? and user_name=?";
 
         try {
             ps = conn.prepareStatement(query);
@@ -368,6 +374,7 @@ public class CRUD {
             ps.setInt(5, nbr);
             ps.setString(6, Date);
             ps.setString(7, identityNum);
+            ps.setString(8, userName);
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
@@ -376,14 +383,15 @@ public class CRUD {
     }
 
     // ==================== Exams Methods ==================== //
-    public boolean addExam(String IDc, String fName, String date, String type) {
-        String query = "insert into exams (identity_card_number,full_name,exam_date,exam_type)values(?,?,to_date(?, 'DD-MM-YYYY'),?)";
+    public boolean addExam(String IDc, String fName, String date, String type,String userName) {
+        String query = "insert into exams (identity_card_number,full_name,exam_date,exam_type,user_name)values(?,?,to_date(?, 'DD-MM-YYYY'),?,?)";
         try {
             ps = conn.prepareStatement(query);
             ps.setString(1, IDc);
             ps.setString(2, fName);
             ps.setString(3, date);
             ps.setString(4, type);
+            ps.setString(5, userName);
             int rs = ps.executeUpdate();
             return rs > 0;
         } catch (SQLException ex) {
@@ -392,12 +400,13 @@ public class CRUD {
         return false;
     }
 
-    public void displayaDataExams(JTable tab) {
-        String query = "select exams.*, to_char(exam_date,'DD-MM-YYYY') as formatted_date from exams";
+    public void displayaDataExams(JTable tab,String userName) {
+        String query = "select exams.*, to_char(exam_date,'DD-MM-YYYY') as formatted_date from exams where user_name=?";
         String[] exams = new String[4];
         DefaultTableModel model = (DefaultTableModel) tab.getModel();
         try {
             ps = conn.prepareStatement(query);
+            ps.setString(1, userName);
             rs = ps.executeQuery();
             model.setRowCount(0);
             while (rs.next()) {
@@ -412,25 +421,27 @@ public class CRUD {
         }
     }
 
-    public void deleteExam(String identityNum) {
-        String query = "delete from exams where identity_card_number =?";
+    public void deleteExam(String identityNum,String userName ) {
+        String query = "delete from exams where identity_card_number =? and user_name=?";
         try {
             ps = conn.prepareStatement(query);
             ps.setString(1, identityNum);
+            ps.setString(2, userName);
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public void updateExam(String IDc, String fName, String date, String type) {
-        String query = "update exams set full_name =?,exam_date=to_date(?,'DD-MM-YYYY'),exam_type=? where identity_card_number=?";
+    public void updateExam(String IDc, String fName, String date, String type,String userName) {
+        String query = "update exams set full_name =?,exam_date=to_date(?,'DD-MM-YYYY'),exam_type=? ,identity_card_number=? where user_name=?";
         try {
             ps = conn.prepareStatement(query);
             ps.setString(1, fName);
             ps.setString(2, date);
             ps.setString(3, type);
             ps.setString(4, IDc);
+            ps.setString(5, userName);
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
@@ -438,13 +449,14 @@ public class CRUD {
     }
 
     // ==================== Rapport Methods ==================== //
-    public String getHours(String condidateID, String sessionType) {
-        String query = "select sum(hour) as total_hours from sessionP where session_type = ? and identity_card_number = ?";
+    public String getHours(String condidateID, String sessionType,String userName) {
+        String query = "select sum(hour) as total_hours from sessionP where session_type = ? and identity_card_number = ? and user_name=?";
         String totalHours = "0";
         try {
             ps = conn.prepareStatement(query);
             ps.setString(1, sessionType);
             ps.setString(2, condidateID);
+            ps.setString(3, userName);
             rs = ps.executeQuery();
             if (rs.next()) {
                 totalHours = rs.getString("total_hours");
@@ -459,12 +471,13 @@ public class CRUD {
         }
     }
 
-    public String getExamDate(String condidateID) {
-        String query = "select to_char(exam_date,'DD-MM-YYYY') as formatted_date from exams where identity_card_number = ? and exam_type = 'Driving'";
+    public String getExamDate(String condidateID,String userName) {
+        String query = "select to_char(exam_date,'DD-MM-YYYY') as formatted_date from exams where identity_card_number = ? and exam_type = 'Driving' and user_name=?";
         String date = "0";
         try {
             ps = conn.prepareStatement(query);
             ps.setString(1, condidateID);
+            ps.setString(2, userName);
             rs = ps.executeQuery();
             if (rs.next()) {
                 date = rs.getString("formatted_date");
@@ -479,8 +492,9 @@ public class CRUD {
         }
     }
     
+    //Méthode pour récupérer user name à partir de la base de données  
     public String getUserName(String userName){
-        String query ="select user_name from register where user_name=?"; //récupérer user_name à partir de la base de données 
+        String query ="select user_name from register where user_name=?"; 
         String userN="";
         try {
             ps=conn.prepareStatement(query);

@@ -28,6 +28,10 @@ public class Report extends javax.swing.JFrame {
     public Report() {
         initComponents();
     }
+    public Report(String userName){
+        this();
+        jLUserName.setText(userName);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -60,6 +64,7 @@ public class Report extends javax.swing.JFrame {
         txtEmail = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
+        jLUserName = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -163,10 +168,24 @@ public class Report extends javax.swing.JFrame {
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/volant.png"))); // NOI18N
         jLabel11.setText("AceDriver ");
 
+        jLUserName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLUserName.setForeground(new java.awt.Color(0, 153, 153));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(160, 160, 160))
+                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -193,19 +212,11 @@ public class Report extends javax.swing.JFrame {
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtLname)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtEmail))))
+                            .addComponent(txtEmail)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(86, 157, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(160, 160, 160))
-                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,7 +225,9 @@ public class Report extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -305,16 +318,20 @@ public class Report extends javax.swing.JFrame {
         String condidateID = txtID.getText().trim();
         String fullName[] = crud.getCondidateNameById(condidateID).split(" ");
         System.out.println (Arrays.toString (fullName));
-        String codeHours = crud.getHours(condidateID, "Code");
-        String parkingHours = crud.getHours(condidateID, "Parking");
-        String drivingHours = crud.getHours(condidateID, "Driving");
-        String examDate = crud.getExamDate(condidateID);
+        String userName= jLUserName.getText();
+        String dbUserName = crud.getUserName(userName);
+        if(dbUserName.equals(userName)){
+        String codeHours = crud.getHours(condidateID, "Code",userName);
+        String parkingHours = crud.getHours(condidateID, "Parking",userName);
+        String drivingHours = crud.getHours(condidateID, "Driving",userName);
+        String examDate = crud.getExamDate(condidateID,userName);
         txtFname.setText(fullName[1]);
         txtLname.setText(fullName[0]);
         txtCode.setText(codeHours);
         txtParking.setText(parkingHours);
         txtDriving.setText(drivingHours);
         Date date;
+        
         if (!"0".equals(examDate)) {
             try {
                 date = new SimpleDateFormat("dd-MM-yyyy").parse(examDate);
@@ -322,11 +339,10 @@ public class Report extends javax.swing.JFrame {
             } catch (ParseException ex) {
                 Logger.getLogger(Report.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
         } else {
             JOptionPane.showMessageDialog(this, "This candidate has not passed the exam yet", "Warning!", JOptionPane.WARNING_MESSAGE);
         }
-
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
@@ -366,6 +382,7 @@ public class Report extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "All fields must be filled", "Incomplete Form", JOptionPane.WARNING_MESSAGE);
             } else {
                 sendEmail(candidateEmail, emailMsg);
+                JOptionPane.showMessageDialog(this, "An email has been sent! Please check your inbox.", "Success", JOptionPane.INFORMATION_MESSAGE);
             }
         }
 
@@ -380,7 +397,8 @@ public class Report extends javax.swing.JFrame {
         home_screen hc = new home_screen();
         hc.setVisible(true);
         hc.toFront();
-        this.setVisible(false);
+       // this.setVisible(false);
+       this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -426,6 +444,7 @@ public class Report extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLUserName;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;

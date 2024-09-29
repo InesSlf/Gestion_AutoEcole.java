@@ -23,6 +23,10 @@ public class Payment extends javax.swing.JFrame {
     public Payment() {
         initComponents();
     }
+    public Payment(String userName){
+        this();
+        jLUserName.setText(userName);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -56,6 +60,7 @@ public class Payment extends javax.swing.JFrame {
         btnDelete = new javax.swing.JButton();
         btnModify = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jLUserName = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -185,6 +190,8 @@ public class Payment extends javax.swing.JFrame {
             }
         });
 
+        jLUserName.setForeground(new java.awt.Color(0, 153, 153));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -212,7 +219,7 @@ public class Payment extends javax.swing.JFrame {
                         .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -225,7 +232,11 @@ public class Payment extends javax.swing.JFrame {
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 792, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(126, 126, 126))
+                .addGap(206, 206, 206))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(jLUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,7 +245,9 @@ public class Payment extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                .addGap(1, 1, 1)
+                .addComponent(jLUserName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(btnDelete)
@@ -298,6 +311,8 @@ CRUD crud = new CRUD();
         String RemBalance = jtRemBalance.getText();
         String Date = sdf.format(jtDatePay.getDate());
         int Nbr = (int) jtNumInst.getValue();
+        String userName= jLUserName.getText();
+        String dbUserName = crud.getUserName(userName);
         if (InstAmount.isEmpty()) {
             InstAmount = "0";
         }
@@ -317,8 +332,10 @@ CRUD crud = new CRUD();
             jtDatePay.setCalendar(null);
             jtNumInst.setValue(0);
         }
-        if (crud.addPayment(ID, IDC, Amount, InstAmount, RemBalance, Nbr, Date)) {
+        if(dbUserName.equals(userName)){
+        if (crud.addPayment(ID, IDC, Amount, InstAmount, RemBalance, Nbr, Date,userName)) {
             JOptionPane.showMessageDialog(null, "Payment has been successfully processed.");
+        }
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -334,10 +351,16 @@ CRUD crud = new CRUD();
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         DefaultTableModel model = (DefaultTableModel) TablePayment.getModel();
+        String userName= jLUserName.getText();
+        String dbUserName = crud.getUserName(userName);
+        String IDC = jtIDCondidate.getText();
         try {
             int selectedRow = TablePayment.getSelectedRow();
             model.removeRow(selectedRow);
-            crud.deletePay(jtIDCondidate.getText());
+            if(dbUserName.equals(userName)){
+            crud.deletePay(IDC,userName);
+            JOptionPane.showMessageDialog(this, "Payment deleted.", "Info", JOptionPane.INFORMATION_MESSAGE);
+            }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "No row is selected.", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -352,6 +375,8 @@ CRUD crud = new CRUD();
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
         int i = TablePayment.getSelectedRow();
+        String userName= jLUserName.getText();
+        String dbUserName = crud.getUserName(userName);
         DefaultTableModel model = (DefaultTableModel) TablePayment.getModel();
         if (i >= 0) {
             String ID = jtPaymentID.getText();
@@ -362,7 +387,8 @@ CRUD crud = new CRUD();
             String InstAmount = jtAmountInst.getText();
             String RemBalance = jtRemBalance.getText();
             String Amount = jtAmount.getText();
-            crud.updatePay(ID, IDC, Amount, InstAmount, RemBalance, num, Date);
+            if(dbUserName.equals(userName)){
+            crud.updatePay(ID, IDC, Amount, InstAmount, RemBalance, num, Date,userName);
             model.setValueAt(ID, i, 0);
             model.setValueAt(IDC, i, 1);
             model.setValueAt(Amount, i, 2);
@@ -370,6 +396,8 @@ CRUD crud = new CRUD();
             model.setValueAt(RemBalance, i, 4);
             model.setValueAt(num, i, 5);
             model.setValueAt(Date, i, 6);
+            JOptionPane.showMessageDialog(this, "Payment modified successfully.", "Info", JOptionPane.INFORMATION_MESSAGE);
+            }
         } else {
             JOptionPane.showMessageDialog(this, "No row selected ", "Try again !", JOptionPane.ERROR_MESSAGE);
         }
@@ -413,11 +441,16 @@ CRUD crud = new CRUD();
         home_screen hc = new home_screen();
         hc.setVisible(true);
         hc.toFront();
-        this.setVisible(false);
+        //this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        crud.displayDataPayment(TablePayment);
+        String userName= jLUserName.getText();
+        String dbUserName = crud.getUserName(userName);
+        if(dbUserName.equals(userName)){
+        crud.displayDataPayment(TablePayment,userName);
+        }
     }//GEN-LAST:event_formWindowOpened
 
     /**
@@ -462,6 +495,7 @@ CRUD crud = new CRUD();
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnModify;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLUserName;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

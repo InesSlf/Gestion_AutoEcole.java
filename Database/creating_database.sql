@@ -144,3 +144,5 @@ ALTER TABLE sessionP ADD user_name VARCHAR2(50);
 
 -- Ajout la colonne user_name à la table payment
 ALTER TABLE payment ADD user_name VARCHAR2(50);
+
+ALTER TABLE exams ADD user_name VARCHAR2(50);

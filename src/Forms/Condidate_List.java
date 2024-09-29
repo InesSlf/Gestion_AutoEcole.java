@@ -5,17 +5,16 @@
 package Forms;
 
 import Database.CRUD;
-import com.sun.mail.handlers.message_rfc822;
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.print.PrinterException;
-import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.text.MessageFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 
@@ -30,12 +29,9 @@ public class Condidate_List extends javax.swing.JFrame {
      */
     public Condidate_List() {
         initComponents();
-    }
-   public Condidate_List(String userName) {
-        //initComponents();
-        this();
+        userNameFile file = new userNameFile();       
+        String userName = file.readUsernameFromFile();
         jLUserName.setText(userName);
-        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -110,12 +106,14 @@ public class Condidate_List extends javax.swing.JFrame {
         jLabel2.setText("First Name");
 
         jtFName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jtFName.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Last Name");
 
         jtName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jtName.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -126,12 +124,14 @@ public class Condidate_List extends javax.swing.JFrame {
         jLabel5.setText("Age");
 
         jtAge.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jtAge.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Phone Number");
 
         jtPhone.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jtPhone.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -154,12 +154,14 @@ public class Condidate_List extends javax.swing.JFrame {
         jLabel8.setText("Blood Type");
 
         jtBooldType.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jtBooldType.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Adress");
 
         jtAdress.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jtAdress.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         btAdd.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btAdd.setForeground(new java.awt.Color(0, 153, 153));
@@ -223,6 +225,7 @@ public class Condidate_List extends javax.swing.JFrame {
         jLabel10.setText("Identity Card Number");
 
         jtNumCard.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jtNumCard.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         jButton1.setBackground(new java.awt.Color(226, 114, 114));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/return.png"))); // NOI18N
@@ -281,15 +284,18 @@ public class Condidate_List extends javax.swing.JFrame {
                                 .addComponent(btClear, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jtNumCard, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
                         .addComponent(btDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btModify, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1)))
                 .addGap(17, 17, 17))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -319,56 +325,58 @@ public class Condidate_List extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(10, 10, 10)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btDelete)
+                    .addComponent(btModify))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btDelete)
-                        .addComponent(btModify))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(12, 12, 12)
+                            .addComponent(jtFName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel3)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jtName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(12, 12, 12)
+                            .addComponent(jLabel4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jtDateB, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel5)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jtAge, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jLabel6)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel7)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(rbFemale, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(rbMale))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel8)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jtBooldType, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel9)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jtAdress, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel10)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jtNumCard, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(30, 30, 30)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btAdd)
+                                .addComponent(btClear)))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jScrollPane1)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jtFName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jtDateB, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtAge, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(rbFemale, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(rbMale))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtBooldType, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtAdress, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtNumCard, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btAdd)
-                            .addComponent(btClear)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1)))
+                        .addGap(311, 311, 311)
+                        .addComponent(jLabel2)))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
@@ -388,9 +396,12 @@ public class Condidate_List extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        String userName =jLUserName.getText();
+        String userName = jLUserName.getText();
         CRUD crud = new CRUD();
-        crud.display_data(TableCondiates,userName);
+        String dbUserName = crud.getUserName(userName);
+        if (dbUserName.equals(userName)) {
+            crud.display_data(TableCondiates, userName);
+        }
     }//GEN-LAST:event_formWindowOpened
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
@@ -420,10 +431,11 @@ public class Condidate_List extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.toBack();
-        home_screen hc=new home_screen();
+        home_screen hc = new home_screen();
         hc.setVisible(true);
         hc.toFront();
-        this.setVisible(false);
+        //this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModifyActionPerformed
@@ -437,48 +449,48 @@ public class Condidate_List extends javax.swing.JFrame {
         String Phone = jtPhone.getText();
         String BooldTy = jtBooldType.getText();
         String gender;
-        String userName= jLUserName.getText();
-        CRUD crud =new CRUD();
+        String userName = jLUserName.getText();
+        CRUD crud = new CRUD();
         String dbUserName = crud.getUserName(userName);
         if (rbMale.isSelected()) {
             gender = "Male";
         } else {
             gender = "Female";
         }
-        int i =TableCondiates.getSelectedRow();
+        int i = TableCondiates.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) TableCondiates.getModel();
-        if(i>=0){
+        if (i >= 0) {
             if (dbUserName.equals(userName)) {
-            model.setValueAt(name, i, 0);
-            model.setValueAt(Fname, i, 1);
-            model.setValueAt(DBirth, i, 2);
-            model.setValueAt(Age, i, 3);
-            model.setValueAt(Phone, i, 4);
-            model.setValueAt(gender, i, 5);
-            model.setValueAt(BooldTy, i, 6);
-            model.setValueAt(Adress, i, 7);
-            model.setValueAt(NumCrd, i, 8);
-            crud.updateCondidate(name, Fname, DBirth, Age, Phone, gender, BooldTy, Adress, NumCrd);
-            JOptionPane.showMessageDialog(this, "Candidate updated successfully.", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
+                model.setValueAt(name, i, 0);
+                model.setValueAt(Fname, i, 1);
+                model.setValueAt(DBirth, i, 2);
+                model.setValueAt(Age, i, 3);
+                model.setValueAt(Phone, i, 4);
+                model.setValueAt(gender, i, 5);
+                model.setValueAt(BooldTy, i, 6);
+                model.setValueAt(Adress, i, 7);
+                model.setValueAt(NumCrd, i, 8);
+                crud.updateCondidate(name, Fname, DBirth, Age, Phone, gender, BooldTy, Adress, NumCrd, userName);
+                JOptionPane.showMessageDialog(this, "Candidate updated successfully.", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
             }
-        }else{
-            JOptionPane.showMessageDialog(null,"Error : No row selected ");
+        } else {
+            JOptionPane.showMessageDialog(null, "Error : No row selected ");
         }
 
     }//GEN-LAST:event_btModifyActionPerformed
 
     private void btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteActionPerformed
         DefaultTableModel model = (DefaultTableModel) TableCondiates.getModel();
-        String userName= jLUserName.getText();
-        CRUD crud =new CRUD();
+        String userName = jLUserName.getText();
+        CRUD crud = new CRUD();
         String dbUserName = crud.getUserName(userName);
         //get selected row index
         try {
             int SelectedrowIndex = TableCondiates.getSelectedRow();
             model.removeRow(SelectedrowIndex);
-            if(dbUserName.equals(userName)){
-            crud.deleteCondidate(jtNumCard.getText(),userName);
-            JOptionPane.showMessageDialog(this, "Candidate deleted successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+            if (dbUserName.equals(userName)) {
+                crud.deleteCondidate(jtNumCard.getText(), userName);
+                JOptionPane.showMessageDialog(this, "Candidate deleted successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "No row is selected.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -543,8 +555,8 @@ public class Condidate_List extends javax.swing.JFrame {
         String Phone = jtPhone.getText();
         String BooldTy = jtBooldType.getText();
         String gender = null;
-        CRUD crud =new CRUD();
-        String userName= jLUserName.getText();
+        CRUD crud = new CRUD();
+        String userName = jLUserName.getText();
         String dbUserName = crud.getUserName(userName);
         if (name.isEmpty() || Fname.isEmpty() || DBirth.isEmpty() || Adress.isEmpty() || Age.isEmpty() || Phone.isEmpty() || BooldTy.isEmpty() || NumCrd.isEmpty() || !(rbMale.isSelected() || rbFemale.isSelected())) {
             JOptionPane.showMessageDialog(this, "Please enter all fields", "Try again", JOptionPane.ERROR_MESSAGE);
@@ -569,13 +581,13 @@ public class Condidate_List extends javax.swing.JFrame {
         }/*if(crud.addCondidate(userName,name, Fname, DBirth, Age, Phone, gender, BooldTy, Adress, NumCrd)){
             JOptionPane.showMessageDialog(this, "A candidate has been added.", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
         }*/
-        if(dbUserName.equals(userName)){
+        if (dbUserName.equals(userName)) {
             if (crud.addCondidate(userName, name, Fname, DBirth, Age, Phone, gender, BooldTy, Adress, NumCrd)) {
-        JOptionPane.showMessageDialog(this, "A candidate has been added.", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
-    } 
+                JOptionPane.showMessageDialog(this, "A candidate has been added.", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
+            }
         }
     }//GEN-LAST:event_btAddActionPerformed
-    
+
     /**
      * @param args the command line arguments
      */

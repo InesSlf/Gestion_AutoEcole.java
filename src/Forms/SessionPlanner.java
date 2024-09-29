@@ -24,6 +24,11 @@ public class SessionPlanner extends javax.swing.JFrame {
         initComponents();
     }
 
+    public SessionPlanner(String userName) {
+        this();
+        jLUserName.setText(userName);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,6 +63,7 @@ public class SessionPlanner extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jtIDsession = new javax.swing.JTextField();
+        jLUserName = new javax.swing.JLabel();
 
         jLabel5.setText("jLabel5");
 
@@ -220,6 +226,9 @@ public class SessionPlanner extends javax.swing.JFrame {
             }
         });
 
+        jLUserName.setBackground(new java.awt.Color(0, 153, 153));
+        jLUserName.setForeground(new java.awt.Color(0, 153, 153));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -227,33 +236,39 @@ public class SessionPlanner extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGap(81, 81, 81))
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jtIDcard)
-                                .addComponent(jtNameC)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jcCode, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jcParking, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jcDriving, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jtHour, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtDateS, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtIDsession, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(29, 29, 29)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addGap(81, 81, 81))
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jtIDcard)
+                                        .addComponent(jtNameC)
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                            .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                            .addComponent(jcCode, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jcParking, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jcDriving, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jtHour, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jtDateS, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jtIDsession, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(29, 29, 29))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(jLUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -278,7 +293,8 @@ public class SessionPlanner extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnModify)
-                    .addComponent(btnDelete))
+                    .addComponent(btnDelete)
+                    .addComponent(jLUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -341,10 +357,14 @@ public class SessionPlanner extends javax.swing.JFrame {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         DefaultTableModel model = (DefaultTableModel) TableSession.getModel();
+        String userName = jLUserName.getText();
+        String dbUserName = crud.getUserName(userName);
         try {
             int selectedRow = TableSession.getSelectedRow();
             model.removeRow(selectedRow);
-            crud.deleteSession(jtNameC.getText());
+            if (dbUserName.equals(userName)) {
+                crud.deleteSession(userName);
+            }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "No row is selected.", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -364,6 +384,8 @@ public class SessionPlanner extends javax.swing.JFrame {
         String Date = sdf.format(jtDateS.getDate());
         int Hour = (int) jtHour.getValue();
         String Type = "";
+        String userName = jLUserName.getText();
+        String dbUserName = crud.getUserName(userName);
         if (jcCode.isSelected()) {
             Type = "Code";
         } else if (jcDriving.isSelected()) {
@@ -386,8 +408,10 @@ public class SessionPlanner extends javax.swing.JFrame {
             jtHour.setValue(0);
         }
         jtNameC.setText(crud.getCondidateNameById(IDc));
-        if (crud.addSession(IDs, IDc, candidateFullName, Date, Hour, Type)) {
-            JOptionPane.showMessageDialog(this, "Session has been added successfully!", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
+        if (dbUserName.equals(userName)) {
+            if (crud.addSession(IDs, IDc, candidateFullName, Date, Hour, Type, userName)) {
+                JOptionPane.showMessageDialog(this, "Session has been added successfully!", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
+            }
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -424,6 +448,8 @@ public class SessionPlanner extends javax.swing.JFrame {
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
         int i = TableSession.getSelectedRow();
+        String userName = jLUserName.getText();
+        String dbUserName = crud.getUserName(userName);
         DefaultTableModel model = (DefaultTableModel) TableSession.getModel();
         if (i >= 0) {
             String IDc = jtIDcard.getText();
@@ -443,16 +469,18 @@ public class SessionPlanner extends javax.swing.JFrame {
             } else {
                 Type = "";
             }
-            crud.updateSession(IDs, IDc, candidateFullName, Date, Hour, Type);
-            model.setValueAt(IDc, i, 0);
-            model.setValueAt(Name, i, 1);
-            model.setValueAt(IDs, i, 2);
-            model.setValueAt(Date, i, 3);
-            model.setValueAt(Hour, i, 4);
-            model.setValueAt(Type, i, 5);
-            jtNameC.setText(crud.getCondidateNameById(IDc));
-           // crud.updateSession(IDs, candidateFullName, IDc, Date, Hour, Type);
-          // crud.updateSession(IDs, IDc, candidateFullName, Date, Hour, Type);
+            if (dbUserName.equals(userName)) {
+                crud.updateSession(IDs, IDc, candidateFullName, Date, Hour, Type, userName);
+                model.setValueAt(IDc, i, 0);
+                model.setValueAt(Name, i, 1);
+                model.setValueAt(IDs, i, 2);
+                model.setValueAt(Date, i, 3);
+                model.setValueAt(Hour, i, 4);
+                model.setValueAt(Type, i, 5);
+                jtNameC.setText(crud.getCondidateNameById(IDc));
+            }
+            // crud.updateSession(IDs, candidateFullName, IDc, Date, Hour, Type);
+            // crud.updateSession(IDs, IDc, candidateFullName, Date, Hour, Type);
         } else {
             JOptionPane.showMessageDialog(this, "No row selected ", "Try again !", JOptionPane.ERROR_MESSAGE);
         }
@@ -466,11 +494,12 @@ public class SessionPlanner extends javax.swing.JFrame {
     }//GEN-LAST:event_btnModifyActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.toBack();
+//        this.toBack();
         home_screen hc = new home_screen();
         hc.setVisible(true);
         hc.toFront();
-        this.setVisible(false);
+        // this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jtIDcardKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDcardKeyTyped
@@ -496,7 +525,11 @@ public class SessionPlanner extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel1HierarchyChanged
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        crud.displayDataSessionTable(TableSession);
+        String userName = jLUserName.getText();
+        String dbUserName = crud.getUserName(userName);
+        if (dbUserName.equals(userName)) {
+            crud.displayDataSessionTable(TableSession, userName);
+        }
     }//GEN-LAST:event_formWindowOpened
 
     private void jtIDsessionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDsessionKeyReleased
@@ -546,6 +579,7 @@ public class SessionPlanner extends javax.swing.JFrame {
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnModify;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLUserName;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

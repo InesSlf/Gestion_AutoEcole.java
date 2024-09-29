@@ -5,7 +5,6 @@
 package Forms;
 
 import Database.CRUD;
-import java.util.Arrays;
 import javax.swing.JOptionPane;
 
 /**
@@ -177,11 +176,11 @@ public class signIn extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
-         
+
     }//GEN-LAST:event_txtNameActionPerformed
 
     private void txtPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassActionPerformed
-           
+
     }//GEN-LAST:event_txtPassActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
@@ -192,8 +191,11 @@ public class signIn extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please enter all fields", "Try Again!", JOptionPane.ERROR_MESSAGE);
         } else if (crud.checkUser(name, pass)) {
             JOptionPane.showMessageDialog(this, "Hey " + name, "Welcome", JOptionPane.INFORMATION_MESSAGE);
-           // home_screen hs = new home_screen();
-            home_screen hs=new home_screen(name);
+
+            userNameFile file = new userNameFile();
+            file.writeUsernameToFile(name);
+            // home_screen hs = new home_screen();
+            home_screen hs = new home_screen();
             //hs.setVisible(true);
             hs.setLocationRelativeTo(null);
             hs.setVisible(true);
@@ -203,19 +205,20 @@ public class signIn extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
-    public static String decrypt(String password ,int shift){
-        StringBuilder decryptedPass =new StringBuilder();
-        for(int i=0;i<password.length();i++){
-           char c=password.charAt(i);
-           if(Character.isLetter(c)){
-               c= (char) ((c-'a'- shift+26)%26+'a');
-           }else if(Character.isDigit(c)){
-               c= (char) ((c-'0'-shift+10)%10+'0'); 
+    public static String decrypt(String password, int shift) {
+        StringBuilder decryptedPass = new StringBuilder();
+        for (int i = 0; i < password.length(); i++) {
+            char c = password.charAt(i);
+            if (Character.isLetter(c)) {
+                c = (char) ((c - 'a' - shift + 26) % 26 + 'a');
+            } else if (Character.isDigit(c)) {
+                c = (char) ((c - '0' - shift + 10) % 10 + '0');
             }
-           decryptedPass.append(c);
+            decryptedPass.append(c);
         }
         return decryptedPass.toString();
     }
+
     /**
      * @param args the command line arguments
      */

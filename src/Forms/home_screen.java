@@ -7,6 +7,8 @@ package Forms;
 import Database.CRUD;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import javax.swing.Timer;
@@ -22,22 +24,17 @@ public class home_screen extends javax.swing.JFrame {
      */
     public home_screen() {
         initComponents();
-        updateTime();//appel methode ta3 la date et heure 
+        updateTime();//appel methode ta3 la date et heure         
     }
-    public home_screen(String userName){
-        //initComponents();
-        this();
-        jLUserName.setText(userName);
-       // Condidate_List cl=new Condidate_List(userName);
-       // cl.setVisible(true);
-    }
+
     //methode date et heure 
-    public void curDateTime(){
-        DateTimeFormatter dtf=DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-        LocalDateTime now=LocalDateTime.now();
+    public void curDateTime() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
         DateTime.setText(dtf.format(now));
     }
-    public void updateTime(){
+
+    public void updateTime() {
         curDateTime();
         Timer timer = new Timer(1000, new ActionListener() {
             @Override
@@ -47,6 +44,7 @@ public class home_screen extends javax.swing.JFrame {
         });
         timer.start();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -72,6 +70,11 @@ public class home_screen extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -206,7 +209,7 @@ public class home_screen extends javax.swing.JFrame {
                 .addComponent(btnPayment)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnPayment1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 318, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 313, Short.MAX_VALUE)
                 .addComponent(DateTime)
                 .addGap(27, 27, 27))
         );
@@ -215,13 +218,15 @@ public class home_screen extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 16, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -287,37 +292,68 @@ public class home_screen extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    CRUD crud = new CRUD();
     private void btnPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaymentActionPerformed
-        Payment p=new Payment();
-        p.setVisible(true);
-        this.setVisible(false);
+        String userName = jLUserName.getText();
+        String dbUserName = crud.getUserName(userName);
+        if (dbUserName.equals(userName)) {
+            Payment p = new Payment(jLUserName.getText());
+            p.setVisible(true);
+            this.setVisible(false);
+            this.dispose();
+        }
     }//GEN-LAST:event_btnPaymentActionPerformed
 
     private void btnExamsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExamsActionPerformed
-        Exams ex =new Exams();
-        ex.setVisible(true);
-        this.setVisible(false);
+        String userName = jLUserName.getText();
+        String dbUserName = crud.getUserName(userName);
+        if (dbUserName.equals(userName)) {
+            Exams ex = new Exams(jLUserName.getText());
+            ex.setVisible(true);
+            this.setVisible(false);
+            this.dispose();
+        }
     }//GEN-LAST:event_btnExamsActionPerformed
 
     private void btnSessionPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSessionPlanActionPerformed
-        SessionPlanner sp=new SessionPlanner();
-        sp.setVisible(true);
-        this.setVisible(false);
+        String userName = jLUserName.getText();
+        String dbUserName = crud.getUserName(userName);
+        if (dbUserName.equals(userName)) {
+            SessionPlanner sp = new SessionPlanner(jLUserName.getText());
+            sp.setVisible(true);
+            this.setVisible(false);
+            this.dispose();
+        }
     }//GEN-LAST:event_btnSessionPlanActionPerformed
 
     private void btnCondidateLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCondidateLActionPerformed
-        Condidate_List CL =new Condidate_List(jLUserName.getText());
-        CL.setVisible(true);
-        this.setVisible(false);
-
+        String userName = jLUserName.getText();
+        String dbUserName = crud.getUserName(userName);
+        if (dbUserName.equals(userName)) {
+            Condidate_List CL = new Condidate_List();
+            CL.setVisible(true);
+            this.setVisible(false);
+            this.dispose();
+        }
     }//GEN-LAST:event_btnCondidateLActionPerformed
 
     private void btnPayment1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayment1ActionPerformed
-       Report rp=new Report();
-       rp.setVisible(true);
-       this.setVisible(false);
+        String userName = jLUserName.getText();
+        String dbUserName = crud.getUserName(userName);
+        if (dbUserName.equals(userName)) {
+            Report rp = new Report(jLUserName.getText());
+            rp.setVisible(true);
+            this.setVisible(false);
+            this.dispose();
+        }
     }//GEN-LAST:event_btnPayment1ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        userNameFile file = new userNameFile();
+        String username = file.readUsernameFromFile();
+        jLUserName.setText(username);
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
